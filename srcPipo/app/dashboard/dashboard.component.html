@@ -1,0 +1,10 @@
+<h3>Top Heroes</h3>
+
+<ul>
+    <li *ngFor="let hero of arrayHeoroes.slice(0, 4);">
+        <button [routerLink]="['/details',hero.id]">
+            {{hero.name}}
+        </button>
+    </li>
+</ul>
+

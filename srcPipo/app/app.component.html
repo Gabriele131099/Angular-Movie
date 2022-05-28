@@ -1,0 +1,8 @@
+<div ngClass="container-home">
+    <h1>Tour of Heroes</h1>
+    <div>
+        <button [routerLink]="['dashBoard']"  routerLinkActive="active">Dashboard</button>
+        <button [routerLink]="['heroes']">Heroes</button>
+    </div>
+</div>
+<router-outlet></router-outlet>

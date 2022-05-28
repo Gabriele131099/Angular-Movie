@@ -1,0 +1,11 @@
+<div ngClass="containerHero">
+    <h3>My Heroes</h3>
+    <ul>
+        <li *ngFor="let hero of arrayHeoroes">
+            <button [routerLink]="['/details',hero.id]">
+                <div>{{hero.id}}</div>
+                <div>{{hero.name}}</div>
+            </button>
+        </li>
+    </ul>
+</div>
