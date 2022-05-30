@@ -15,22 +15,17 @@ export class ContainerCardsComponent implements OnInit {
   })
   constructor(private FilmsService: FilmsService
   ) { }
-  getFilms(filter:string): void {
+  getFilms(): void {
     
     this.FilmsService.getFilms()
         .subscribe(films => {
           this.arrayFilms = films.filter((obj:any)=>
-           this.filtro=="popular"?
-              obj.Genre.includes("")
-           :
-              obj.Genre.includes(this.filtro)
-            
-            
+           this.filtro=="popular" ? obj.Genre.includes("") : obj.Genre.includes(this.filtro)
           )
         });
   }
   ngOnInit(): void {
-    this.getFilms(this.filtro)
+    this.getFilms()
   }
   
 }
