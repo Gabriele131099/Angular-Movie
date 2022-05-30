@@ -14,11 +14,11 @@
     body {
     background-image: linear-gradient(to right, #d3dee9, #cbdbec, #c3d9ef, #bad6f1, #b1d4f4);
   }
-  fieldset,
-  label {
-    margin: 0;
-    padding: 0;
-  }
+  // fieldset,
+  // label {
+  //   margin: 0;
+  //   padding: 0;
+  // }
   // .rating {
   //   border: none;
   //   float: left;
@@ -101,10 +101,5 @@
       font-size: 15px;
       text-align: start;
       margin: 2px 0;
-    }
-    &-actors {
-      font-size: 11px;
-      text-align: start;
-      margin: 0 0 2px 0;
     }
   }

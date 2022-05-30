@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { FILMS } from 'src/film';
+import { FILMS } from 'src/assets/film';
 import { FilmsService } from 'src/films.service.ts';
 @Component({
   selector: 'app-container-cards',

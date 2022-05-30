@@ -1,0 +1,56 @@
+<app-home></app-home>
+<div ngClass="popUpCard" class="cellphone-container">
+  <div class="movie">
+
+    <div class="menu"> <a class="close" href="">X</a></div>
+    <div class="movie-img">
+      <img src="{{film.Poster}}" alt="">
+    </div>
+    <div class="text-movie-cont">
+      <div class="mr-grid">
+        <div class="col1">
+          <h1>{{film.Title | uppercase}}</h1>
+          <ul class="movie-gen">
+            <li>{{film.Rated}}/</li>
+            <li>{{film.Runtime}} /</li>
+            <li>{{film.Genre}}</li>
+          </ul>
+        </div>
+      </div>
+      <div class="mr-grid summary-row">
+        <div class="col2">
+          <h5>Trama</h5>
+        </div>
+        <div class="col2">
+          <ul class="movie-likes">
+            <li><i class="material-icons">&#xE813;</i>IMDb {{film.imdbRating}}</li>
+          </ul>
+        </div>
+      </div>
+      <div class="mr-grid">
+        <div class="col1">
+          <p class="movie-description">{{film.Plot}} </p>
+        </div>
+      </div>
+      <div class="mr-grid actors-row">
+        <div class="col1">
+          <p class="movie-actors">{{film.Actors}}</p>
+        </div>
+      </div>
+      <div class="mr-grid action-row">
+        <div class="col2">
+          <div class="watch-btn">
+            <h3><i class="material-icons">&#xE037;</i><a href="">Guarda Trailer</a></h3>
+          </div>
+        </div>
+        <div>
+          <h3 style="text-align:center">WhisList</h3>
+          <div class="col6 action-btn"><i class="material-icons">+</i>
+          </div>
+          <div class="col6 action-btn"><i class="material-icons">-</i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

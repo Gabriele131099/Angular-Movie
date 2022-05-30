@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { FILMS } from './film';
+import { FILMS } from './assets/film';
 
 @Injectable({ providedIn: 'root' })
 export class FilmsService {
