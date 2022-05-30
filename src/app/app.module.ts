@@ -15,6 +15,7 @@ import { AngularMaterialModule } from 'src/app/angular-material.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SignupComponent } from './Component/signup/signup.component';
 import { HomeComponent } from './Component/home/home.component';
+import { ArchiveComponent } from './Component/archive/archive.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,7 +26,8 @@ import { HomeComponent } from './Component/home/home.component';
     ContainerCardsComponent,
     LoginComponent,
     SignupComponent,
-    HomeComponent
+    HomeComponent,
+    ArchiveComponent
    
   ],
   imports: [
@@ -33,6 +35,7 @@ import { HomeComponent } from './Component/home/home.component';
     RouterModule.forRoot([
       
       { path: '', component: HomeComponent },
+      { path: 'archive', component: ArchiveComponent },
       { path: 'film/:id', component: CardComponent },
       { path: 'logins', component: LoginComponent },
       { path: 'signup', component: SignupComponent },
