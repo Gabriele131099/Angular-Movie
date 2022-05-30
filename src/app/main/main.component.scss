@@ -1,0 +1,15 @@
+*{
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+main{
+    position: relative;
+    width: 89vw;
+    height: 80vh;
+    overflow-y: scroll;
+    background-color: lightgray;
+}
+main::-webkit-scrollbar{
+    width: 5px;
+}
