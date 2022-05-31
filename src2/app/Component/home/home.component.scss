@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display+SC&display=swap');
+*{
+
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+    font-family: 'Playfair Display SC', serif;
+}
+div{
+    position: relative;
+    width: 89vw;
+    height: 80vh;
+    overflow-y: scroll;
+}
+div::-webkit-scrollbar{
+    width: 5px;
+}

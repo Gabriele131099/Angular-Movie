@@ -1,8 +1,10 @@
-<div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
-  <mat-card class="box">
-    <mat-card-header> 
-      <mat-card-title>Register</mat-card-title>
-    </mat-card-header>
+<div ngClass="containerSignUp">
+
+  <div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
+    <mat-card class="box">
+      <mat-card-header> 
+        <mat-card-title>Register</mat-card-title>
+      </mat-card-header>
     <form class="example-form" [formGroup]="form" (ngSubmit)="submit()">
       <mat-card-content>
         <mat-form-field class="example-full-width">
@@ -20,4 +22,6 @@
       {{signupError}}
     </form>
   </mat-card>
+</div>
+<app-footer></app-footer>
 </div>

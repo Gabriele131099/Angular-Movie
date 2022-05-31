@@ -1,9 +1,22 @@
-<div style="display: flex;flex-wrap:wrap;justify-content: space-around;align-items: stretch;">
-    <div id="" *ngFor="let film of arrayFilms " class="card-container">
-        
-        
-          <img src="{{film.Poster}}" alt="">
-    
-      </div>
+<div ngClass="containerArchive">
+  <div>
+    <label for="filtro">filtro</label>
+    <input type="text" placeholder="filtro" (ngModelChange)="getFilmsFromService(pageIndex)" [(ngModel)]="filtro">
+  </div>
+  <div style="display: flex;flex-wrap:wrap;justify-content: space-around;align-items: stretch;margin-bottom: 50px;">
+    <div id="" *ngFor="let film of filmsResult " class="card-container">
+      <img src="https://image.tmdb.org/t/p/original/{{film.poster_path}}" alt="">
+      <h3>{{film.original_title}}</h3>
+    </div>
 
+  </div>
+  <mat-paginator
+    (page)="handlePageEvent($event)"
+    [length]="length"
+    [pageSize]="pageSize"
+    [showFirstLastButtons]="showFirstLastButtons"
+    [pageSizeOptions]="pageSizeOptions"
+    [pageIndex]="pageIndex"
+    aria-label="Select page">
+  </mat-paginator>
 </div>

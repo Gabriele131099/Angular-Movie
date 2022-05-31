@@ -1,0 +1,24 @@
+<form class="example-form" [formGroup]="form" (ngSubmit)="arrayFiltrato()">
+    <mat-card-content>
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="cercaFiltro" formControlName="username">
+      </mat-form-field>
+      </mat-card-content>
+      <button mat-stroked-button color="black"  class="btn-block">Cerca</button>
+</form>
+
+<div>
+    <label for="">Anno</label>
+    <input type="number" placeholder="Anno">
+</div>
+
+
+<div style="display: flex;flex-wrap:wrap;justify-content: space-around;align-items: stretch;">
+    <div id="" *ngFor="let film of arrayFilmFiltrato " class="card-container">
+          <img src="{{film.Poster}}" alt="">  
+        <div ngClass="copricarta">
+            {{film.Title}}
+        </div>
+    </div>
+
+</div>

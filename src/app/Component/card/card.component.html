@@ -4,37 +4,26 @@
 
     <div class="menu"> <a class="close" href="">X</a></div>
     <div class="movie-img">
-      <img src="{{film.Poster}}" alt="">
+      <img src="https://image.tmdb.org/t/p/original/{{film.poster_path}}" alt="">
     </div>
     <div class="text-movie-cont">
-      <div class="mr-grid">
-        <div class="col1">
-          <h1>{{film.Title | uppercase}}</h1>
-          <ul class="movie-gen">
-            <li>{{film.Rated}}/</li>
-            <li>{{film.Runtime}} /</li>
-            <li>{{film.Genre}}</li>
-          </ul>
-        </div>
-      </div>
       <div class="mr-grid summary-row">
         <div class="col2">
           <h5>Trama</h5>
         </div>
         <div class="col2">
           <ul class="movie-likes">
-            <li><i class="material-icons">&#xE813;</i>IMDb {{film.imdbRating}}</li>
+            <li><i class="material-icons">&#xE813;</i>IMDb {{film.vote_average}}</li>
           </ul>
         </div>
       </div>
       <div class="mr-grid">
         <div class="col1">
-          <p class="movie-description">{{film.Plot}} </p>
+          <p class="movie-description">{{film.overview}} </p>
         </div>
       </div>
       <div class="mr-grid actors-row">
         <div class="col1">
-          <p class="movie-actors">{{film.Actors}}</p>
         </div>
       </div>
       <div class="mr-grid action-row">

@@ -1,7 +1,7 @@
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
-// import { AppRoutingModule } from './app-routing.module';
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { AsideComponent } from './Component/aside/aside.component';
@@ -16,6 +16,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { SignupComponent } from './Component/signup/signup.component';
 import { HomeComponent } from './Component/home/home.component';
 import { ArchiveComponent } from './Component/archive/archive.component';
+
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,24 +30,26 @@ import { ArchiveComponent } from './Component/archive/archive.component';
     SignupComponent,
     HomeComponent,
     ArchiveComponent
-   
+
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot([
-      
+
       { path: '', component: HomeComponent },
       { path: 'archive', component: ArchiveComponent },
       { path: 'film/:id', component: CardComponent },
       { path: 'logins', component: LoginComponent },
       { path: 'signup', component: SignupComponent },
     ]),
-    FormsModule,
+   FormsModule,
     BrowserAnimationsModule,
     AngularMaterialModule,
     BrowserAnimationsModule,
-    ReactiveFormsModule
-  ],
+    ReactiveFormsModule,
+
+    HttpClientModule
+    ],
   providers: [],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent]

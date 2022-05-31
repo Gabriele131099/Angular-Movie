@@ -1,5 +1,13 @@
 @import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
-
+    .containerArchive{
+      overflow-y: scroll;
+      max-height: 90vh;
+    }
+    mat-paginator{
+      position: fixed;
+      bottom:0px;
+      width: 89vw;
+    }
     .containerCards{
       display: flex;
       overflow-x: scroll; 

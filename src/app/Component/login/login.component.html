@@ -1,27 +1,30 @@
- <mat-card>
-            <mat-card-title>Login</mat-card-title>
-      <mat-card-content>
-        <form [formGroup]="form" (ngSubmit)="submit()">
-          <p>
-            <mat-form-field>
-              <input type="text" matInput placeholder="Username" formControlName="username" required="">
-            </mat-form-field>
-          </p>
+<div ngClass="containerLogin">
+  <mat-card>
+    <mat-card-title>Login</mat-card-title>
+<mat-card-content>
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <p>
+    <mat-form-field>
+      <input type="text" matInput placeholder="Username" formControlName="username" required="">
+    </mat-form-field>
+  </p>
 
-          <p>
-            <mat-form-field>
-              <input type="password" matInput placeholder="Password" formControlName="password" required="">
-            </mat-form-field>
-          </p>
+  <p>
+    <mat-form-field>
+      <input type="password" matInput placeholder="Password" formControlName="password" required="">
+    </mat-form-field>
+  </p>
 
-          <p *ngIf="loginError!=''" class="error">
-            {{loginError}} <a routerLink="../signup">registrati</a>
-          </p>
+  <p *ngIf="loginError!=''" class="error">
+    {{loginError}} <a routerLink="../signup">registrati</a>
+  </p>
 
-          <div class="button">
-            <button type="submit" mat-button>Accedi</button>
-          </div>
-         
-        </form>
-      </mat-card-content>
-    </mat-card>
+  <div class="button">
+    <button type="submit" mat-button>Accedi</button>
+  </div>
+ 
+</form>
+</mat-card-content>
+</mat-card>
+<app-footer></app-footer>
+</div>

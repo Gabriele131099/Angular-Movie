@@ -1,0 +1,15 @@
+*{
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+main{
+    position: relative;
+    width: 89vw;
+    height: 80vh;
+    overflow-y: scroll;
+    background-color: rgb(204, 206, 244);
+}
+main::-webkit-scrollbar{
+    width: 5px;
+}
