@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { FILMS } from 'src/assets/film';
 import {FilmsService} from '../../services/films.service'
@@ -10,8 +10,10 @@ import { Location } from '@angular/common';
   styleUrls: ['./card.component.scss']
 })
 export class CardComponent implements OnInit {
-  id: string = '';
 
+  film:any;
+
+  // id:any = infoFilm;
 
   constructor(
     private route: ActivatedRoute,
@@ -19,10 +21,9 @@ export class CardComponent implements OnInit {
     private FilmsService : FilmsService
   ) { }
 
- 
-  arrayFilms:any 
+  arrayFilms:any
   filmsResult:any
-  film:any 
+
   getFilmsFromService(): any {
     this.FilmsService.getFilms(1)
         .subscribe(films => {
@@ -35,17 +36,16 @@ export class CardComponent implements OnInit {
           console.log(this.filmsResult)
         });
   }
+
+
   goBack(): void {
     this.location.back();
   }
-    // getFilm(): void {
-  //   const id = Number(this.route.snapshot.paramMap.get('id'));
-  //   this.FilmsService.getFilm(id)
-  //     .subscribe((film: any) => this.film = film);
-  // }
+    
   ngOnInit(): void {
     // this.getFilm();
     this.getFilmsFromService()
-    
+    console.log(this.film)
+
   }
 }

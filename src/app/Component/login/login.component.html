@@ -15,14 +15,16 @@
     </mat-form-field>
   </p>
 
-  <p *ngIf="loginError!=''" class="error">
-    {{loginError}} <a routerLink="../signup">registrati</a>
-  </p>
 
-  <div class="button">
-    <button type="submit" mat-button>Accedi</button>
-  </div>
- 
+  <button type="submit" mat-stroked-button color="accent" class="btn-block">Accedi</button>
+    <div *ngIf="logInMessage == 'credenziali non esistenti'" class="error">
+      {{logInMessage}} <br>
+      <a mat-button routerLink="../signup">registrati</a>
+    </div>
+
+
+
+
 </form>
 </mat-card-content>
 </mat-card>

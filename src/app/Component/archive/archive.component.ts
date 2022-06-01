@@ -10,6 +10,7 @@ import { FilmsService } from '../../services/films.service';
 export class ArchiveComponent implements OnInit {
   arrayFilms: any;
   filmsResult: any;
+  itemsPerPageLabel: string=''
   constructor(private filmsService: FilmsService) {}
   filtro: string = '';
 

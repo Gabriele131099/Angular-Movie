@@ -18,6 +18,7 @@ import { HomeComponent } from './Component/home/home.component';
 import { ArchiveComponent } from './Component/archive/archive.component';
 
 import { HttpClientModule } from '@angular/common/http';
+import { UserPageComponent } from './Component/user-page/user-page.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,8 +42,9 @@ import { HttpClientModule } from '@angular/common/http';
       { path: 'film/:id', component: CardComponent },
       { path: 'logins', component: LoginComponent },
       { path: 'signup', component: SignupComponent },
+      { path: 'user', component: UserPageComponent}
     ]),
-   FormsModule,
+    FormsModule,
     BrowserAnimationsModule,
     AngularMaterialModule,
     BrowserAnimationsModule,
