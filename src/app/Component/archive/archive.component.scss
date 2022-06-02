@@ -3,6 +3,21 @@
       overflow-y: scroll;
       max-height: 90vh;
     }
+    .listaInput{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 50vw;
+      padding: 5px;
+      margin: auto;
+      li{
+        list-style-type: none;
+        padding: 5px;
+        label{
+          padding-right: 5px;
+        }
+      }
+    }
     mat-paginator{
       position: fixed;
       bottom:0px;
@@ -21,10 +36,27 @@
     }
     body {
     background-image: linear-gradient(to right, #d3dee9, #cbdbec, #c3d9ef, #bad6f1, #b1d4f4);
+
   }
-  
-  h3 {
-    margin: 0;
+  .card-container{
+    position: relative;
+    .wishIcon{
+      display: none;
+      top:0px;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.568);
+      color: white;
+      text-align: center;
+      line-height: 250px;
+    }
+  }
+  .card-container:hover .wishIcon{
+    display: block;
+    position: absolute;
+  }
+  h3{
+    margin: 0px;
   }
   .card {
       &-container {

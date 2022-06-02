@@ -1,15 +1,32 @@
 <aside>
     <div ngClass="logginButton">
-        <a routerLink="/logins">Login</a>
+        <a routerLink="">Home</a>
     </div>
     <div ngClass="logginButton">
-        logout
+        Genere
+        <ul ngClass="infoUser">
+            <li *ngFor="let genre of arrayGenre">
+                 <a href="archive/{{genre.id}}">{{genre.name}}</a>
+            </li>
+            
+        </ul>
     </div>
     <div ngClass="logginButton">
-        <a routerLink="/signup">Sign Up</a>
+        Account
+           <ul ngClass="infoUser">
+               <li>
+                    <a routerLink="/logins">Login</a>
+               </li>
+               <li>
+                    <a routerLink="/signup">Sign Up</a>
+               </li>
+               <li>
+                    <a routerLink="">LogOut</a>
+               </li>
+           </ul>
     </div>
     <div ngClass="logginButton">
         <a routerLink="archive">Archivio</a>
     </div>
-    <router-outlet ></router-outlet>
+    
 </aside>

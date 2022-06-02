@@ -17,7 +17,12 @@ export class FilmsService {
     console.log(urlProva)
     return this.http.get<[]>(urlProva);
   }
-
+  
+  getGenre(): Observable<[]> {
+    const urlProva = `https://api.themoviedb.org/3/genre/movie/list?api_key=59609bb271fe57555250ffa18b2842c2&language=en-US`
+    console.log(urlProva)
+    return this.http.get<[]>(urlProva);
+  }
   // getFilm(id: number): Observable<any[]> {
   //   const arrayFilms = this.urlProva.result.find((h: { id: number; })=> h.id === id)!; //TODO FIX
 

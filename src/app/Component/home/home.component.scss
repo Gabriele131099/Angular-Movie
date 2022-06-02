@@ -1,3 +1,5 @@
+$sfondo : rgba(211, 211, 211, 0.722);
+
 *{
     padding: 0px;
     margin: 0px;
@@ -8,7 +10,7 @@ div{
     width: 89vw;
     height: 80vh;
     overflow-y: scroll;
-    background-color: lightgray;
+    background-color: $sfondo;
 }
 div::-webkit-scrollbar{
     width: 5px;

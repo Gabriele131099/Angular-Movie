@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
+import { ActivatedRoute } from '@angular/router';
 import { FilmsService } from '../../services/films.service';
 
 @Component({
@@ -10,10 +11,15 @@ import { FilmsService } from '../../services/films.service';
 export class ArchiveComponent implements OnInit {
   arrayFilms: any;
   filmsResult: any;
-  itemsPerPageLabel: string=''
-  constructor(private filmsService: FilmsService) {}
-  filtro: string = '';
+  filtroTitle: string = '';
+  
+  filtroGenre:any = this.route.snapshot.paramMap.get('id');
+  constructor(
+    private filmsService: FilmsService,
+    private route: ActivatedRoute
+  ) {}
 
+  itemsPerPageLabel: string = '';
   length = 500;
   pageSize = 1;
   pageIndex = 1;
@@ -27,19 +33,34 @@ export class ArchiveComponent implements OnInit {
     this.filmsService.numberPage = this.pageIndex * this.pageSize;
     this.getFilmsFromService(this.pageIndex);
   }
+  
   getFilmsFromService(number: number): any {
     number++;
     this.filmsService.getFilms(number).subscribe((films) => {
       this.arrayFilms = films;
+
       this.filmsResult = this.arrayFilms.results.filter((obj: any) =>
-        obj.original_title.includes(this.filtro)
+        obj.original_title.includes(this.filtroTitle) &&
+        obj.genre_ids.filter(
+          (ele: any) => ele == this.filtroGenre
+        ).length>0
       );
       console.log(this.filmsResult);
     });
-    console.log(this.filtro);
+    console.log(this.filtroTitle);
   }
-
+  arrayGenre:any
+  getGenre(): any {
+    this.filmsService.getGenre()
+        .subscribe(genre => {
+          this.arrayGenre = genre;
+          this.arrayGenre = this.arrayGenre.genres;
+          console.log(this.arrayGenre)
+        });
+  }
   ngOnInit(): void {
+    
     this.getFilmsFromService(this.pageIndex);
+    this.getGenre()
   }
 }

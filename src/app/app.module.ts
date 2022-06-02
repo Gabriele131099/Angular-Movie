@@ -39,6 +39,7 @@ import { UserPageComponent } from './Component/user-page/user-page.component';
 
       { path: '', component: HomeComponent },
       { path: 'archive', component: ArchiveComponent },
+      { path: 'archive/:id', component: ArchiveComponent },
       { path: 'film/:id', component: CardComponent },
       { path: 'logins', component: LoginComponent },
       { path: 'signup', component: SignupComponent },

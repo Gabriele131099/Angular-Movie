@@ -1,12 +1,26 @@
 <div ngClass="containerArchive">
-  <div>
+ <ul ngClass="listaInput">
+  <li>
     <label for="filtro">filtro</label>
-    <input type="text" placeholder="filtro" (ngModelChange)="getFilmsFromService(pageIndex)" [(ngModel)]="filtro">
-  </div>
-  <div style="display: flex;flex-wrap:wrap;justify-content: space-around;align-items: stretch;margin-bottom: 50px;">
-    <div id="" *ngFor="let film of filmsResult " class="card-container">
-      <img src="https://image.tmdb.org/t/p/original/{{film.poster_path}}" alt="">
-      <h3>{{film.original_title}}</h3>
+    <input type="text" placeholder="filtro" (ngModelChange)="getFilmsFromService(pageIndex)" [(ngModel)]="filtroTitle">
+  </li>
+  <li>
+    <label for="filtro">filtro Genere</label>
+    <select name="genre" id="genre" (ngModelChange)="getFilmsFromService(pageIndex)" [(ngModel)]="filtroGenre">
+      <option *ngFor="let genre of arrayGenre" value="{{genre.id}}" >{{genre.name}}</option>
+    </select>
+  </li>
+</ul>
+  <div style="display: flex;flex-wrap:wrap;justify-content: space-around;align-items:stretch;margin-bottom: 50px;">
+    <div *ngFor="let film of filmsResult " >
+      <h3 style="max-width: 250px;">{{film.original_title}}</h3>
+     <div class="card-container">
+        <img src="https://image.tmdb.org/t/p/original/{{film.poster_path}}" alt="">
+      <div ngClass="wishIcon">
+        <button>Add WishList</button>
+        <button>Add Favorite</button>
+      </div>
+     </div>
     </div>
 
   </div>

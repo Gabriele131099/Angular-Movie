@@ -2,10 +2,12 @@
   <div style="background-image:url('https://image.tmdb.org/t/p/original/{{film.backdrop_path}}');" class="container">
 
 
-    <div class="row" style="position: absolute;top:40vh;">
+    <div id="triangolo">
 
+    </div>
+    <div class="row" style="position: absolute;top:40vh;">
       <div>
-        <a href="#"><img width="200px" src="https://image.tmdb.org/t/p/original/{{film.poster_path}}" alt="cover"
+        <a href="#"><img width="250px" src="https://image.tmdb.org/t/p/original/{{film.poster_path}}" alt="cover"
             class="cover" /></a>
         <div class="column1">
           <span class="tag" *ngFor="let genre of film.genre_ids">{{genre}}</span>
