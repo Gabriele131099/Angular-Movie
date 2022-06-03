@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { IUser } from 'src/app/Interfaces/IUser';
 import { FilmsService } from 'src/app/services/films.service';
 import { USERS } from '../../../assets/user'
@@ -9,8 +10,10 @@ import { USERS } from '../../../assets/user'
 })
 export class AsideComponent implements OnInit {
   arrayUser :IUser[ ] = USERS
- 
-  constructor(private filmsService: FilmsService) {    }
+  userLogFlag:any = localStorage.getItem('userLogFlag')
+  userId = localStorage.getItem('userId');
+  constructor(private filmsService: FilmsService,
+    private route: Router) {    }
   arrayGenre:any
   getGenre(): any {
     this.filmsService.getGenre()
@@ -20,8 +23,12 @@ export class AsideComponent implements OnInit {
           console.log(this.arrayGenre)
         });
   }
+  logOut(){
+    localStorage.setItem('userLogFlag','false')
 
+  }
   ngOnInit(): void {
+    
     this.getGenre()
   }
 

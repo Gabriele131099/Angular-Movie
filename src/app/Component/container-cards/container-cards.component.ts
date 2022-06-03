@@ -1,6 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 
 import { FilmsService } from 'src/app/services/films.service';
+import { library, icon } from '@fortawesome/fontawesome-svg-core'
+
+const camera = icon({ prefix: 'fas', iconName: 'camera' })
+
 @Component({
   selector: 'app-container-cards',
   templateUrl: './container-cards.component.html',

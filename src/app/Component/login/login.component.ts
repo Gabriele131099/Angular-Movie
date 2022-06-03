@@ -34,9 +34,9 @@ export class LoginComponent implements OnInit {
 
       this.arrayUsers.forEach((obj:any)=>{
         if (obj.username==this.form.value.username && obj.password==this.form.value.password) {
-          this.logInMessage= 'credenziali corrette'
-          //TODO send to logged page
-          this.router.navigate(['./user']);
+          localStorage.setItem('userLogFlag', 'true');
+          localStorage.setItem('userId', obj.id);
+          location.href = `./user/${obj.id}`;
         }else{
           this.logInMessage='credenziali non esistenti'
         }

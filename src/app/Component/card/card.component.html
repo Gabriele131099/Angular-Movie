@@ -7,8 +7,15 @@
     </div>
     <div class="row" style="position: absolute;top:40vh;">
       <div>
-        <a href="#"><img width="250px" src="https://image.tmdb.org/t/p/original/{{film.poster_path}}" alt="cover"
-            class="cover" /></a>
+        <a href="#">
+          <img width="250px" src="https://image.tmdb.org/t/p/original/{{film.poster_path}}" alt="cover" class="cover" />
+        </a>
+        <div ngClass="trailer">
+          <a  href="https://www.youtube.com/results?search_query=l/{{film.original_title}}">
+            <img width="60px" src="../../../assets/circle-play-solid.svg" alt="">
+          </a>
+        </div>
+      
         <div class="column1">
           <span class="tag" *ngFor="let genre of film.genre_ids">{{genre}}</span>
 

@@ -36,7 +36,7 @@ export class ArchiveComponent implements OnInit {
   addFilmWishList(film:any,arrayList:any){ 
     let tmp = arrayList.filter((obj:any)=>obj.id==film.id)
     if (tmp.length>0) {
-      alert('il film esiste già nella lista')
+      alert('il film esiste già nella ')
     }else{
       arrayList.push(film)
     }

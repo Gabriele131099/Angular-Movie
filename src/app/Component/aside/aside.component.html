@@ -1,6 +1,8 @@
 <aside>
     <div ngClass="logginButton">
-        <a routerLink="">Home</a>
+        <a routerLink="">
+            Home
+        </a>
     </div>
     <div ngClass="logginButton">
         Genere
@@ -11,7 +13,7 @@
             
         </ul>
     </div>
-    <div ngClass="logginButton">
+    <div *ngIf="userLogFlag!='true'" ngClass="logginButton">
         Account
            <ul ngClass="infoUser">
                <li>
@@ -23,6 +25,17 @@
                <li>
                     <a routerLink="">LogOut</a>
                </li>
+           </ul>
+    </div>
+    <div *ngIf="userLogFlag=='true'" ngClass="logginButton">
+        {{arrayUser[0].username}}
+           <ul ngClass="infoUser">
+               <li>
+                    <a routerLink="user/{{userId}}">User</a>
+               </li>
+               <li>
+                    <a href="" (click)="logOut()">LogOut</a>
+                </li>
            </ul>
     </div>
     <div ngClass="logginButton">

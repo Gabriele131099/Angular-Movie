@@ -32,7 +32,8 @@ import { JumbotronHomeComponent } from './Component/jumbotronHome/jumbotronHome.
     SignupComponent,
     HomeComponent,
     ArchiveComponent,
-    JumbotronHomeComponent
+    JumbotronHomeComponent,
+    UserPageComponent
 
   ],
   imports: [
@@ -45,7 +46,7 @@ import { JumbotronHomeComponent } from './Component/jumbotronHome/jumbotronHome.
       { path: 'film/:id', component: CardComponent },
       { path: 'logins', component: LoginComponent },
       { path: 'signup', component: SignupComponent },
-      { path: 'user', component: UserPageComponent}
+      { path: 'user/:id', component: UserPageComponent}
     ]),
     FormsModule,
     BrowserAnimationsModule,

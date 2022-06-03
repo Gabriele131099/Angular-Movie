@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { PageEvent } from '@angular/material/paginator';
-import { ActivatedRoute } from '@angular/router';
 import { FilmsService } from '../../services/films.service';
+import { library, icon } from '@fortawesome/fontawesome-svg-core'
+
+const camera = icon({ prefix: 'fas', iconName: 'camera' })
+
 @Component({
   selector: 'app-jumbotron',
   templateUrl: './jumbotronHome.component.html',

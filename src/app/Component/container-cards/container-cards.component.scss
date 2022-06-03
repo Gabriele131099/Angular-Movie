@@ -1,5 +1,7 @@
 @import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
-
+    img{
+       
+    }
     .containerCards{
       display: flex;
       overflow-x: scroll;
@@ -25,8 +27,13 @@
       background-color: rgba(0, 0, 0, 0.568);
       text-align: center;
       line-height: 250px;
+      filter: (1);
       a{
         color: white;
+      }
+      img{
+        width: 50px;
+       
       }
     }
   }
