@@ -11,7 +11,8 @@ export class ArchiveComponent implements OnInit {
   arrayFilms: any;
   filmsResult: any;
   filtroTitle: string = '';
-  
+  arrayWishList:any=[]
+  arrayPreferiti:any=[]
   filtroGenre:any = this.route.snapshot.paramMap.get('id') ;
   constructor(
     private filmsService: FilmsService,
@@ -32,12 +33,20 @@ export class ArchiveComponent implements OnInit {
     this.filmsService.numberPage = this.pageIndex * this.pageSize;
     this.getFilmsFromService(this.pageIndex);
   }
-  
+  addFilmWishList(film:any,arrayList:any){ 
+    let tmp = arrayList.filter((obj:any)=>obj.id==film.id)
+    if (tmp.length>0) {
+      alert('il film esiste già nella lista')
+    }else{
+      arrayList.push(film)
+    }
+    console.log(arrayList)
+  }
+
   getFilmsFromService(number: number): any {
     number++;
     this.filmsService.getFilms(number).subscribe((films) => {
       this.arrayFilms = films;
-
       this.filmsResult = this.arrayFilms.results.filter((obj: any) =>
         obj.original_title.includes(this.filtroTitle) &&
        (obj.genre_ids.filter(
