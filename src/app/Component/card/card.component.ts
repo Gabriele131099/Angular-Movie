@@ -23,7 +23,6 @@ export class CardComponent implements OnInit {
 
   arrayFilms:any
   filmsResult:any
-
   getFilmsFromService(): any {
     this.FilmsService.getFilms(1)
         .subscribe(films => {

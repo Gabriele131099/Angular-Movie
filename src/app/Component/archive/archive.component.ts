@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { ActivatedRoute } from '@angular/router';
 import { FilmsService } from '../../services/films.service';
-
 @Component({
   selector: 'app-archive',
   templateUrl: './archive.component.html',
@@ -13,7 +12,7 @@ export class ArchiveComponent implements OnInit {
   filmsResult: any;
   filtroTitle: string = '';
   
-  filtroGenre:any = this.route.snapshot.paramMap.get('id');
+  filtroGenre:any = this.route.snapshot.paramMap.get('id') ;
   constructor(
     private filmsService: FilmsService,
     private route: ActivatedRoute
@@ -41,9 +40,10 @@ export class ArchiveComponent implements OnInit {
 
       this.filmsResult = this.arrayFilms.results.filter((obj: any) =>
         obj.original_title.includes(this.filtroTitle) &&
-        obj.genre_ids.filter(
+       (obj.genre_ids.filter(
           (ele: any) => ele == this.filtroGenre
-        ).length>0
+        ).length>0 ||
+        this.filtroGenre==0)
       );
       console.log(this.filmsResult);
     });

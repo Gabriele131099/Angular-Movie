@@ -1,0 +1,24 @@
+.jumbotron {
+  position: relative;
+}
+#right {
+  position: absolute;
+  top: 40%;
+  left: 0px;
+}
+#left {
+  position: absolute;
+  right: 0px;
+  top: 40%;
+}
+#go {
+  position: absolute;
+  bottom: 40%;
+  left: 45%;
+  color: white;
+  background-color: black;
+}
+#categorie{
+    position: absolute;
+    bottom: 10%;
+}

@@ -19,6 +19,7 @@ import { ArchiveComponent } from './Component/archive/archive.component';
 
 import { HttpClientModule } from '@angular/common/http';
 import { UserPageComponent } from './Component/user-page/user-page.component';
+import { JumbotronHomeComponent } from './Component/jumbotronHome/jumbotronHome.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,7 +31,8 @@ import { UserPageComponent } from './Component/user-page/user-page.component';
     LoginComponent,
     SignupComponent,
     HomeComponent,
-    ArchiveComponent
+    ArchiveComponent,
+    JumbotronHomeComponent
 
   ],
   imports: [

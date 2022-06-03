@@ -13,14 +13,15 @@
 </ul>
   <div style="display: flex;flex-wrap:wrap;justify-content: space-around;align-items:stretch;margin-bottom: 50px;">
     <div *ngFor="let film of filmsResult " >
-      <h3 style="max-width: 250px;">{{film.original_title}}</h3>
+      
      <div class="card-container">
         <img src="https://image.tmdb.org/t/p/original/{{film.poster_path}}" alt="">
       <div ngClass="wishIcon">
-        <button>Add WishList</button>
+        <button><i class="fa-solid fa-plus-large"></i></button>
         <button>Add Favorite</button>
       </div>
      </div>
+     <h3 style="max-width: 250px;">{{film.original_title}}</h3>
     </div>
 
   </div>
