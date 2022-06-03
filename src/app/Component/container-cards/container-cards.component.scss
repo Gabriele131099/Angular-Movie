@@ -16,7 +16,7 @@
   }
   .card-container{
     position: relative;
-    .wishIcon{
+    .trailer{
       display: none;
       position: absolute;
       top:0px;
@@ -30,12 +30,14 @@
       }
     }
   }
-  .card-container:hover .wishIcon{
+  .card-container:hover .trailer{
     display: block;
     
   }
   h3 {
     margin: 0;
+    color: white;
+    text-decoration: none;
   }
   .card {
       &-container {

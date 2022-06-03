@@ -22,3 +22,10 @@
     position: absolute;
     bottom: 10%;
 }
+button{
+  background-color: transparent;
+  border: none;
+}
+button:active{
+  background-color: rgba(211, 211, 211, 0.285);
+}
