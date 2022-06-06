@@ -42,7 +42,7 @@
           </div>
           <app-reviewForm [arrayRecensioni]="arrayRecensioni" [id_film]="film.id"  ></app-reviewForm>
             <button mat-button (click)="open()">Recensioni...</button>
-            <div *ngIf="flag==true" class="box popUpRecensioni">
+            <div *ngIf="flag==true" class="popUpRecensioni">
               <button mat-button (click)="close()">X</button>            
               <div *ngIf="arrayRecensioni.length>0">
                 <div >

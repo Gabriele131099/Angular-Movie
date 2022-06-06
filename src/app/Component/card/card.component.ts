@@ -55,9 +55,7 @@ export class CardComponent implements OnInit {
   recensione:any
   open(): void {
     this.flag= true
-    this.arrayRecensioni = this.arrayRecensioni.filter((obj:any)=>{
-      obj.id_film=this.film.id
-    })
+    console.log(this.film)
     this.recensione  = this.arrayRecensioni[this.posizioneRecensione]
     console.log(this.recensione)
   }
@@ -96,6 +94,7 @@ export class CardComponent implements OnInit {
         } 
       });
     });
+    this.arrayRecensioni = this.arrayRecensioni.filter((obj:any)=>{obj.id_film=this.film.id})
     console.log(this.arrayGenreNames)
   }
 

@@ -195,6 +195,7 @@ label {
 
 /////recensioni
 .popUpRecensioni{
+  transition: all .5s ease-in-out;
   position: fixed;
   display: block;
   left: 50%;
