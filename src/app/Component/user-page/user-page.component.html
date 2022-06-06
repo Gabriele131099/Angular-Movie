@@ -18,16 +18,16 @@
                     <h2 class="lead fw-normal mb-0">WishList </h2>
                 </div>
                 <div class="g-2" style="display: flex;align-items: stretch;overflow-x: scroll;">
-                    <div *ngFor="let film of wishList" style="width:250px;margin: 10px;">
+                    <div *ngFor="let film of arrayWishlist" style="width:250px;margin: 10px;">
                         <div>
                             <button (click)="delete(film)" style="background-color: transparent;border: none;">
                                 <img width="30px" src="../../../assets/circle-xmark-regular.svg" alt="">
                             </button>
                         </div>
-                        <a href="www.youtube.com/results?search_query={{film.original_title}}" target="_blank">
-                            <img width="250px" src="https://image.tmdb.org/t/p/original/{{film.poster_path}}" alt="">
+                        <a href="www.youtube.com/results?search_query={{film?.original_title}}" target="_blank">
+                            <img width="250px" src="https://image.tmdb.org/t/p/original/{{film?.poster_path}}" alt="">
                         </a>
-                        <h2>{{film.original_title}}</h2>
+                        <h2>{{film?.original_title}}</h2>
                     </div>
                 </div>
             </div>

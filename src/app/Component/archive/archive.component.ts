@@ -14,6 +14,7 @@ export class ArchiveComponent implements OnInit {
   arrayWishList:any=[]
   arrayPreferiti:any=[]
   filtroGenre:any = this.route.snapshot.paramMap.get('id') ;
+  userLogFlag:any = localStorage.getItem('userLogFlag')
   constructor(
     private filmsService: FilmsService,
     private route: ActivatedRoute
@@ -33,14 +34,23 @@ export class ArchiveComponent implements OnInit {
     this.filmsService.numberPage = this.pageIndex * this.pageSize;
     this.getFilmsFromService(this.pageIndex);
   }
-  addFilmWishList(film:any,arrayList:any){ 
-    let tmp = arrayList.filter((obj:any)=>obj.id==film.id)
+
+  addFilmWishList(film:any){ 
+    let tmp = this.arrayWishList.filter((obj:any)=>obj.id==film.id)
     if (tmp.length>0) {
       alert('il film esiste già nella ')
+    }else if(this.userLogFlag=='true'){
+      this.arrayWishList.push(film)
+      const wishList = {
+        wishList:this.arrayWishList,
+        id_user:0
+      }
+      localStorage.setItem("wishList", JSON.stringify(wishList));
+      alert('aggiunto con successo')
     }else{
-      arrayList.push(film)
+      alert('devi prima loggarti')
     }
-    console.log(arrayList)
+    //console.log(JSON.parse(localStorage.getItem("wishList")))
   }
 
   getFilmsFromService(number: number): any {

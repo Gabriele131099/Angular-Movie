@@ -20,6 +20,7 @@ import { ArchiveComponent } from './Component/archive/archive.component';
 import { HttpClientModule } from '@angular/common/http';
 import { UserPageComponent } from './Component/user-page/user-page.component';
 import { JumbotronHomeComponent } from './Component/jumbotronHome/jumbotronHome.component';
+import { ReviewForm } from './Component/review-form/review-form.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,7 +34,8 @@ import { JumbotronHomeComponent } from './Component/jumbotronHome/jumbotronHome.
     HomeComponent,
     ArchiveComponent,
     JumbotronHomeComponent,
-    UserPageComponent
+    UserPageComponent,
+    ReviewForm
 
   ],
   imports: [
@@ -41,11 +43,11 @@ import { JumbotronHomeComponent } from './Component/jumbotronHome/jumbotronHome.
     RouterModule.forRoot([
 
       { path: '', component: HomeComponent },
+      { path: 'logins', component: LoginComponent },
+      { path: 'signup', component: SignupComponent },
       { path: 'archive', component: ArchiveComponent },
       { path: 'archive/:id', component: ArchiveComponent },
       { path: 'film/:id', component: CardComponent },
-      { path: 'logins', component: LoginComponent },
-      { path: 'signup', component: SignupComponent },
       { path: 'user/:id', component: UserPageComponent}
     ]),
     FormsModule,

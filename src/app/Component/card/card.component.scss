@@ -38,10 +38,10 @@ div#triangolo {
   width: 89vw;
   height: 0;
   line-height: 0;
-  border-bottom: 80px solid $sfondo;
-  border-right: 80px solid transparent;
+  border-bottom: 100px solid $sfondo;
+  border-right: 100px solid transparent;
   position: absolute;
-  top: 50vh;
+  top:calc(50vh - 20px);
   margin: auto;
 }.hero{
   display: flex;
@@ -105,6 +105,10 @@ a {
 
 a:hover {
   text-decoration: underline;
+}
+.column2{
+  overflow-y: scroll;
+  max-height: 10vh;
 }
 //star rating stuff via: https://codepen.io/jamesbarnett/pen/vlpkh/
 
