@@ -1,15 +1,11 @@
-<mat-form-field appearance="fill">
-  <mat-label>Input</mat-label>
-  <input matInput>
-</mat-form-field>
-<mat-form-field appearance="fill">
-  <mat-label>Select</mat-label>
-  <mat-select>
-    <mat-option value="one">First option</mat-option>
-    <mat-option value="two">Second option</mat-option>
-  </mat-select>
-</mat-form-field>
-<mat-form-field appearance="fill">
-  <mat-label>Textarea</mat-label>
-  <textarea matInput></textarea>
-</mat-form-field>
+<div>
+  <h2></h2>
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <star-rating-comp [starType]="'icon'" [rating]="5"></star-rating-comp>  
+    <mat-form-field appearance="fill">
+      <mat-label><h4>Recensisci</h4></mat-label>
+      <textarea matInput formControlName="recensione" required></textarea>
+    </mat-form-field>
+    <button type="submit" mat-stroked-button color="accent" class="btn-block">Pubblica</button>
+  </form>
+</div>

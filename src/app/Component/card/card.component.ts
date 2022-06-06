@@ -12,6 +12,7 @@ import { Location } from '@angular/common';
 export class CardComponent implements OnInit {
   film: any;
   arrayGenre: any;
+  userLogFlag:any = localStorage.getItem('userLogFlag')
 
   // id:any = infoFilm;
 
@@ -20,7 +21,14 @@ export class CardComponent implements OnInit {
     private location: Location,
     private FilmsService: FilmsService
   ) {}
-
+  arrayRecensioni:any = [
+    {
+      id_user:0,
+      id_film:0,
+      recensione:'sono di un altro film'
+    }
+  ]
+    flag:boolean = false
   arrayFilms: any;
   filmsResult: any;
   getFilmsFromService(): any {
@@ -44,8 +52,38 @@ export class CardComponent implements OnInit {
       console.log(this.arrayGenre);
     });
   }
-  goBack(): void {
-    this.location.back();
+  recensione:any
+  open(): void {
+    this.flag= true
+    this.arrayRecensioni = this.arrayRecensioni.filter((obj:any)=>{
+      obj.id_film=this.film.id
+    })
+    this.recensione  = this.arrayRecensioni[this.posizioneRecensione]
+    console.log(this.recensione)
+  }
+  close(){
+    this.flag= false
+  }
+  posizioneRecensione:number = 0
+  slideShowPlus(){
+    if (this.posizioneRecensione >= this.arrayRecensioni.length-1) {
+      this.posizioneRecensione= 0
+      this.recensione  = this.arrayRecensioni[this.posizioneRecensione]
+    }else{
+      this.posizioneRecensione++;
+      this.recensione  = this.arrayRecensioni[this.posizioneRecensione]
+    }
+    console.log(this.posizioneRecensione)
+  }
+  slideShowMeno(){
+    if (this.posizioneRecensione<=0) {
+      this.posizioneRecensione= this.arrayRecensioni.length-1
+      this.recensione  = this.arrayRecensioni[this.posizioneRecensione]
+    }else{
+      this.posizioneRecensione--;
+      this.recensione  = this.arrayRecensioni[this.posizioneRecensione]
+    }
+    console.log(this.posizioneRecensione)
   }
   arrayGenreNames:any=[]
   getGenreNames() {
@@ -60,6 +98,8 @@ export class CardComponent implements OnInit {
     });
     console.log(this.arrayGenreNames)
   }
+
+
   ngOnInit(): void {
     // this.getFilm();
     this.getFilmsFromService();

@@ -12,9 +12,7 @@ import {USERS} from '../../../assets/user';
 
 export class LoginComponent implements OnInit {
   arrayUsers:IUser[] = USERS
-
   constructor(
-    private route: ActivatedRoute,
     private router: Router
     ) {
       this.router = router;

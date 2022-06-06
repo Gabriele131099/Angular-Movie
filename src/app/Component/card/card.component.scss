@@ -1,35 +1,38 @@
 @import url(https://fonts.googleapis.com/css?family=Lato:400,300,700);
-$sfondo : rgba(211, 211, 211, 0.722);
+$sfondo: rgba(211, 211, 211, 0.722);
 @import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
-.row{
+.row {
   padding: 50px;
   flex-wrap: wrap;
   overflow-y: scroll;
   max-height: 60vh;
   overflow-y: scroll;
- color: white;
- }
-@media only screen and (min-width: 768px){
-    .row{
+  color: white;
+}
+@media only screen and (min-width: 768px) {
+  .row {
     flex-wrap: nowrap;
   }
 }
-*, *:before, *:after {
+*,
+*:before,
+*:after {
   box-sizing: border-box;
 }
 
-.movie-card{
+.movie-card {
   height: 80vh;
   overflow-y: scroll;
   font: 14px/22px "Lato", Arial, sans-serif;
   color: #3c3c3b;
 }
-.container{
+.container {
   height: 50vh;
   background-position: center;
   background-size: cover;
 }
-.row,.row2{
+.row,
+.row2 {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -41,34 +44,62 @@ div#triangolo {
   border-bottom: 100px solid $sfondo;
   border-right: 100px solid transparent;
   position: absolute;
-  top:calc(50vh - 20px);
+  top: calc(50vh - 20px);
   margin: auto;
-}.hero{
+}
+.hero {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-}
-.title1 {
+  h2{
   color: #544c21bc;
-  font-size: 44px;
+  font-size: 40px;
+  padding: 10px;
   margin-bottom: 15px;
   position: relative;
+  box-shadow: 5px 5px 5px 5px #544c21;
+  border-radius: 5px;
+  background-color:$sfondo;
+  }
 }
 span {
   top: 3px;
   margin-left: 12px;
-  background: #C4AF3D;
+  background: #c4af3d;
   border-radius: 5px;
-  color: #544C21;
+  color: #544c21;
   font-size: 14px;
   padding: 0px 4px;
-  
+  white-space: nowrap;
+
 }
 .column1 {
   width: 220px;
   text-align: center;
-
-
+}
+.card-container {
+  position: relative;
+  .trailer {
+    display: none;
+    position: absolute;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.568);
+    text-align: center;
+    line-height: 250px;
+    filter: (1);
+    a {
+      color: white;
+    }
+    img {
+      width: 60px;
+    }
+  }
+}
+.card-container:hover .trailer {
+  display: block;
+}
 .tag {
   background: white;
   border-radius: 10px;
@@ -77,52 +108,58 @@ span {
   margin-right: 4px;
   line-height: 35px;
   cursor: pointer;
-  }
-  .tag:hover {
-    background: #ddd;
-  }
 }
+.tag:hover {
+  background: #ddd;
+}
+
 .avatars {
   margin-top: 23px;
-  
+
   img {
     cursor: pointer;
     margin: 10px;
   }
-  
+
   img:hover {
     opacity: 0.6;
   }
-  
+
   a:hover {
     text-decoration: none;
   }
 }
 a {
   text-decoration: none;
-  color: #5C7FB8
+  color: #5c7fb8;
 }
 
 a:hover {
   text-decoration: underline;
 }
-.column2{
+.column2 {
   overflow-y: scroll;
   max-height: 10vh;
 }
 //star rating stuff via: https://codepen.io/jamesbarnett/pen/vlpkh/
 
-fieldset, label { margin: 0; padding: 0; }
+fieldset,
+label {
+  margin: 0;
+  padding: 0;
+}
 
 /****** Style Star Rating Widget *****/
 
-.rating { 
+.rating {
   border: none;
   text-align: center;
 }
 
-.rating > input { display: none; } 
-.rating > label:before { 
+.rating > input {
+  display: none;
+}
+.rating > label:before {
   margin: 5px;
   margin-top: 0;
   font-size: 1em;
@@ -131,25 +168,45 @@ fieldset, label { margin: 0; padding: 0; }
   content: "\f005";
 }
 
-.rating > .half:before { 
+.rating > .half:before {
   content: "\f089";
   position: absolute;
 }
 
-.rating > label { 
-  color: #ddd; 
- float: right; 
+.rating > label {
+  color: #ddd;
+  float: right;
 }
 
 /***** CSS Magic to Highlight Stars on Hover *****/
 
 .rating > input:checked ~ label, /* show gold star when clicked */
 .rating:not(:checked) > label:hover, /* hover current star */
-.rating:not(:checked) > label:hover ~ label { color: #FFD700;  } /* hover previous stars in list */
+.rating:not(:checked) > label:hover ~ label {
+  color: #ffd700;
+} /* hover previous stars in list */
 
 .rating > input:checked + label:hover, /* hover current star when changing rating */
 .rating > input:checked ~ label:hover,
 .rating > label:hover ~ input:checked ~ label, /* lighten current selection */
-.rating > input:checked ~ label:hover ~ label { color: #FFED85;  } 
+.rating > input:checked ~ label:hover ~ label {
+  color: #ffed85;
+}
 
-
+/////recensioni
+.popUpRecensioni{
+  position: fixed;
+  display: block;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgb(121, 101, 101);
+  color: white;
+  min-width: 300px;
+  width: 100%;
+  max-width: 60vw;
+  max-height: 30vh;
+  overflow-y: scroll;
+  padding: 10px;
+  border-radius: 50px 0px 50px;
+}
