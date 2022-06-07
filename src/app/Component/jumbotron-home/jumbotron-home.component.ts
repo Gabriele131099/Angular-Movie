@@ -12,37 +12,75 @@ const camera = icon({ prefix: 'fas', iconName: 'camera' })
 export class JumbotronHomeComponent implements OnInit {
   arrayFilms: any;
   filmsResult: any;
-  randomNumber:number = 0
+  posizione:number = 0
   film:any
   constructor(
     private filmsService: FilmsService,
   ) {}
 
   getFilmsFromService(): any {
+
     //number++; - martina 06-06 gettrendingfilms metodo
+
     this.filmsService.getTrendingFilms().subscribe((films) => {
+
       this.arrayFilms = films;
+
       this.filmsResult = this.arrayFilms.results
-      this.film = this.filmsResult[0]
+
+      this.film = this.filmsResult[this.posizione]
+
     });
+
+    console.log(this.filmsResult)
+
   }
+
   slideShowRight(){
-  if (this.randomNumber>=19) {
-    this.randomNumber= 0
-    this.film =  this.filmsResult[this.randomNumber];
-  }else{
-    this.film =  this.filmsResult[this.randomNumber++];
+
+    if (this.posizione >= this.filmsResult.length-1) {
+
+      this.posizione= 0
+
+      this.film  = this.filmsResult[this.posizione]
+
+    }else{
+
+      this.posizione++;
+
+      this.film  = this.filmsResult[this.posizione]
+
+    }
+
+    console.log(this.posizione)
+
   }
-}
-slideShowLeft(){
-  if (this.randomNumber<=0) {
-    this.randomNumber= 19
-    this.film =  this.filmsResult[this.randomNumber];
-  }else{
-    this.film =  this.filmsResult[this.randomNumber--];
+  slideShowLeft(){
+
+    if (this.posizione<=0) {
+
+      this.posizione= this.filmsResult.length-1
+
+      this.film  = this.filmsResult[this.posizione]
+
+    }else{
+
+      this.posizione--;
+
+      this.film  = this.filmsResult[this.posizione]
+
+    }
+
+    console.log(this.posizione)
+
   }
-}
+
   ngOnInit(): void {
+
     this.getFilmsFromService();
+    setInterval(() => {
+      this.slideShowRight()
+    },5000);
+
   }
 }

@@ -16,11 +16,14 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { SignupComponent } from './Component/signup/signup.component';
 import { HomeComponent } from './Component/home/home.component';
 import { ArchiveComponent } from './Component/archive/archive.component';
+
+import { MatSliderModule } from '@angular/material/slider';
+import {MatIconModule} from '@angular/material/icon'
+
 import { HttpClientModule } from '@angular/common/http';
 import { UserPageComponent } from './Component/user-page/user-page.component';
 import { JumbotronHomeComponent } from './Component/jumbotron-home/jumbotron-home.component';
 import { HeaderComponent } from './Component/header/header.component';
-import { ReviewForm } from './Component/review-form/review-form.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,13 +38,13 @@ import { ReviewForm } from './Component/review-form/review-form.component';
     HomeComponent,
     ArchiveComponent,
     JumbotronHomeComponent,
-    UserPageComponent,
-    ReviewForm
+    UserPageComponent
 
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot([
+
       { path: '', component: HomeComponent },
       { path: 'archive', component: ArchiveComponent },
       { path: 'archive/:id', component: ArchiveComponent },
@@ -55,9 +58,10 @@ import { ReviewForm } from './Component/review-form/review-form.component';
     AngularMaterialModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    HttpClientModule,
-    FormsModule,
-   
+    MatSliderModule,
+    MatIconModule,
+
+    HttpClientModule
     ],
   providers: [],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

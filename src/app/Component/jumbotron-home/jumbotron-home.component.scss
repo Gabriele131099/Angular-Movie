@@ -1,5 +1,9 @@
 .jumbotron {
   position: relative;
+  .imageJumbo{
+
+    transition: opacity 0.6s ease-out;
+  }
 }
 #right {
   position: absolute;

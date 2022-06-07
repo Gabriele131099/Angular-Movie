@@ -5,6 +5,7 @@ import { IUser } from 'src/app/Interfaces/IUser';
 import { FilmsService } from 'src/app/services/films.service';
 import { USERS } from '../../../assets/user';
 
+
 @Component({
   selector: 'app-sideBar',
   templateUrl: './side-bar.component.html',

@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import {FormsModule,ReactiveFormsModule} from '@angular/forms'
+
 @Component({
   selector: 'app-reviewForm',
   templateUrl: './review-form.component.html',

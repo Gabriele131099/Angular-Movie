@@ -6,15 +6,14 @@
         </a>
     </div> -->
     <div mat-icon-button color="accent" *ngIf="userLogFlag!='true'" ngClass="sideBarButton">
-      <mat-icon>menu</mat-icon>
-           <ul ngClass="infoUser">
-               <li>
-                    <a mat-button routerLink="/login">Login</a>
-               </li>
-               <li>
-                    <a mat-button routerLink="/signup">Sign Up</a>
-               </li>
-           </ul>
+
+
+      <button mat-button [matMenuTriggerFor]="menu"><mat-icon>person_outline</mat-icon></button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item routerLink="/login">Login</button>
+        <button mat-menu-item routerLink="/signup">Sign Up</button>
+      </mat-menu>
+
     </div>
     <div *ngIf="userLogFlag=='true'" ngClass="sideBarButton">
       {{arrayUser[0].username}}
@@ -28,7 +27,9 @@
          </ul>
   </div>
     <div ngClass="sideBarButton">
-        <a mat-button routerLink="archive/0">Archivio</a>
+        <a mat-button routerLink="archive/0"><mat-icon>folder</mat-icon></a>
+
+
         <ul ngClass="infoUser">
           <li *ngFor="let genre of arrayGenre">
             <a mat-button href="archive/{{genre.id}}">{{genre.name}}</a>
