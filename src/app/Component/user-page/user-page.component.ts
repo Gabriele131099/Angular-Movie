@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { IUser } from 'src/app/Interfaces/IUser';
-import { FilmsService } from 'src/app/services/films.service';
+import { IUser } from '../../interfaces/IUser';
 import { USERS } from 'src/assets/user';
 
 @Component({

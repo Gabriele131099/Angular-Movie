@@ -24,6 +24,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { UserPageComponent } from './Component/user-page/user-page.component';
 import { JumbotronHomeComponent } from './Component/jumbotron-home/jumbotron-home.component';
 import { HeaderComponent } from './Component/header/header.component';
+import { ReviewForm } from './Component/review-form/review-form.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,8 +39,8 @@ import { HeaderComponent } from './Component/header/header.component';
     HomeComponent,
     ArchiveComponent,
     JumbotronHomeComponent,
-    UserPageComponent
-
+    UserPageComponent,
+    ReviewForm
   ],
   imports: [
     BrowserModule,
@@ -60,7 +61,7 @@ import { HeaderComponent } from './Component/header/header.component';
     ReactiveFormsModule,
     MatSliderModule,
     MatIconModule,
-
+    
     HttpClientModule
     ],
   providers: [],

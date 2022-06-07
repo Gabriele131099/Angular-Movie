@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { IUser } from 'src/app/Interfaces/IUser';
+import { IUser } from '../../interfaces/IUser';
 import { USERS } from '../../../assets/user';
 
 @Component({

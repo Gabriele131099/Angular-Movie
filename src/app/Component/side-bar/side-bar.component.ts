@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatMenuTrigger } from '@angular/material/menu';
 import { ActivatedRoute, Router } from '@angular/router';
-import { IUser } from 'src/app/Interfaces/IUser';
+import { IUser } from '../../interfaces/IUser';
 import { FilmsService } from 'src/app/services/films.service';
 import { USERS } from '../../../assets/user';
 

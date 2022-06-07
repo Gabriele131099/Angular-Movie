@@ -1,7 +1,7 @@
 import { Component, OnInit ,Output, EventEmitter} from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { IUser } from 'src/app/Interfaces/IUser';
+import { IUser } from '../../interfaces/IUser';
 import {USERS} from '../../../assets/user';
 
 @Component({
@@ -37,6 +37,12 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('userLogFlag', 'true');
           localStorage.setItem('userId', obj.id);
           location.href = `./user/${obj.id}`;
+          const wishList:any = {
+            list:[],
+            id_user:obj.id
+          }
+          localStorage.setItem('wishList',wishList)
+          console.log(localStorage.getItem('whishList'))
         }else{
           this.logInMessage='credenziali non esistenti'
         }
