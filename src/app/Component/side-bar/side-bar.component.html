@@ -1,0 +1,50 @@
+<aside>
+    <!-- moved to header - martina 05/06
+      <div ngClass="sideBarButton">
+        <a mat-button routerLink="">
+            Home
+        </a>
+    </div> -->
+    <div mat-icon-button color="accent" *ngIf="userLogFlag!='true'" ngClass="sideBarButton">
+      <mat-icon>menu</mat-icon>
+           <ul ngClass="infoUser">
+               <li>
+                    <a mat-button routerLink="/login">Login</a>
+               </li>
+               <li>
+                    <a mat-button routerLink="/signup">Sign Up</a>
+               </li>
+           </ul>
+    </div>
+    <div *ngIf="userLogFlag=='true'" ngClass="sideBarButton">
+      {{arrayUser[0].username}}
+         <ul ngClass="infoUser">
+             <li>
+                  <a routerLink="user/{{userId}}">User</a>
+             </li>
+             <li>
+                  <a href="" (click)="logOut()">LogOut</a>
+              </li>
+         </ul>
+  </div>
+    <div ngClass="sideBarButton">
+        <a mat-button routerLink="archive/0">Archivio</a>
+        <ul ngClass="infoUser">
+          <li *ngFor="let genre of arrayGenre">
+            <a mat-button href="archive/{{genre.id}}">{{genre.name}}</a>
+          </li>
+       </ul>
+
+    </div>
+
+    <!-- <div ngClass="sideBarButton">
+      Genere
+      <ul ngClass="infoUser">
+          <li *ngFor="let genre of arrayGenre">
+               <a href="archive/{{genre.id}}">{{genre.name}}</a>
+          </li>
+
+      </ul> -->
+  <!-- </div> -->
+
+  </aside>

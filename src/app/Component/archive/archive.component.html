@@ -13,13 +13,12 @@
 </ul>
   <div style="display: flex;flex-wrap:wrap;justify-content: space-around;align-items:stretch;margin-bottom: 50px;">
     <div *ngFor="let film of filmsResult " >
-      
+
      <div class="card-container">
         <img src="https://image.tmdb.org/t/p/original/{{film.poster_path}}" alt="">
       <div ngClass="wishIcon">
         <button (click)="addFilmWishList(film)"><h5>WishList</h5><img src="../../../assets/—Pngtree—love heart outline_6044200.png" alt=""></button>
-        <button><h5 id="bottonePreferiti">Preferiti</h5><img src="../../../assets/—Pngtree—gold stars_370246.png" alt=""></button><br>
-        <a style="color: white" href="film/{{film.id}}"><h3>more</h3></a>
+        <button><h5 id="bottonePreferiti">Preferiti</h5><img src="../../../assets/—Pngtree—gold stars_370246.png" alt=""></button>
       </div>
      </div>
      <h3 style="max-width: 250px;">{{film.original_title}}</h3>

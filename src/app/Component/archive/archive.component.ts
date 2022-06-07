@@ -11,10 +11,11 @@ export class ArchiveComponent implements OnInit {
   arrayFilms: any;
   filmsResult: any;
   filtroTitle: string = '';
-  arrayWishList:any=[]
-  arrayPreferiti:any=[]
-  filtroGenre:any = this.route.snapshot.paramMap.get('id') ;
-  userLogFlag:any = localStorage.getItem('userLogFlag')
+  arrayWishList:any=[];
+  arrayPreferiti:any=[];
+  filtroGenre:any = this.route.snapshot.paramMap.get('id');
+  userLogFlag:any = localStorage.getItem('userLogFlag');
+
   constructor(
     private filmsService: FilmsService,
     private route: ActivatedRoute
@@ -35,7 +36,7 @@ export class ArchiveComponent implements OnInit {
     this.getFilmsFromService(this.pageIndex);
   }
 
-  addFilmWishList(film:any){ 
+  addFilmWishList(film:any){
     let tmp = this.arrayWishList.filter((obj:any)=>obj.id==film.id)
     if (tmp.length>0) {
       alert('il film esiste già nella ')
@@ -78,7 +79,7 @@ export class ArchiveComponent implements OnInit {
         });
   }
   ngOnInit(): void {
-    
+
     this.getFilmsFromService(this.pageIndex);
     this.getGenre()
   }

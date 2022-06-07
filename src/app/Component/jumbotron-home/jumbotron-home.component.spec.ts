@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { JumbotronHomeComponent } from './jumbotronHome.component';
+import { JumbotronHomeComponent } from './jumbotron-home.component';
 
 describe('ArchiveComponent', () => {
   let component: JumbotronHomeComponent;

@@ -9,6 +9,7 @@ import { USERS } from 'src/assets/user';
   templateUrl: './user-page.component.html',
   styleUrls: ['./user-page.component.scss']
 })
+
 export class UserPageComponent implements OnInit {
   arrayUsers: IUser[] = USERS;
   userLogFlag:any = localStorage.getItem('userLogFlag')
@@ -21,10 +22,11 @@ delete(film:any){
   localStorage.setItem("wishList", JSON.stringify(this.wishList));
   console.log(this.wishList)
 }
-constructor(    
+
+constructor(
   private route: ActivatedRoute,
   ) { }
-  
+
   ngOnInit(): void {
 
     const id= this.route.snapshot.paramMap.get('id')

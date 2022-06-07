@@ -12,7 +12,9 @@ import {USERS} from '../../../assets/user';
 
 export class LoginComponent implements OnInit {
   arrayUsers:IUser[] = USERS
+
   constructor(
+    private route: ActivatedRoute,
     private router: Router
     ) {
       this.router = router;
@@ -35,11 +37,6 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('userLogFlag', 'true');
           localStorage.setItem('userId', obj.id);
           location.href = `./user/${obj.id}`;
-          const wishList = {
-            list:[],
-            id_user:0
-          }
-          localStorage.setItem("wishList", JSON.stringify(wishList));
         }else{
           this.logInMessage='credenziali non esistenti'
         }

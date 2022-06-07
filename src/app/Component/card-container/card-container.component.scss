@@ -1,16 +1,16 @@
 @import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
     img{
-       
+
     }
-    .containerCards{
+    .cardContainer{
       display: flex;
       overflow-x: scroll;
       height: 500px;
     }
-    .containerCards::-webkit-scrollbar{
+    .cardContainer::-webkit-scrollbar{
       height: 5px;
     }
-    .containerCards>div{
+    .cardContainer>div{
         margin: 20px;
     }
     body {

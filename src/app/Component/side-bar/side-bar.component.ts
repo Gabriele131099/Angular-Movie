@@ -1,17 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatMenuTrigger } from '@angular/material/menu';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IUser } from 'src/app/Interfaces/IUser';
 import { FilmsService } from 'src/app/services/films.service';
-import { USERS } from '../../../assets/user'
+import { USERS } from '../../../assets/user';
+
 @Component({
-  selector: 'app-aside',
-  templateUrl: './aside.component.html',
-  styleUrls: ['./aside.component.scss']
+  selector: 'app-sideBar',
+  templateUrl: './side-bar.component.html',
+  styleUrls: ['./side-bar.component.scss']
 })
-export class AsideComponent implements OnInit {
+export class SideBarComponent implements OnInit {
   arrayUser :IUser[ ] = USERS
   userLogFlag:any = localStorage.getItem('userLogFlag')
   userId = localStorage.getItem('userId');
+
   constructor(private filmsService: FilmsService,
     private route: Router) {    }
   arrayGenre:any
@@ -28,9 +31,13 @@ export class AsideComponent implements OnInit {
 
   }
   ngOnInit(): void {
-    
+
     this.getGenre()
+
   }
+
+
+
 
 
 }

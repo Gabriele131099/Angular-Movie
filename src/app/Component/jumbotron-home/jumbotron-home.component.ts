@@ -6,27 +6,27 @@ const camera = icon({ prefix: 'fas', iconName: 'camera' })
 
 @Component({
   selector: 'app-jumbotron',
-  templateUrl: './jumbotronHome.component.html',
-  styleUrls: ['./jumbotronHome.component.scss'],
+  templateUrl: './jumbotron-home.component.html',
+  styleUrls: ['./jumbotron-home.component.scss'],
 })
 export class JumbotronHomeComponent implements OnInit {
   arrayFilms: any;
   filmsResult: any;
   randomNumber:number = 0
-  film:any 
+  film:any
   constructor(
     private filmsService: FilmsService,
   ) {}
 
-  getFilmsFromService(number: number): any {
-    number++;
-    this.filmsService.getFilms(number).subscribe((films) => {
+  getFilmsFromService(): any {
+    //number++; - martina 06-06 gettrendingfilms metodo
+    this.filmsService.getTrendingFilms().subscribe((films) => {
       this.arrayFilms = films;
       this.filmsResult = this.arrayFilms.results
       this.film = this.filmsResult[0]
     });
   }
-slideShowPlus(){
+  slideShowRight(){
   if (this.randomNumber>=19) {
     this.randomNumber= 0
     this.film =  this.filmsResult[this.randomNumber];
@@ -34,7 +34,7 @@ slideShowPlus(){
     this.film =  this.filmsResult[this.randomNumber++];
   }
 }
-slideShowMeno(){
+slideShowLeft(){
   if (this.randomNumber<=0) {
     this.randomNumber= 19
     this.film =  this.filmsResult[this.randomNumber];
@@ -43,6 +43,6 @@ slideShowMeno(){
   }
 }
   ngOnInit(): void {
-    this.getFilmsFromService(1);
+    this.getFilmsFromService();
   }
 }

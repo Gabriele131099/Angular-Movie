@@ -52,13 +52,13 @@ export class SignupComponent implements OnInit {
             password: this.form.value.password,
           };
           //this.signUpMessage = 'registrazione effettuata'; //da togliere, per lettura
-          this.router.navigate(['./logins'])
+          this.router.navigate(['./login'])
           this.arrayUsers.push(newUser);
         }
       }
 
       console.log(this.arrayUsers);
-      // window.location.replace("logins");
+      // window.location.replace("login");
 
   }
 

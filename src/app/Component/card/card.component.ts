@@ -1,13 +1,13 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { FILMS } from 'src/assets/film';
-import { FilmsService } from '../../services/films.service';
+import {FilmsService} from '../../services/films.service'
 import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-card',
   templateUrl: './card.component.html',
-  styleUrls: ['./card.component.scss'],
+  styleUrls: ['./card.component.scss']
 })
 export class CardComponent implements OnInit {
   film: any;
@@ -63,7 +63,7 @@ export class CardComponent implements OnInit {
     this.flag= false
   }
   posizioneRecensione:number = 0
-  slideShowPlus(){
+  slideShowRight(){
     if (this.posizioneRecensione >= this.arrayRecensioni.length-1) {
       this.posizioneRecensione= 0
       this.recensione  = this.arrayRecensioni[this.posizioneRecensione]
@@ -73,7 +73,7 @@ export class CardComponent implements OnInit {
     }
     console.log(this.posizioneRecensione)
   }
-  slideShowMeno(){
+  slideShowLeft(){
     if (this.posizioneRecensione<=0) {
       this.posizioneRecensione= this.arrayRecensioni.length-1
       this.recensione  = this.arrayRecensioni[this.posizioneRecensione]
@@ -91,7 +91,7 @@ export class CardComponent implements OnInit {
       this.arrayGenre.forEach((ele:any) => {
         if (obj==ele.id) {
           this.arrayGenreNames.push(ele.name)
-        } 
+        }
       });
     });
     this.arrayRecensioni = this.arrayRecensioni.filter((obj:any)=>{obj.id_film=this.film.id})

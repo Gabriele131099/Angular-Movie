@@ -6,11 +6,11 @@ import { library, icon } from '@fortawesome/fontawesome-svg-core'
 const camera = icon({ prefix: 'fas', iconName: 'camera' })
 
 @Component({
-  selector: 'app-container-cards',
-  templateUrl: './container-cards.component.html',
-  styleUrls: ['./container-cards.component.scss'],
+  selector: 'app-card-container',
+  templateUrl: './card-container.component.html',
+  styleUrls: ['./card-container.component.scss'],
 })
-export class ContainerCardsComponent implements OnInit {
+export class CardContainerComponent implements OnInit {
   arrayFilms: any;
   filmsResult: any;
   arrayGenre: any;
