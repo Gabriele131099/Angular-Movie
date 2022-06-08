@@ -7,7 +7,7 @@
                         alt="Generic placeholder image" class="img-fluid img-thumbnail mt-4 mb-2"
                         style="width: 150px; z-index: 1">
                         <h3>
-                            {{arrayUsers[0].username}}
+                            {{arrayUsers[userId].username}}
                         </h3>
                 </div>
 
@@ -20,7 +20,25 @@
                 <div class="g-2" style="display: flex;align-items: stretch;overflow-x: scroll;">
                     <div *ngFor="let film of arrayWishlist" style="width:250px;margin: 10px;">
                         <div>
-                            <button (click)="delete(film)" style="background-color: transparent;border: none;">
+                            <button (click)="deleteWhishList(film)" style="background-color: transparent;border: none;">
+                                <img width="30px" src="../../../assets/circle-xmark-regular.svg" alt="">
+                            </button>
+                        </div>
+                        <a href="www.youtube.com/results?search_query={{film.original_title}}" target="_blank">
+                            <img width="250px" src="https://image.tmdb.org/t/p/original/{{film.poster_path}}" alt="">
+                        </a>
+                        <h2>{{film.original_title}}</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="p-4 text-black">
+                <div class="mb-4" style="display: flex;justify-content: space-between;align-items: stretch ;">
+                    <h2 class="lead fw-normal mb-0">Favourite </h2>
+                </div>
+                <div class="g-2" style="display: flex;align-items: stretch;overflow-x: scroll;">
+                    <div *ngFor="let film of arrayFavourites" style="width:250px;margin: 10px;">
+                        <div>
+                            <button (click)="deleteFavourite(film)" style="background-color: transparent;border: none;">
                                 <img width="30px" src="../../../assets/circle-xmark-regular.svg" alt="">
                             </button>
                         </div>

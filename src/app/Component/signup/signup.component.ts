@@ -11,7 +11,7 @@ import { USERS } from '../../../assets/user';
 })
 
 export class SignupComponent implements OnInit {
-  arrayUsers: IUser[] = USERS;
+  arrayUsers: IUser[] = JSON.parse(localStorage.getItem('arrayUsers')||'');
 
   constructor(
     private route: ActivatedRoute,
@@ -30,6 +30,8 @@ export class SignupComponent implements OnInit {
   submit() {
     if (this.form.valid) {
       this.submitEM.emit(this.form.value);
+      console.log(this.arrayUsers)
+      console.log(JSON.parse(localStorage.getItem('arrayUsers')||''))
       let userExist = this.arrayUsers.filter((obj:any)=>(obj.username==this.form.value.username))
       //console.log(userExist)
       if (userExist.length>0) {
@@ -54,6 +56,7 @@ export class SignupComponent implements OnInit {
           //this.signUpMessage = 'registrazione effettuata'; //da togliere, per lettura
           this.router.navigate(['./login'])
           this.arrayUsers.push(newUser);
+          localStorage.setItem('arrayUsers',JSON.stringify(this.arrayUsers))
         }
       }
 

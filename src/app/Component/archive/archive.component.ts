@@ -11,10 +11,12 @@ export class ArchiveComponent implements OnInit {
   arrayFilms: any;
   filmsResult: any;
   filtroTitle: string = '';
-  wishList:any = JSON.parse(localStorage.getItem("wishList")||'')
-  arrayWishlist:any = this.wishList?.wishList
-  arrayPreferiti:any=[];
+
+  arrayWishList:any=JSON.parse(localStorage.getItem('wishList')||'');
+  arrayFavourite:any=JSON.parse(localStorage.getItem('favourite')||'');
+
   filtroGenre:any = this.route.snapshot.paramMap.get('id');
+
   userLogFlag:any = localStorage.getItem('userLogFlag');
 
   constructor(
@@ -38,21 +40,29 @@ export class ArchiveComponent implements OnInit {
   }
 
   addFilmWishList(film:any){
-    let tmp = this.arrayWishlist.filter((obj:any)=>obj.id==film.id)
+    let tmp = this.arrayWishList.list.filter((obj:any)=>obj.id==film.id)
     if (tmp.length>0) {
       alert('il film esiste già nella ')
     }else if(this.userLogFlag=='true'){
-      this.arrayWishlist.push(film)
-      const wishList = {
-        wishList:this.arrayWishlist,
-        id_user:0
-      }
-      localStorage.setItem("wishList", JSON.stringify(wishList));
+      this.arrayWishList.list.push(film)
+      localStorage.setItem("wishList", JSON.stringify(this.arrayWishList));
       alert('aggiunto con successo')
     }else{
       alert('devi prima loggarti')
     }
-    //console.log(JSON.parse(localStorage.getItem("wishList")))
+  }
+
+  addFilmFavourites(film:any){
+    let tmp = this.arrayFavourite.list.filter((obj:any)=>obj.id==film.id)
+    if (tmp.length>0) {
+      alert('gentilissimo signore, guardi che lei ha gia inserito codesto film')
+    } else if (this.userLogFlag=='true') {
+      this.arrayFavourite.list.push(film)
+      localStorage.setItem('favourite',JSON.stringify(this.arrayFavourite))
+      alert('messere il suo film è stato deposto all interno della lista')
+    }else{
+      alert('devi prima loggarti,coglione')
+    }
   }
 
   getFilmsFromService(number: number): any {

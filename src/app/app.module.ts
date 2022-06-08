@@ -41,6 +41,7 @@ import { ReviewForm } from './Component/review-form/review-form.component';
     JumbotronHomeComponent,
     UserPageComponent,
     ReviewForm
+
   ],
   imports: [
     BrowserModule,
@@ -61,7 +62,7 @@ import { ReviewForm } from './Component/review-form/review-form.component';
     ReactiveFormsModule,
     MatSliderModule,
     MatIconModule,
-    
+
     HttpClientModule
     ],
   providers: [],

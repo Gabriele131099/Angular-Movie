@@ -16,25 +16,31 @@
 
     </div>
     <div *ngIf="userLogFlag=='true'" ngClass="sideBarButton">
-      {{arrayUser[0].username}}
-         <ul ngClass="infoUser">
-             <li>
-                  <a routerLink="user/{{userId}}">User</a>
-             </li>
-             <li>
-                  <a href="" (click)="logOut()">LogOut</a>
-              </li>
-         </ul>
+
+
+      <button mat-button [matMenuTriggerFor]="menu"><i class="material-icons">admin_panel_settings</i></button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item routerLink="user/{{userId}}">User</button>
+        <button mat-menu-item (click)="logOut()" routerLink="">LogOut</button>
+      </mat-menu>
+
+
+
   </div>
     <div ngClass="sideBarButton">
-        <a mat-button routerLink="archive/0"><mat-icon>folder</mat-icon></a>
 
 
-        <ul ngClass="infoUser">
-          <li *ngFor="let genre of arrayGenre">
-            <a mat-button href="archive/{{genre.id}}">{{genre.name}}</a>
-          </li>
-       </ul>
+
+        <button mat-button [matMenuTriggerFor]="Generi" routerLink="archive/0"><mat-icon>folder</mat-icon></button>
+        <mat-menu #Generi="matMenu">
+
+
+          <button *ngFor="let genre of arrayGenre" mat-menu-item routerLink="archive/{{genre.id}}">{{genre.name}}</button>
+
+        </mat-menu>
+
+
+
 
     </div>
 

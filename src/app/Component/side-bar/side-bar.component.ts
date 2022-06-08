@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { IUser } from '../../interfaces/IUser';
 import { FilmsService } from 'src/app/services/films.service';
 import { USERS } from '../../../assets/user';

@@ -11,7 +11,7 @@ import {USERS} from '../../../assets/user';
 })
 
 export class LoginComponent implements OnInit {
-  arrayUsers:IUser[] = USERS
+  arrayUsers:IUser[] = JSON.parse(localStorage.getItem('arrayUsers')||'')
 
   constructor(
     private route: ActivatedRoute,
@@ -37,12 +37,6 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('userLogFlag', 'true');
           localStorage.setItem('userId', obj.id);
           location.href = `./user/${obj.id}`;
-          const wishList:any = {
-            list:[],
-            id_user:obj.id
-          }
-          localStorage.setItem('wishList',JSON.stringify(wishList))
-          console.log(localStorage.getItem('whishList'))
         }else{
           this.logInMessage='credenziali non esistenti'
         }
@@ -53,6 +47,7 @@ export class LoginComponent implements OnInit {
 
   @Output() submitEM = new EventEmitter();
   ngOnInit(): void {
+    
   }
 
 }
