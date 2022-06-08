@@ -10,16 +10,17 @@ import { USERS } from 'src/assets/user';
 })
 
 export class UserPageComponent implements OnInit {
+
   arrayUsers: IUser[] = USERS;
   userLogFlag:any = localStorage.getItem('userLogFlag')
   user:any
-  wishList:any = localStorage.getItem("wishlist") ? JSON.parse(localStorage.getItem("wishlist")||'') : null
-  arrayWishlist:any = this.wishList?.list
+  wishList:any = JSON.parse(localStorage.getItem("wishList")||'')
+  arrayWishlist:any = this.wishList?.wishList
 
 delete(film:any){
-  this.wishList = this.wishList.filter((obj:any)=>obj.id!=film?.id)
+  this.arrayWishlist = this.arrayWishlist.filter((obj:any)=>obj.id!=film?.id)
   localStorage.setItem("wishList", JSON.stringify(this.wishList));
-  console.log(this.wishList)
+  console.log(this.wishList);
 }
 
 constructor(
@@ -29,9 +30,11 @@ constructor(
   ngOnInit(): void {
 
     const id= this.route.snapshot.paramMap.get('id')
+
     this.user  = this.arrayUsers.filter((obj:any)=>
       obj.id==id
     )
+
     console.log(this.user)
     console.log(this.wishList)
   }

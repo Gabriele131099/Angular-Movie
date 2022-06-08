@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
             list:[],
             id_user:obj.id
           }
-          localStorage.setItem('wishList',wishList)
+          localStorage.setItem('wishList',JSON.stringify(wishList))
           console.log(localStorage.getItem('whishList'))
         }else{
           this.logInMessage='credenziali non esistenti'

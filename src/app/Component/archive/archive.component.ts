@@ -11,7 +11,8 @@ export class ArchiveComponent implements OnInit {
   arrayFilms: any;
   filmsResult: any;
   filtroTitle: string = '';
-  arrayWishList:any=[];
+  wishList:any = JSON.parse(localStorage.getItem("wishList")||'')
+  arrayWishlist:any = this.wishList?.wishList
   arrayPreferiti:any=[];
   filtroGenre:any = this.route.snapshot.paramMap.get('id');
   userLogFlag:any = localStorage.getItem('userLogFlag');
@@ -37,13 +38,13 @@ export class ArchiveComponent implements OnInit {
   }
 
   addFilmWishList(film:any){
-    let tmp = this.arrayWishList.filter((obj:any)=>obj.id==film.id)
+    let tmp = this.arrayWishlist.filter((obj:any)=>obj.id==film.id)
     if (tmp.length>0) {
       alert('il film esiste già nella ')
     }else if(this.userLogFlag=='true'){
-      this.arrayWishList.push(film)
+      this.arrayWishlist.push(film)
       const wishList = {
-        wishList:this.arrayWishList,
+        wishList:this.arrayWishlist,
         id_user:0
       }
       localStorage.setItem("wishList", JSON.stringify(wishList));
