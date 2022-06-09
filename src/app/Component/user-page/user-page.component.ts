@@ -34,6 +34,29 @@ deleteFavourite(film:any){
   localStorage.setItem("favourite", JSON.stringify(this.favourite));
   console.log(this.favourite)
 }
+filtro:string=''
+cercaFilm(arrayName:any){
+  switch (arrayName) {
+    case 'WishList':
+      this.arrayWishlist=this.wishList.list
+      this.arrayWishlist = this.arrayWishlist.filter((obj:any)=>obj.title.includes(this.filtro))
+
+      break;   
+      case 'favourite':      this.arrayFavourites = this.favourite.list
+      this.arrayFavourites = this.arrayFavourites.filter((obj:any)=>obj.title.includes(this.filtro))
+
+      break;
+  }
+}
+cartFlag =false
+cart(){
+  if (this.cartFlag) {
+    this.cartFlag = false
+  }else{
+    this.cartFlag= true
+  }
+  console.log(this.cartFlag)
+}
 constructor(
   private route: ActivatedRoute,
   ) { }

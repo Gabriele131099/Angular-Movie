@@ -25,6 +25,7 @@ import { UserPageComponent } from './Component/user-page/user-page.component';
 import { JumbotronHomeComponent } from './Component/jumbotron-home/jumbotron-home.component';
 import { HeaderComponent } from './Component/header/header.component';
 import { ReviewForm } from './Component/review-form/review-form.component';
+import { Cart } from "./Component/cart/cart.component";
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,7 +41,8 @@ import { ReviewForm } from './Component/review-form/review-form.component';
     ArchiveComponent,
     JumbotronHomeComponent,
     UserPageComponent,
-    ReviewForm
+    ReviewForm,
+    Cart
 
   ],
   imports: [

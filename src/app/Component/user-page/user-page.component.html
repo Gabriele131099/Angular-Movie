@@ -1,4 +1,12 @@
 <div *ngIf="userLogFlag=='true'" class="card">
+    <div class="buttonCart">
+        <button (click)="cart()">
+            <img width="50px" style="position: absolute;top:0px;right: 10px;" src="../../../assets/—Pngtree—gold stars_370246.png" alt="">
+        </button>
+    </div>
+    <div class="cart" *ngIf="cartFlag">
+        <app-cart [arrayFilm]="arrayWishlist"></app-cart>
+    </div>
     <div class="">
         <div >
             <div class="rounded-top text-white d-flex" style="background-color: #000; height:200px;color: white;">
@@ -17,6 +25,9 @@
                 <div class="mb-4" style="display: flex;justify-content: space-between;align-items: stretch ;">
                     <h2 class="lead fw-normal mb-0">WishList </h2>
                 </div>
+                <div>
+                    <input (ngModelChange)="cercaFilm('WishList')" value="{{filtro}}" [(ngModel)]="filtro" type="text" placeholder="cerca">
+                </div>
                 <div class="g-2" style="display: flex;align-items: stretch;overflow-x: scroll;">
                     <div *ngFor="let film of arrayWishlist" style="width:250px;margin: 10px;">
                         <div>
@@ -34,6 +45,9 @@
             <div class="p-4 text-black">
                 <div class="mb-4" style="display: flex;justify-content: space-between;align-items: stretch ;">
                     <h2 class="lead fw-normal mb-0">Favourite </h2>
+                </div>
+                <div>
+                    <input (ngModelChange)="cercaFilm('favourite')" value="{{filtro}}" type="text" [(ngModel)]="filtro" placeholder="cerca">
                 </div>
                 <div class="g-2" style="display: flex;align-items: stretch;overflow-x: scroll;">
                     <div *ngFor="let film of arrayFavourites" style="width:250px;margin: 10px;">
