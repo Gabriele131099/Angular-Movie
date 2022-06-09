@@ -3,6 +3,10 @@
       overflow-y: scroll;
       max-height: 90vh;
       color: white;
+      background-image: url('https://freefrontend.com/assets/img/css-background-patterns/simple-pattern-with-css3.png') ;
+      background-position: center;
+      background-size: cover;
+  
     }
     .listaInput{
       display: flex;
@@ -35,10 +39,6 @@
     .cardContainer>div{
         margin: 20px;
     }
-    body {
-    background-image: linear-gradient(to right, #d3dee9, #cbdbec, #c3d9ef, #bad6f1, #b1d4f4);
-
-  }
   .card-container{
     position: relative;
     .wishIcon{

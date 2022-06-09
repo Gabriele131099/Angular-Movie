@@ -35,5 +35,5 @@ button{
   border: none;
 }
 button:active{
-  background-color: rgba(211, 211, 211, 0.285);
+  $sfondo: linear-gradient(to bottom, #6e529d 0%,#d97b93 100%);
 }

@@ -1,4 +1,4 @@
-$sfondo : gray;
+// linear-gradient(to bottom, #6e529d 0%,#d97b93 100%);
 
 *{
     padding: 0px;
@@ -10,7 +10,10 @@ div{
     width: 89vw;
     height: 80vh;
     overflow-y: scroll;
-    background-color: $sfondo;
+    background-image: url('https://freefrontend.com/assets/img/css-background-patterns/simple-pattern-with-css3.png') ;
+    background-position: center;
+    background-size: cover;
+    
 }
 div::-webkit-scrollbar{
     width: 5px;
