@@ -61,7 +61,7 @@ export class ArchiveComponent implements OnInit {
       localStorage.setItem('favourite',JSON.stringify(this.arrayFavourite))
       alert('messere il suo film è stato deposto all interno della lista')
     }else{
-      alert('devi prima loggarti,coglione')
+      alert('devi prima loggarti')
     }
   }
 

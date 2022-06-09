@@ -1,11 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-cart',
-  templateUrl: './cart.component.html',
-  styleUrls: ['./cart.component.scss']
+  selector: 'app-favourite',
+  templateUrl: './favourite.component.html',
+  styleUrls: ['./favourite.component.scss']
 })
-export class Cart implements OnInit {
+export class Favourite implements OnInit {
   @Input() arrayFilm :any
   empty(){
     this.arrayFilm=[]

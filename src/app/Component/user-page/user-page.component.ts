@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { IUser } from '../../interfaces/IUser';
-import { FilmsService } from 'src/app/services/films.service';
-import { USERS } from 'src/assets/user';
 
 @Component({
   selector: 'app-user-page',

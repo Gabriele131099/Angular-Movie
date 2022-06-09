@@ -25,7 +25,7 @@ import { UserPageComponent } from './Component/user-page/user-page.component';
 import { JumbotronHomeComponent } from './Component/jumbotron-home/jumbotron-home.component';
 import { HeaderComponent } from './Component/header/header.component';
 import { ReviewForm } from './Component/review-form/review-form.component';
-import { Cart } from "./Component/cart/cart.component";
+import { Favourite } from "./Component/favourite/favourite.component";
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,7 +42,7 @@ import { Cart } from "./Component/cart/cart.component";
     JumbotronHomeComponent,
     UserPageComponent,
     ReviewForm,
-    Cart
+    Favourite
 
   ],
   imports: [
