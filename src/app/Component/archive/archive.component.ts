@@ -66,18 +66,18 @@ export class ArchiveComponent implements OnInit {
   }
 
   getFilmsFromService(number: number): any {
-    number++;
     this.filmsService.getFilms(number).subscribe((films) => {
       this.arrayFilms = films;
       this.filmsResult = this.arrayFilms.results.filter((obj: any) =>
-        obj.original_title.includes(this.filtroTitle) &&
-       (obj.genre_ids.filter(
-          (ele: any) => ele == this.filtroGenre
+      obj.original_title.includes(this.filtroTitle) &&
+      (obj.genre_ids.filter(
+        (ele: any) => ele == this.filtroGenre
         ).length>0 ||
         this.filtroGenre==0)
-      );
-      console.log(this.filmsResult);
-    });
+        );
+        console.log(this.filmsResult);
+      });
+      number++;
     console.log(this.filtroTitle);
   }
   arrayGenre:any
