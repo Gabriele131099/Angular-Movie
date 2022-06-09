@@ -4,12 +4,12 @@
       <h3 class="Heading">Preferiti</h3>
       <button (click)="empty()" class="Action">Svuota Lista</button>
     </div>
-    <div class="Empty-Box" *ngIf="arrayFilm.length<1">
+    <div class="Empty-Box" *ngIf="arrayFilm.list.length<1">
       <h1>Non ci sono Film nei preferiti</h1>
       <h3>Vai all  <a routerLink="/archive/0">archivio</a></h3>
     </div>
-    <div id="su" *ngIf="arrayFilm.length>0" class="Container-Items">
-      <div  *ngFor="let film of arrayFilm" class="Cart-Items">
+    <div id="su" *ngIf="arrayFilm.list.length>0" class="Container-Items">
+      <div  *ngFor="let film of arrayFilm.list" class="Cart-Items">
         <div class="about">
           <div>
             <img src="https://image.tmdb.org/t/p/original/{{film.poster_path}}" alt=""
@@ -33,7 +33,6 @@
     </div>
     <hr style="background-color: black;">
     <div class="checkout">
-      <button class="button">Chiudi</button>
     </div>
 
   </div>

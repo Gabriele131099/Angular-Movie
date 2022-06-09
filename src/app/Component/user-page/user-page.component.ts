@@ -46,15 +46,7 @@ cercaFilm(arrayName:any){
       break;
   }
 }
-cartFlag =false
-cart(){
-  if (this.cartFlag) {
-    this.cartFlag = false
-  }else{
-    this.cartFlag= true
-  }
-  console.log(this.cartFlag)
-}
+
 constructor(
   private route: ActivatedRoute,
   ) { }

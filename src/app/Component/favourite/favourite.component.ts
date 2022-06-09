@@ -6,15 +6,19 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./favourite.component.scss']
 })
 export class Favourite implements OnInit {
-  @Input() arrayFilm :any
+ arrayFilm :any= JSON.parse(localStorage.getItem('favourite')||'')
   empty(){
-    this.arrayFilm=[]
+    this.arrayFilm.list=[]
+    localStorage.setItem('favourite',JSON.stringify(this.arrayFilm)||'')
   }
   deleteFilm(film:any){
-    this.arrayFilm = this.arrayFilm.filter((obj:any)=>obj.id!=film?.id)
+    this.arrayFilm.list = this.arrayFilm.list.filter((obj:any)=>obj.id!=film?.id)
+    localStorage.setItem('favourite',JSON.stringify(this.arrayFilm)||'')
   }
   constructor() { }
   ngOnInit(): void {
+    console.log(this.arrayFilm)
+    console.log(JSON.parse(localStorage.getItem('favourite')||''))
   }
 
 }

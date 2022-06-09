@@ -13,3 +13,28 @@ main{
 main::-webkit-scrollbar{
     width: 5px;
 }
+.cart{
+    position: fixed;
+    width: 100%;
+    max-width: 700px;
+    top: 100px;
+   left: 50%;
+   transform: translate(-50%,0%);
+   z-index:9999;
+
+}
+.buttonCart{
+    position: fixed;
+    right: 15px;
+    button {
+      width: 80px;
+      height: 30px;
+      border-top: 80px solid white;
+      border-left: 80px solid transparent;
+      background-color: transparent;
+
+    }
+    button:active {
+      background-color: transparent;
+    }
+}

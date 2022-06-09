@@ -1,4 +1,12 @@
 <main>
+    <div *ngIf="userFlag=='true'" class="buttonCart">
+        <button (click)="cart()">
+            <img width="40px" style="position: absolute;top:0px;right: 5px;" src="../../../assets/—Pngtree—gold stars_370246.png" alt="">
+        </button>
+    </div>
+    <div class="cart" *ngIf="cartFlag">
+        <app-favourite></app-favourite>
+    </div>
     <router-outlet ></router-outlet>
 </main>
 

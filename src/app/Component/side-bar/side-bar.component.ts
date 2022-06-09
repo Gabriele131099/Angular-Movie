@@ -28,7 +28,7 @@ export class SideBarComponent implements OnInit {
   }
   logOut(){
     localStorage.setItem('userLogFlag','false')
-
+    window.location.replace('/');
   }
   ngOnInit(): void {
 
