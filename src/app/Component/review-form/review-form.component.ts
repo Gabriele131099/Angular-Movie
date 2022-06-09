@@ -14,19 +14,24 @@ export class ReviewForm implements OnInit {
   });
   constructor(
   ) { }
-  @Input() arrayRecensioni:any = []
+  arrayUser:any=JSON.parse(localStorage.getItem('arrayUsers')||'')
+  arrayRecensioni:any 
   submit(){
     
     if (this.form.valid ) {
       this.submitEM.emit(this.form.value);
       if (this.userLogFlag=='true') {
       console.log(this.form.value)
+      let user = this.arrayUser.filter((obj:any)=>obj.id==parseInt(localStorage.getItem("userId") || ''))
+      user = user[0]
       const jsonRecensioni = {
-        id_user:parseInt(localStorage.getItem("userId") || ''),
+        id_user:user.username,
         id_film:this.id_film,
         recensione:this.form.value.recensione
       }
+      this.arrayRecensioni = JSON.parse(localStorage.getItem('review')||'')
       this.arrayRecensioni.push(jsonRecensioni)
+      localStorage.setItem('review',JSON.stringify(this.arrayRecensioni )||'')
       console.log(this.arrayRecensioni)
       }else{
         alert('per lasciare una recensione devi essere loggato')

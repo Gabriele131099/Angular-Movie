@@ -28,7 +28,7 @@ export class CardComponent implements OnInit {
       recensione:'sono di un altro film'
     }
   ]
-    flag:boolean = false
+  flag:boolean = false
   arrayFilms: any;
   filmsResult: any;
   getFilmsFromService(): any {
@@ -44,7 +44,13 @@ export class CardComponent implements OnInit {
       console.log(this.filmsResult);
     });
   }
-
+open(){
+if (this.flag==true) {
+  this.flag=false
+}else{
+  this.flag=true
+}
+}
   getGenre(): any {
     this.FilmsService.getGenre().subscribe((genre) => {
       this.arrayGenre = genre;
@@ -52,37 +58,9 @@ export class CardComponent implements OnInit {
       console.log(this.arrayGenre);
     });
   }
-  recensione:any
-  open(): void {
-    this.flag= true
-    console.log(this.film)
-    this.recensione  = this.arrayRecensioni[this.posizioneRecensione]
-    console.log(this.recensione)
-  }
-  close(){
-    this.flag= false
-  }
-  posizioneRecensione:number = 0
-  slideShowRight(){
-    if (this.posizioneRecensione >= this.arrayRecensioni.length-1) {
-      this.posizioneRecensione= 0
-      this.recensione  = this.arrayRecensioni[this.posizioneRecensione]
-    }else{
-      this.posizioneRecensione++;
-      this.recensione  = this.arrayRecensioni[this.posizioneRecensione]
-    }
-    console.log(this.posizioneRecensione)
-  }
-  slideShowLeft(){
-    if (this.posizioneRecensione<=0) {
-      this.posizioneRecensione= this.arrayRecensioni.length-1
-      this.recensione  = this.arrayRecensioni[this.posizioneRecensione]
-    }else{
-      this.posizioneRecensione--;
-      this.recensione  = this.arrayRecensioni[this.posizioneRecensione]
-    }
-    console.log(this.posizioneRecensione)
-  }
+  
+  
+  
   arrayGenreNames:any=[]
   getGenreNames() {
     console.log(this.film)

@@ -26,6 +26,7 @@ import { JumbotronHomeComponent } from './Component/jumbotron-home/jumbotron-hom
 import { HeaderComponent } from './Component/header/header.component';
 import { ReviewForm } from './Component/review-form/review-form.component';
 import { Favourite } from "./Component/favourite/favourite.component";
+import { ReviewCarousel } from './Component/reviewCarousel/reviewCarousel.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,7 +43,8 @@ import { Favourite } from "./Component/favourite/favourite.component";
     JumbotronHomeComponent,
     UserPageComponent,
     ReviewForm,
-    Favourite
+    Favourite,
+    ReviewCarousel
 
   ],
   imports: [

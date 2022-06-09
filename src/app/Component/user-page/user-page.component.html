@@ -13,8 +13,10 @@
                 </div>
 
             </div>
-
-            <div class="p-4 text-black">
+            <div *ngIf="arrayWishlist.length==0">
+                <h1>non ci sono elementi nella WishList</h1>
+            </div>
+            <div *ngIf="arrayWishlist.length>0" class="p-4 text-black">
                 <div class="mb-4" style="display: flex;justify-content: space-between;align-items: stretch ;">
                     <h2 class="lead fw-normal mb-0">WishList </h2>
                 </div>
@@ -35,7 +37,10 @@
                     </div>
                 </div>
             </div>
-            <div class="p-4 text-black">
+            <div *ngIf="arrayFavourites.length==0">
+                <h1>non ci sono elementi nei Preferiti</h1>
+            </div>
+            <div *ngIf="arrayFavourites.length>0" class="p-4 text-black">
                 <div class="mb-4" style="display: flex;justify-content: space-between;align-items: stretch ;">
                     <h2 class="lead fw-normal mb-0">Favourite </h2>
                 </div>

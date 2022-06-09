@@ -15,6 +15,7 @@ export class HeaderComponent implements OnInit {
     localStorage.setItem('arrayUsers',JSON.stringify(USERS)) ///storage arrayUser
     localStorage.setItem('userLogFlag', 'false');///storage log
     localStorage.setItem('userId', '0');///storage id utente in sessione
+    localStorage.setItem('review', JSON.stringify([]));///storage id utente in sessione
 
     const lista:any = {
       list:[],

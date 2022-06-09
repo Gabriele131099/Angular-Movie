@@ -17,7 +17,7 @@
         </div>
 
         <div class="column1">
-          <span class="tag" *ngFor="let genre of film.genre_ids">{{genre}}</span>
+          <span class="tag" *ngFor="let genre of arrayGenreNames">{{genre}}</span>
 
         </div> <!-- end column1 -->
       </div>
@@ -43,20 +43,7 @@
         <app-reviewForm [arrayRecensioni]="arrayRecensioni" [id_film]="film.id"></app-reviewForm>
         <button mat-button (click)="open()">Recensioni...</button>
         <div *ngIf="flag==true" class="popUpRecensioni">
-          <button mat-button (click)="close()">X</button>
-          <div *ngIf="arrayRecensioni.length>0">
-            <div>
-              <h1>{{recensione.id_user}}</h1>
-              <p>{{recensione.recensione}}</p>
-              <br>
-              <button mat-button (click)="slideShowLeft()">indietro</button>
-              <button mat-button (click)="slideShowRight()">avanti</button>
-            </div>
-            <div *ngIf="(arrayRecensioni.length)==0">
-              <h3>Non ci sono recensioni per questo film</h3>
-            </div>
-
-          </div>
+          <app-reviewCarousel [idFilm]="film.id"></app-reviewCarousel>
         </div>
         <div class="avatars">
           <a href="#" data-tooltip="Person 1" data-placement="top">

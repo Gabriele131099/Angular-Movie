@@ -1,11 +1,10 @@
 <div>
   <h2></h2>
   <form [formGroup]="form" (ngSubmit)="submit()">
-    <star-rating-comp [starType]="'icon'" [rating]="5"></star-rating-comp>  
     <mat-form-field appearance="fill">
       <mat-label><h4>Recensisci</h4></mat-label>
       <textarea matInput formControlName="recensione" required></textarea>
-    </mat-form-field>
-    <button type="submit" mat-stroked-button color="accent" class="btn-block">Pubblica</button>
+    </mat-form-field><br>
+    <button type="submit" mat-stroked-button style="color: #1e1b26;" class="btn-block">Pubblica</button>
   </form>
 </div>
