@@ -30,6 +30,9 @@ export class SideBarComponent implements OnInit {
     localStorage.setItem('userLogFlag','false')
     window.location.replace('/');
   }
+  render(id:any){
+    window.location.replace(`/archive/${id}`);
+  }
   ngOnInit(): void {
 
     this.getGenre()

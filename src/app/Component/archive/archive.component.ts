@@ -16,7 +16,7 @@ export class ArchiveComponent implements OnInit {
   arrayFavourite:any=JSON.parse(localStorage.getItem('favourite')||'');
 
   filtroGenre:any = this.route.snapshot.paramMap.get('id');
-
+  
   userLogFlag:any = localStorage.getItem('userLogFlag');
 
   constructor(

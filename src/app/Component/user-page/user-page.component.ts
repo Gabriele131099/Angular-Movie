@@ -40,7 +40,8 @@ cercaFilm(arrayName:any){
       this.arrayWishlist = this.arrayWishlist.filter((obj:any)=>obj.title.includes(this.filtro))
 
       break;   
-      case 'favourite':      this.arrayFavourites = this.favourite.list
+      case 'favourite':      
+      this.arrayFavourites = this.favourite.list
       this.arrayFavourites = this.arrayFavourites.filter((obj:any)=>obj.title.includes(this.filtro))
 
       break;

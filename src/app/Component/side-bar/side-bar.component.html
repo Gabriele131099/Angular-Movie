@@ -35,7 +35,7 @@
         <mat-menu #Generi="matMenu">
 
 
-          <button *ngFor="let genre of arrayGenre" mat-menu-item routerLink="archive/{{genre.id}}">{{genre.name}}</button>
+          <a *ngFor="let genre of arrayGenre" mat-menu-item (click)="render(genre.id)">{{genre.name}}</a>
 
         </mat-menu>
 
