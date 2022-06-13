@@ -24,6 +24,7 @@ export class Favourite implements OnInit {
   }
   changeList(list:string){
     this.nameList = list
+    this.title = this.nameList.toLocaleUpperCase()
     this.arrayFilm = JSON.parse(localStorage.getItem(`${this.nameList}`)||'')
     console.log(this.arrayFilm.list)
   }

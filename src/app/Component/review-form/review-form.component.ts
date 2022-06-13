@@ -10,7 +10,7 @@ export class ReviewForm implements OnInit {
   userLogFlag:any = localStorage.getItem('userLogFlag')
   @Input() id_film:any
   form: FormGroup = new FormGroup({
-    vote: new FormControl(''),
+    vote: new FormControl(),
     recensione: new FormControl(''),
   });
   constructor(
@@ -21,7 +21,7 @@ export class ReviewForm implements OnInit {
     
     if (this.form.valid ) {
       this.submitEM.emit(this.form.value);
-      if (this.userLogFlag=='true') {
+      if (this.userLogFlag=='true' && this.form.value.vote >0) {
       console.log(this.form.value)
       let user = this.arrayUser.filter((obj:any)=>obj.id==parseInt(localStorage.getItem("userId") || ''))
       user = user[0]
@@ -36,7 +36,11 @@ export class ReviewForm implements OnInit {
       localStorage.setItem('review',JSON.stringify(this.arrayRecensioni )||'')
       console.log(this.arrayRecensioni)
       }else{
-        alert('per lasciare una recensione devi essere loggato')
+        if (this.userLogFlag!='true') {
+          alert('per lasciare una recensione devi essere loggato')
+        }else{
+           alert('Devi dare una valutazione in stelle')
+        }
       }
     }
 

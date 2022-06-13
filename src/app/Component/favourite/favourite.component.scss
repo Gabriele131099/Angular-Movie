@@ -2,13 +2,16 @@
     margin: auto;
     // max-width: 700px;
     // background-image: url('https://cdn.dribbble.com/uploads/659/original/96d7c2c751f301aab76cca5c84f1639a.gif?1546644588');
-    // border-radius: 20px;
-    // box-shadow: 0px 25px 40px #1687d933;
+     border-radius: 20px;
+   box-shadow: 0px 25px 40px #1687d933;
+    background-color: #ddcdc9;
 
     }
 .Container-Items{
     overflow-y: scroll;
-    max-height: 600px;
+    width: 100%;
+    max-height: 400px;
+    overflow-y: scroll;
 }
 .Empty-Box{
     min-height: 200px;
