@@ -1,32 +1,36 @@
 <section>
   <div class="Cart-Container">
     <div class="Header">
-      <h3 class="Heading">Preferiti</h3>
-      <button (click)="empty()" class="Action">Svuota Lista</button>
+      <div>
+        <button (click)="changeList('favourite')" mat-raised-button>Preferiti</button>
+        <hr>
+        <button (click)="changeList('wishList')" mat-raised-button>WishList</button>
+      </div>
+      <button (click)="empty()" mat-raised-button>Svuota {{nameList}}</button>
     </div>
+    <h1>{{title}}</h1>
     <div class="Empty-Box" *ngIf="arrayFilm.list.length<1">
-      <h1>Non ci sono Film nei preferiti</h1>
-      <h3>Vai all  <a routerLink="/archive/0">archivio</a></h3>
+      <h1>Non ci sono Film in {{nameList}}</h1>
+      <h3>Vai all <a routerLink="/archive/0">archivio</a></h3>
     </div>
     <div id="su" *ngIf="arrayFilm.list.length>0" class="Container-Items">
-      <div  *ngFor="let film of arrayFilm.list" class="Cart-Items">
+      <div *ngFor="let film of arrayFilm.list" class="Cart-Items">
         <div class="about">
-          <div>
-            <img src="https://image.tmdb.org/t/p/original/{{film.poster_path}}" alt=""
-              style="height: 120px;width: 100px;border: 1px solid black;">
-          </div>
+          <img src="https://image.tmdb.org/t/p/original/{{film.poster_path}}" alt="">
+        </div>
+        <div class="counter">
           <div class="box">
             <h1 class="title">{{film.original_title}}</h1>
           </div>
-        </div>
-        <div class="counter">
           <div class="count">{{film.overview}}</div>
           <h3 style="color: gray;"> <a routerLink="/film/{{film.id}}">Dettagli</a></h3>
         </div>
         <div class="prices">
           <div>Voto</div>
           <h3 class="subtitle">{{film.vote_average}}</h3>
-          <div class="remove"><a (click)="deleteFilm(film)">elimina</a></div>
+          <button mat-mini-fab class="remove" (click)="deleteFilm(film)">
+            <mat-icon>delete</mat-icon>
+          </button>
         </div>
         <hr>
       </div>

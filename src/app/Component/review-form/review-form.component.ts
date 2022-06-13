@@ -10,6 +10,7 @@ export class ReviewForm implements OnInit {
   userLogFlag:any = localStorage.getItem('userLogFlag')
   @Input() id_film:any
   form: FormGroup = new FormGroup({
+    vote: new FormControl(''),
     recensione: new FormControl(''),
   });
   constructor(
@@ -27,6 +28,7 @@ export class ReviewForm implements OnInit {
       const jsonRecensioni = {
         id_user:user.username,
         id_film:this.id_film,
+        vote:this.form.value.vote,
         recensione:this.form.value.recensione
       }
       this.arrayRecensioni = JSON.parse(localStorage.getItem('review')||'')

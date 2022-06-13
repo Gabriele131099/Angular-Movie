@@ -2,7 +2,6 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IUser } from '../../interfaces/IUser';
-import { USERS } from '../../../assets/user';
 
 @Component({
   selector: 'app-signup',
@@ -21,15 +20,19 @@ export class SignupComponent implements OnInit {
 
   form: FormGroup = new FormGroup({
     username: new FormControl(''),
+    email: new FormControl(''),
     password: new FormControl(''),
     confirmPassword: new FormControl(''),
+    date: new FormControl(''),
+    genre: new FormControl('')
   });
-
+  matcher:any
   signUpMessage: string = '';
 
   submit() {
     if (this.form.valid) {
       this.submitEM.emit(this.form.value);
+      console.log(this.form.value)
       console.log(this.arrayUsers)
       console.log(JSON.parse(localStorage.getItem('arrayUsers')||''))
       let userExist = this.arrayUsers.filter((obj:any)=>(obj.username==this.form.value.username))
@@ -51,7 +54,10 @@ export class SignupComponent implements OnInit {
           const newUser = {
             id: this.arrayUsers.length,
             username: this.form.value.username,
+            email: this.form.value,
             password: this.form.value.password,
+            date:this.form.value.date,
+            genre:this.form.value.genre,
           };
           //this.signUpMessage = 'registrazione effettuata'; //da togliere, per lettura
           this.router.navigate(['./login'])
@@ -64,7 +70,6 @@ export class SignupComponent implements OnInit {
       // window.location.replace("login");
 
   }
-
   @Output() submitEM = new EventEmitter();
   ngOnInit(): void {}
 }

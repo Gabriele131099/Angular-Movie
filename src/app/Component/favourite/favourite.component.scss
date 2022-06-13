@@ -1,19 +1,14 @@
 .Cart-Container{
-    max-width: 700px;
     margin: auto;
-    background-image: url('https://cdn.dribbble.com/uploads/659/original/96d7c2c751f301aab76cca5c84f1639a.gif?1546644588');
-    border-radius: 20px;
-    box-shadow: 0px 25px 40px #1687d933;
-    button{
-        background-color: black;
-        color: white;
-        padding: 10px;
-        border-radius: 5px;
-    }
+    // max-width: 700px;
+    // background-image: url('https://cdn.dribbble.com/uploads/659/original/96d7c2c751f301aab76cca5c84f1639a.gif?1546644588');
+    // border-radius: 20px;
+    // box-shadow: 0px 25px 40px #1687d933;
+
     }
 .Container-Items{
     overflow-y: scroll;
-    max-height: 300px;
+    max-height: 600px;
 }
 .Empty-Box{
     min-height: 200px;
@@ -34,10 +29,16 @@
     padding: 10px;
     text-align: left;
     width: 150px;
+    img{
+        height: 200px;
+    }
  }
 .box,.counter{
     display: flex;
     flex-direction: column;
+    .count{
+        
+    }
 }
 .checkout{
     text-align: center;
@@ -46,4 +47,8 @@
 }
 .checkout>div{
     width: 100px;
+}
+.remove{
+    background-color: #5D2A42;
+    color: white;
 }

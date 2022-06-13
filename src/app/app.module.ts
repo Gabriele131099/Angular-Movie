@@ -16,10 +16,11 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { SignupComponent } from './Component/signup/signup.component';
 import { HomeComponent } from './Component/home/home.component';
 import { ArchiveComponent } from './Component/archive/archive.component';
+import {MatNativeDateModule} from '@angular/material/core';
+import {matDatepickerAnimations, MatDatepickerModule} from '@angular/material/datepicker';
 
 import { MatSliderModule } from '@angular/material/slider';
 import {MatIconModule} from '@angular/material/icon'
-
 import { HttpClientModule } from '@angular/common/http';
 import { UserPageComponent } from './Component/user-page/user-page.component';
 import { JumbotronHomeComponent } from './Component/jumbotron-home/jumbotron-home.component';
@@ -27,6 +28,7 @@ import { HeaderComponent } from './Component/header/header.component';
 import { ReviewForm } from './Component/review-form/review-form.component';
 import { Favourite } from "./Component/favourite/favourite.component";
 import { ReviewCarousel } from './Component/reviewCarousel/reviewCarousel.component';
+import { CommonModule } from '@angular/common';
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,7 +46,8 @@ import { ReviewCarousel } from './Component/reviewCarousel/reviewCarousel.compon
     UserPageComponent,
     ReviewForm,
     Favourite,
-    ReviewCarousel
+    ReviewCarousel,
+   
 
   ],
   imports: [
@@ -66,8 +69,10 @@ import { ReviewCarousel } from './Component/reviewCarousel/reviewCarousel.compon
     ReactiveFormsModule,
     MatSliderModule,
     MatIconModule,
-
-    HttpClientModule
+    MatDatepickerModule,
+    MatNativeDateModule,
+    HttpClientModule,
+    CommonModule
     ],
   providers: [],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

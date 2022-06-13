@@ -5,28 +5,38 @@
     </div>
     <div class="Empty-Box" *ngIf="arrayRecensioni.length<1">
       <h1>Non ci sono recensioni</h1>
-      <h3>Vai all  <a routerLink="/archive/0">archivio</a></h3>
+      <h3>Vai all <a routerLink="/archive/0">archivio</a></h3>
     </div>
     <div id="su" *ngIf="arrayRecensioni.length>0" class="Container-Items">
-      <div class="Cart-Items">
-        <div class="about">
-          <div class="box">
-            <h3>Username</h3>
-            <h4 class="title">{{recensione.id_user}}</h4>
-          </div>
+      <div style="text-align: left;padding: 10px;">
+
+        <h4 class="title">{{recensione.id_user}} :</h4>
+        <div>
+          <span *ngIf="recensione.vote>=1"><img width="15px" src="../../../assets/—Pngtree—gold stars_370246.png"
+              alt=""></span>
+          <span *ngIf="recensione.vote>=2"><img width="15px" src="../../../assets/—Pngtree—gold stars_370246.png"
+              alt=""></span>
+          <span *ngIf="recensione.vote>=3"><img width="15px" src="../../../assets/—Pngtree—gold stars_370246.png"
+              alt=""></span>
+          <span *ngIf="recensione.vote>=4"><img width="15px" src="../../../assets/—Pngtree—gold stars_370246.png"
+              alt=""></span>
+          <span *ngIf="recensione.vote>=5"><img width="15px" src="../../../assets/—Pngtree—gold stars_370246.png"
+              alt=""></span>
+
         </div>
-        <div class="counter">
-          <h3>Recensione</h3>
-          <p class="count">{{recensione.recensione}}</p>
-          
-        </div>
+        <p class="recensione">{{recensione.recensione}}</p>
+
       </div>
       <hr>
     </div>
     <div class="checkout">
-      <button style="background-color: #1e1b26;" (click)="slideShowLeft()">Left</button>
+      <button style="background-color: white;" (click)="slideShowLeft()">
+        <img width="15px" src="../../../assets/angle-left-solid.svg" alt="">
+      </button>
       <button style="background-color: #1e1b26;" (click)="close()">Chiudi</button>
-      <button style="background-color: #1e1b26;" (click)="slideShowRight()">Right</button>
+      <button style="background-color: white;" (click)="slideShowRight()">
+        <img width="15px" src="../../../assets/angle-right-solid.svg" alt="">
+      </button>
     </div>
 
   </div>
