@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-favourite',
@@ -8,7 +9,8 @@ import { Component, Input, OnInit } from '@angular/core';
 export class Favourite implements OnInit {
   nameList:string=`favourite`
   title:string = this.nameList.toLocaleUpperCase()
- arrayFilm :any= JSON.parse(localStorage.getItem(`${this.nameList}`)||'')
+  arrayFilm :any= JSON.parse(localStorage.getItem(`${this.nameList}`)||'')
+  userId:number = parseInt(localStorage.getItem('userId')||'')
   empty(){
     this.arrayFilm.list=[]
     localStorage.setItem(`${this.nameList}`,JSON.stringify(this.arrayFilm)||'')
@@ -22,10 +24,20 @@ export class Favourite implements OnInit {
     console.log(this.arrayFilm)
     console.log(JSON.parse(localStorage.getItem(`${this.nameList}`)||''))
   }
+  form: FormGroup = new FormGroup({
+   filtroTitle: new FormControl(''),
+  });
   changeList(list:string){
+    if (this.form.valid) {
+    this.submitEM.emit(this.form.value);
     this.nameList = list
     this.title = this.nameList.toLocaleUpperCase()
     this.arrayFilm = JSON.parse(localStorage.getItem(`${this.nameList}`)||'')
-    console.log(this.arrayFilm.list)
-  }
+    this.arrayFilm.list = this.arrayFilm.list.filter((obj:any)=>obj.title.includes(this.form.value.filtroTitle))
+    }
+   
+}
+
+
+@Output() submitEM = new EventEmitter();
 }

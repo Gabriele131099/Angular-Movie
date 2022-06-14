@@ -9,11 +9,12 @@ export class ReviewCarousel implements OnInit {
 @Input() idFilm:any
 arrayRecensioni :any
 
- flag:any=true
+ @Input() flag:any=true
  recensione:any 
- close(){
+close(){
   this.flag= false
 }
+filtroRecensioni = 0
 posizioneRecensione:number = 0
 slideShowRight(){
   if (this.posizioneRecensione >= this.arrayRecensioni.length-1) {
@@ -24,7 +25,16 @@ slideShowRight(){
     this.recensione  = this.arrayRecensioni[this.posizioneRecensione]
   }
   console.log(this.posizioneRecensione)
-  
+  console.log(this.filtroRecensioni)
+}
+filterForVote(){
+  this.arrayRecensioni = JSON.parse(localStorage.getItem('review')||'')
+  this.arrayRecensioni = this.arrayRecensioni.filter((obj:any)=>
+  obj.id_film==this.idFilm
+  &&
+  (obj.vote == this.filtroRecensioni || this.filtroRecensioni==0)
+  )
+  this.recensione= this.arrayRecensioni[this.posizioneRecensione]
 }
 slideShowLeft(){
   if (this.posizioneRecensione<=0) {
@@ -39,7 +49,11 @@ slideShowLeft(){
   constructor() { }
   ngOnInit(): void {
    this.arrayRecensioni = JSON.parse(localStorage.getItem('review')||'')
-    this.arrayRecensioni = this.arrayRecensioni.filter((obj:any)=>obj.id_film==this.idFilm)
+    this.arrayRecensioni = this.arrayRecensioni.filter((obj:any)=>
+    obj.id_film==this.idFilm
+    &&
+    (obj.vote == this.filtroRecensioni || this.filtroRecensioni==0)
+    )
     this.recensione= this.arrayRecensioni[this.posizioneRecensione]
     console.log(this.arrayRecensioni)
   }

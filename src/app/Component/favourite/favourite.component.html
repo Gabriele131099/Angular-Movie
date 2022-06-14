@@ -9,11 +9,20 @@
       <button (click)="empty()" mat-raised-button>Svuota {{nameList}}</button>
     </div>
     <h1>{{title}}</h1>
+    <div>
+      <form class="example-form" [formGroup]="form" (ngSubmit)="changeList(nameList)">
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label style="color: white">Filtro per nome</mat-label>
+          <input style="color: white; background-color: transparent;" matInput placeholder="filtro" formControlName="filtroTitle">
+        </mat-form-field>
+      </form>
+     </div>
     <div class="Empty-Box" *ngIf="arrayFilm.list.length<1">
       <h1>Non ci sono Film in {{nameList}}</h1>
       <h3>Vai all <a routerLink="/archive/0">archivio</a></h3>
     </div>
-    <div id="su" *ngIf="arrayFilm.list.length>0" class="Container-Items">
+    <div id="go_favourite" *ngIf="arrayFilm.list.length>0" class="Container-Items">
+     
       <div *ngFor="let film of arrayFilm.list" class="Cart-Items">
         <div class="about">
           <img src="https://image.tmdb.org/t/p/original/{{film.poster_path}}" alt="">
@@ -25,16 +34,20 @@
           <div class="count">{{film.overview}}</div>
           <h3 style="color: gray;"> <a routerLink="/film/{{film.id}}">Dettagli</a></h3>
         </div>
-        <div class="prices">
-          <div>Voto</div>
-          <h3 class="subtitle">{{film.vote_average}}</h3>
+        <div class="item_bottom">
+          <div>
+            <div>Voto</div>
+            <h3 class="subtitle">{{film.vote_average}}</h3>
+          </div>
           <button mat-mini-fab class="remove" (click)="deleteFilm(film)">
             <mat-icon>delete</mat-icon>
           </button>
+
         </div>
         <hr>
       </div>
     </div>
+    <a  href="user/{{userId}}/#go_favourite">SU</a>
     <hr style="background-color: black;">
     <div class="checkout">
     </div>

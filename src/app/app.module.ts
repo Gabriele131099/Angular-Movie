@@ -29,6 +29,8 @@ import { ReviewForm } from './Component/review-form/review-form.component';
 import { Favourite } from "./Component/favourite/favourite.component";
 import { ReviewCarousel } from './Component/reviewCarousel/reviewCarousel.component';
 import { CommonModule } from '@angular/common';
+import { DialogExample } from './Component/dialog/dialog.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,6 +49,7 @@ import { CommonModule } from '@angular/common';
     ReviewForm,
     Favourite,
     ReviewCarousel,
+    DialogExample
    
 
   ],

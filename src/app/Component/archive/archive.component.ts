@@ -18,11 +18,13 @@ export class ArchiveComponent implements OnInit {
   filtroGenre:any = this.route.snapshot.paramMap.get('id');
   
   userLogFlag:any = localStorage.getItem('userLogFlag');
-
+  message:string = ''
   constructor(
     private filmsService: FilmsService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
   ) {}
+
+
 
   itemsPerPageLabel: string = '';
   length = 500;
@@ -40,28 +42,30 @@ export class ArchiveComponent implements OnInit {
   }
 
   addFilmWishList(film:any){
+    this.message = ''
     let tmp = this.arrayWishList.list.filter((obj:any)=>obj.id==film.id)
     if (tmp.length>0) {
-      alert('il film esiste già nella ')
+      this.message = 'il film esiste già nella '
     }else if(this.userLogFlag=='true'){
       this.arrayWishList.list.push(film)
       localStorage.setItem("wishList", JSON.stringify(this.arrayWishList));
-      alert('aggiunto con successo')
+      this.message = 'aggiunto con successo'
     }else{
-      alert('devi prima loggarti')
+      this.message = 'devi prima loggarti'
     }
   }
 
   addFilmFavourites(film:any){
+    this.message = ''
     let tmp = this.arrayFavourite.list.filter((obj:any)=>obj.id==film.id)
     if (tmp.length>0) {
-      alert('gentilissimo signore, guardi che lei ha gia inserito codesto film')
+      this.message = 'gentilissimo signore, guardi che lei ha gia inserito codesto film'
     } else if (this.userLogFlag=='true') {
       this.arrayFavourite.list.push(film)
       localStorage.setItem('favourite',JSON.stringify(this.arrayFavourite))
-      alert('messere il suo film è stato deposto all interno della lista')
+      this.message = 'messere il suo film è stato deposto all interno della lista'
     }else{
-      alert('devi prima loggarti')
+      this.message = 'devi prima loggarti'
     }
   }
 

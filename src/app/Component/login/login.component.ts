@@ -37,6 +37,7 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('userLogFlag', 'true');
           localStorage.setItem('userId', obj.id);
           location.href = `./user/${obj.id}`;
+          this.logInMessage=''
         }else{
           this.logInMessage='credenziali non esistenti'
         }

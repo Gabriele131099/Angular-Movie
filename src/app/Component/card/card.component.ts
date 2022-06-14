@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
-import { FILMS } from 'src/assets/film';
 import {FilmsService} from '../../services/films.service'
 import { Location } from '@angular/common';
 
@@ -28,7 +27,7 @@ export class CardComponent implements OnInit {
       recensione:'sono di un altro film'
     }
   ]
-  flag:boolean = false
+  flag:boolean = true
   arrayFilms: any;
   filmsResult: any;
   getFilmsFromService(): any {
@@ -45,11 +44,12 @@ export class CardComponent implements OnInit {
     });
   }
 open(){
-if (this.flag==true) {
-  this.flag=false
-}else{
-  this.flag=true
-}
+  if (this.flag==true) {
+    this.flag=false
+  }else{
+    this.flag=true
+  }
+  console.log(this.flag)
 }
   getGenre(): any {
     this.FilmsService.getGenre().subscribe((genre) => {

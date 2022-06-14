@@ -32,7 +32,15 @@
         <app-reviewForm [arrayRecensioni]="arrayRecensioni" [id_film]="film.id"></app-reviewForm>
         <button mat-button (click)="open()">Recensioni...</button>
         <div *ngIf="flag==true" class="popUpRecensioni">
-          <app-reviewCarousel [idFilm]="film.id"></app-reviewCarousel>
+          <div class="popUpRecensioni">
+            <div class="Header">
+              <h3 class="Heading">Recensioni</h3>
+              <button (click)="open()">
+                <mat-icon>cancel</mat-icon>
+              </button>
+            </div>
+            <app-reviewCarousel [idFilm]="film.id"></app-reviewCarousel>
+          </div>
         </div>
         <div class="avatars">
           <a href="#" data-tooltip="Person 1" data-placement="top">

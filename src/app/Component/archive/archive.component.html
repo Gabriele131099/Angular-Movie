@@ -1,16 +1,24 @@
 <div ngClass="containerArchive">
  <ul ngClass="listaInput">
   <li>
-    <label for="filtro">filtro</label>
-    <input type="text" placeholder="filtro" (ngModelChange)="getFilmsFromService(pageIndex)" [(ngModel)]="filtroTitle">
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label style="color: white">Filtro per nome</mat-label>
+      <input style="color: white; background-color: transparent;" matInput placeholder="filtro" (ngModelChange)="getFilmsFromService(pageIndex)" [(ngModel)]="filtroTitle">
+    </mat-form-field>
   </li>
   <li>
-    <label for="filtro">filtro Genere</label>
-    <select name="genre" id="genre" (ngModelChange)="getFilmsFromService(pageIndex)" [(ngModel)]="filtroGenre">
-      <option *ngFor="let genre of arrayGenre" value="{{genre.id}}" >{{genre.name}}</option>
-    </select>
+    <mat-form-field appearance="fill">
+      <mat-label  style="color: white">Filtro Genere</mat-label>
+      <mat-select style="color: white"  name="genre" id="genre" (ngModelChange)="getFilmsFromService(pageIndex)" [(ngModel)]="filtroGenre">
+        <mat-option *ngFor="let genre of arrayGenre" value="{{genre.id}}" >
+          {{genre.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    
   </li>
 </ul>
+<app-dialog *ngIf="message !=''" [message]="message"></app-dialog>
   <div style="display: flex;flex-wrap:wrap;justify-content: space-around;align-items:stretch;margin-bottom: 50px;">
     <div *ngFor="let film of filmsResult " >
 
