@@ -93,6 +93,14 @@ export class ArchiveComponent implements OnInit {
           console.log(this.arrayGenre)
         });
   }
+  flag:boolean = false
+  openList(){
+    if(this.flag){
+      this.flag= false
+    }else{
+      this.flag = true
+    }
+  }
   ngOnInit(): void {
 
     this.getFilmsFromService(this.pageIndex);

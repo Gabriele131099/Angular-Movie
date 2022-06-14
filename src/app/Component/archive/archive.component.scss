@@ -5,12 +5,13 @@
       color: white;
       background-position: center;
       background-size: cover;
-  
+      z-index: 1;
     }
     .listaInput{
       display: flex;
       align-items: center;
       justify-content: center;
+      flex-wrap: wrap;
       width: 50vw;
       padding: 5px;
       margin: auto;
@@ -130,4 +131,16 @@
       text-align: start;
       margin: 2px 0;
     }
+  }
+
+  .listPopUp{
+    position: fixed;
+    max-width: 700px;
+    width: 100%;
+    min-width: 300px;
+    max-height: 600px;
+    z-index: 9999;
+    left:50%;
+    transform: translate(-50%,0);
+    color: black;
   }

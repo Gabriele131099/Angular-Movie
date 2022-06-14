@@ -2,7 +2,7 @@
    
     <div class="">
         <div >
-            <div class="" style="background-color: #5D2A42;color: white;display: flex;justify-content: space-around;align-items: center; text-align: left;">
+            <div class="" style="background-color: #5D2A42;color: white;display: flex;justify-content: space-around;align-items: center; text-align: left;flex-wrap: wrap;">
                 <div class="" style="text-align: center;padding: 10px 10px 0px 10px;">
                     <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp"
                         alt="Generic placeholder image" class="img-fluid img-thumbnail mt-4 mb-2"
@@ -25,54 +25,6 @@
                 </div>
             </div>
            
-            <!-- <div *ngIf="arrayWishlist.length==0">
-                <h1>non ci sono elementi nella WishList</h1>
-            </div>
-            <div *ngIf="arrayWishlist.length>0" class="p-4 text-black">
-                <div class="mb-4" style="display: flex;justify-content: space-between;align-items: stretch ;">
-                    <h2 class="lead fw-normal mb-0">WishList </h2>
-                </div>
-                <div>
-                    <input (ngModelChange)="cercaFilm('WishList')" value="{{filtro}}" [(ngModel)]="filtro" type="text" placeholder="cerca">
-                </div>
-                <div class="g-2" style="display: flex;align-items: stretch;overflow-x: scroll;">
-                    <div *ngFor="let film of arrayWishlist" style="width:250px;margin: 10px;">
-                        <div>
-                            <button (click)="deleteWhishList(film)" style="background-color: transparent;border: none;">
-                                <img width="30px" src="../../../assets/circle-xmark-regular.svg" alt="">
-                            </button>
-                        </div>
-                        <a href="www.youtube.com/results?search_query={{film.original_title}}" target="_blank">
-                            <img width="250px" src="https://image.tmdb.org/t/p/original/{{film.poster_path}}" alt="">
-                        </a>
-                        <h2>{{film.original_title}}</h2>
-                    </div>
-                </div>
-            </div>
-            <div *ngIf="arrayFavourites.length==0">
-                <h1>non ci sono elementi nei Preferiti</h1>
-            </div>
-            <div *ngIf="arrayFavourites.length>0" class="p-4 text-black">
-                <div class="mb-4" style="display: flex;justify-content: space-between;align-items: stretch ;">
-                    <h2 class="lead fw-normal mb-0">Favourite </h2>
-                </div>
-                <div>
-                    <input (ngModelChange)="cercaFilm('favourite')" value="{{filtro}}" type="text" [(ngModel)]="filtro" placeholder="cerca">
-                </div>
-                <div class="g-2" style="display: flex;align-items: stretch;overflow-x: scroll;">
-                    <div *ngFor="let film of arrayFavourites" style="width:250px;margin: 10px;">
-                        <div>
-                            <button (click)="deleteFavourite(film)" style="background-color: transparent;border: none;">
-                                <img width="30px" src="../../../assets/circle-xmark-regular.svg" alt="">
-                            </button>
-                        </div>
-                        <a href="www.youtube.com/results?search_query={{film.original_title}}" target="_blank">
-                            <img width="250px" src="https://image.tmdb.org/t/p/original/{{film.poster_path}}" alt="">
-                        </a>
-                        <h2>{{film.original_title}}</h2>
-                    </div>
-                </div>
-            </div> -->
             <div>
                 <app-favourite></app-favourite>
             </div>

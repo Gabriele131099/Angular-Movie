@@ -1,4 +1,13 @@
 <div ngClass="containerArchive">
+  <div style="position: fixed;right: 20px;" class="example-button-container">
+    <button (click)="openList()" mat-fab style="background-color: #ddcdc9;float: right;" aria-label="Example icon button with a bookmark icon">
+      <mat-icon>bookmark</mat-icon>
+    </button>
+  </div>
+  <div *ngIf="flag" class="listPopUp">
+    <button (click)="openList()" style="border-radius: 20px 20px 0px 0px;background-color: #ddcdc9;border: none;padding: 5px 20px 5px 20px;">X</button>
+    <app-favourite></app-favourite>
+  </div>
  <ul ngClass="listaInput">
   <li>
     <mat-form-field class="example-full-width" appearance="fill">
