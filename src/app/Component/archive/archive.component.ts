@@ -11,10 +11,6 @@ export class ArchiveComponent implements OnInit {
   arrayFilms: any;
   filmsResult: any;
   filtroTitle: string = '';
-
-  arrayWishList:any=JSON.parse(localStorage.getItem('wishList')||'');
-  arrayFavourite:any=JSON.parse(localStorage.getItem('favourite')||'');
-
   filtroGenre:any = this.route.snapshot.paramMap.get('id');
   
   userLogFlag:any = localStorage.getItem('userLogFlag');
@@ -26,53 +22,28 @@ export class ArchiveComponent implements OnInit {
 
 
 
-  itemsPerPageLabel: string = '';
-  length = 500;
-  pageSize = 1;
-  pageIndex = 1;
-  pageSizeOptions = [1];
-  showFirstLastButtons = true;
-  handlePageEvent(event: PageEvent) {
-    this.length = event.length;
-    this.pageSize = event.pageSize;
-    this.pageIndex = event.pageIndex;
-    console.log(this.pageIndex);
-    this.filmsService.numberPage = this.pageIndex * this.pageSize;
-    this.getFilmsFromService(this.pageIndex);
-  }
 
-  addFilmWishList(film:any){
+  addList(film:any,listName:string){
     this.message = ''
-    let tmp = this.arrayWishList.list.filter((obj:any)=>obj.id==film.id)
+    console.log(listName)
+    let array:any=JSON.parse(localStorage.getItem(`${listName}`)||'');
+    console.log(array)
+     let tmp = array.list.filter((obj:any)=>obj.id==film.id)
     if (tmp.length>0) {
-      this.message = 'il film esiste già nella '
+      this.message = 'il film esiste già nella lista '+ listName
     }else if(this.userLogFlag=='true'){
-      this.arrayWishList.list.push(film)
-      localStorage.setItem("wishList", JSON.stringify(this.arrayWishList));
-      this.message = 'aggiunto con successo'
+      array.list.push(film)
+      localStorage.setItem(`${listName}`, JSON.stringify(array));
+      this.message = 'aggiunto con successo nella lista' + listName
     }else{
-      this.message = 'devi prima loggarti'
-    }
-  }
-
-  addFilmFavourites(film:any){
-    this.message = ''
-    let tmp = this.arrayFavourite.list.filter((obj:any)=>obj.id==film.id)
-    if (tmp.length>0) {
-      this.message = 'gentilissimo signore, guardi che lei ha gia inserito codesto film'
-    } else if (this.userLogFlag=='true') {
-      this.arrayFavourite.list.push(film)
-      localStorage.setItem('favourite',JSON.stringify(this.arrayFavourite))
-      this.message = 'messere il suo film è stato deposto all interno della lista'
-    }else{
-      this.message = 'devi prima loggarti'
+      this.message = 'devi prima loggarti '
     }
   }
 
   getFilmsFromService(number: number): any {
     this.filmsService.getFilms(number).subscribe((films) => {
       this.arrayFilms = films;
-      this.filmsResult = this.arrayFilms.results.filter((obj: any) =>
+      this.filmsResult = this.arrayFilms.filter((obj: any) =>
       obj.original_title.includes(this.filtroTitle) &&
       (obj.genre_ids.filter(
         (ele: any) => ele == this.filtroGenre
@@ -89,7 +60,6 @@ export class ArchiveComponent implements OnInit {
     this.filmsService.getGenre()
         .subscribe(genre => {
           this.arrayGenre = genre;
-          this.arrayGenre = this.arrayGenre.genres;
           console.log(this.arrayGenre)
         });
   }
@@ -102,8 +72,7 @@ export class ArchiveComponent implements OnInit {
     }
   }
   ngOnInit(): void {
-
-    this.getFilmsFromService(this.pageIndex);
+    this.getFilmsFromService(1);
     this.getGenre()
   }
 }

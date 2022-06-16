@@ -1,9 +1,10 @@
+<h3>{{nameGenre}}</h3>
 <section ngClass="cardContainer">
-  <h4>{{nameGenre}}</h4>
-  <div id="" *ngFor="let film of filmsResult " class="card-container">
+  <a href="#"></a>
+  <div *ngFor="let film of filmsResult "  id="{{film.id}}" class="card-container">
     <a href="film/{{film.id}}">
       <img src="https://image.tmdb.org/t/p/original/{{film.poster_path}}" alt="">
-      <h3>{{film.original_title}}</h3>
+      <h4>{{film.original_title}}</h4>
     </a>
   </div>
 </section>

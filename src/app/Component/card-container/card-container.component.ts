@@ -21,7 +21,7 @@ export class CardContainerComponent implements OnInit {
   getFilmsFromService(): any {
     this.filmsService.getFilms(1).subscribe((films) => {
       this.arrayFilms = films;
-      this.filmsResult = this.arrayFilms.results.filter(
+      this.filmsResult = this.arrayFilms.filter(
         (obj: any) =>
           obj.genre_ids.filter((ele: any) => ele == this.filtroGenre).length >
             0 || this.filtroGenre == 0
@@ -33,7 +33,6 @@ export class CardContainerComponent implements OnInit {
   getGenre(): any {
     this.filmsService.getGenre().subscribe((genre) => {
       this.arrayGenre = genre;
-      this.arrayGenre = this.arrayGenre.genres;
       const lunghezzaArrayGenre = this.arrayGenre.length;
       const numeroGenere = Math.floor(
         Math.random() * (lunghezzaArrayGenre - 0) + 0

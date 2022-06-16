@@ -2,18 +2,18 @@
   <div class="Cart-Container">
     <div class="Header">
       <div>
-        <button (click)="changeList('favourite')" mat-raised-button>Preferiti</button>
+        <button (click)="changeList('favourite')" mat-raised-button>  <mat-icon id="favorite">favorite</mat-icon> </button>
         <hr>
-        <button (click)="changeList('wishList')" mat-raised-button>WishList</button>
+        <button (click)="changeList('wishList')" mat-raised-button><mat-icon id="grade">grade</mat-icon></button>
       </div>
-      <button (click)="empty()" mat-raised-button>Svuota {{nameList}}</button>
+      <button (click)="empty()" mat-raised-button><mat-icon id="deleteAll">delete_outline</mat-icon> {{title}}</button>
     </div>
-    <h1>{{title}}</h1>
+   
     <div>
       <form class="example-form" [formGroup]="form" (ngSubmit)="changeList(nameList)">
         <mat-form-field class="example-full-width" appearance="fill">
-          <mat-label style="color: gray">Filtro per nome</mat-label>
-          <input style="color: black; background-color: transparent;" matInput placeholder="filtro" formControlName="filtroTitle">
+          <mat-label>Filtro per nome</mat-label>
+          <input matInput placeholder="filtro" formControlName="filtroTitle">
         </mat-form-field>
       </form>
      </div>
@@ -29,10 +29,10 @@
         </div>
         <div class="counter">
           <div class="box">
-            <h1 class="title">{{film.original_title}}</h1>
+            <h1>{{film.original_title}}</h1>
           </div>
-          <div class="count">{{film.overview}}</div>
-          <h3 style="color: gray;"> <a routerLink="/film/{{film.id}}">Dettagli</a></h3>
+          <div>{{film.overview}}</div>
+          <h3> <a routerLink="/film/{{film.id}}">Dettagli</a></h3>
         </div>
         <div class="item_bottom">
           <div>
@@ -47,9 +47,9 @@
         <hr>
       </div>
     </div>
-    <a  href="user/{{userId}}/#go_favourite">SU</a>
     <hr style="background-color: black;">
     <div class="checkout">
+      <h4>nella lista ci sono {{arrayFilm.list.length}} elementi</h4>
     </div>
 
   </div>

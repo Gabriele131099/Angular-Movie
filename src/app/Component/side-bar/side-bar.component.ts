@@ -15,32 +15,73 @@ export class SideBarComponent implements OnInit {
   userLogFlag:any = localStorage.getItem('userLogFlag')
   userId = localStorage.getItem('userId');
 
+
+  arrayGenre:any;
+  arrayFilms:any;
+  arrayEn: any;
+  arrayFr: any;
+  arraySp: any;
+  arrayEnglish: any;
+  arrayNamesEuropeanLanguages: any[] = [
+    {"sv" : "Svedese"},
+    {"nl" : "Olandese"},
+    {"pt" : "Portogese"},
+    {"it" : "Italiano"},
+    {"pl" : "Polacco"},
+    {"da" : "Danese"},
+    {"no" : "Norvegese"},
+    {"fi" : "Finlandese"}
+  ];
+
+  arrayNamesAsianLanguages: any[] = [
+    {"ru" : "Russo"},
+    {"tr" : "Turco"},
+    {"hi" : "Hindi"},
+    {"te" : "Telugu"},
+    {"ml" : "Malayalam"},
+    {"ja" : "Giapponese"},
+    {"ko" : "Coreano"},
+    {"zh" : "Cinese"},
+    {"cn" : "Cinese"},
+    {"th" : "Tailandese"},
+    {"id" : "Indonesiano"}
+  ];
+
   constructor(private filmsService: FilmsService,
-    private route: Router) {    }
-  arrayGenre:any
+    private route: Router) {  }
+
+
   getGenre(): any {
     this.filmsService.getGenre()
         .subscribe(genre => {
           this.arrayGenre = genre;
-          this.arrayGenre = this.arrayGenre.genres;
           console.log(this.arrayGenre)
         });
   }
+
+  getFilms(): any {
+    this.filmsService.getFilms(2)
+        .subscribe(film => {
+          this.arrayFilms = film;
+        });
+  }
+
+
+
+  renderByGenre(id:any){
+    window.location.replace(`/archive/${id}`);
+  }
+
+  renderByLanguage(){
+
+  }
+
   logOut(){
     localStorage.setItem('userLogFlag','false')
     window.location.replace('/');
   }
-  render(id:any){
-    window.location.replace(`/archive/${id}`);
-  }
+
   ngOnInit(): void {
-
     this.getGenre()
-
   }
-
-
-
-
-
 }

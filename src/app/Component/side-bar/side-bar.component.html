@@ -1,57 +1,93 @@
 <aside>
-    <!-- moved to header - martina 05/06
-      <div ngClass="sideBarButton">
-        <a mat-button routerLink="">
-            Home
-        </a>
-    </div> -->
-    <div mat-icon-button color="accent" *ngIf="userLogFlag!='true'" ngClass="sideBarButton">
 
-
-      <button mat-button [matMenuTriggerFor]="menu"><mat-icon>person_outline</mat-icon></button>
-      <mat-menu #menu="matMenu">
-        <button mat-menu-item routerLink="/login">Login</button>
-        <button mat-menu-item routerLink="/signup">Sign Up</button>
-      </mat-menu>
-
-    </div>
-    <div *ngIf="userLogFlag=='true'" ngClass="sideBarButton">
-
-
-      <button mat-button [matMenuTriggerFor]="menu"><i class="material-icons">admin_panel_settings</i></button>
-      <mat-menu #menu="matMenu">
-        <button mat-menu-item routerLink="user/{{userId}}">User</button>
-        <button mat-menu-item (click)="logOut()"><a href="/"></a>LogOut</button>
-      </mat-menu>
-
-
-
+  <div mat-icon-button color="accent" *ngIf="userLogFlag!='true'" ngClass="sideBarButton">
+    <button mat-button [matMenuTriggerFor]="menu"><mat-icon>person_outline</mat-icon></button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item routerLink="/login">Login</button>
+      <button mat-menu-item routerLink="/signup">Sign Up</button>
+    </mat-menu>
   </div>
-    <div ngClass="sideBarButton">
+
+  <div *ngIf="userLogFlag=='true'" ngClass="sideBarButton">
+    <button mat-button [matMenuTriggerFor]="menu"><i class="material-icons">admin_panel_settings</i></button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item routerLink="user/{{userId}}">User</button>
+      <button mat-menu-item (click)="logOut()"><a href="/"></a>LogOut</button>
+    </mat-menu>
+  </div>
+
+  <div ngClass="sideBarButton">
+    <button mat-button [matMenuTriggerFor]="categories"routerLink="archive/0"><mat-icon>folder</mat-icon></button>
+    <mat-menu #categories="matMenu">
+      <button mat-menu-item [matMenuTriggerFor]="genre">Genere</button>
+      <button mat-menu-item [matMenuTriggerFor]="language">Lingua</button>
+    </mat-menu>
+
+    <mat-menu #genre="matMenu">
+        <a *ngFor="let genre of arrayGenre" mat-menu-item (click)="renderByGenre(genre.id)">{{genre.name}}</a>
+    </mat-menu>
+
+    <!-- -------------------------------------------------------------------------------------------------------------------------- -->
+
+    <mat-menu #language="matMenu">
+      <button mat-menu-item>Inglese</button>
+      <button mat-menu-item>Spagnolo</button>
+      <button mat-menu-item>Francese</button>
+      <button mat-menu-item [matMenuTriggerFor]="european">Lingue europee</button>
+      <button mat-menu-item [matMenuTriggerFor]="asian">Lingue asiatiche</button>
+    </mat-menu>
+
+    <mat-menu #european="matMenu">
+      <button mat-menu-item>Svedese</button>
+      <button mat-menu-item>Olandese</button>
+      <button mat-menu-item>Portogese</button>
+      <button mat-menu-item>Italiano</button>
+      <button mat-menu-item>Polacco</button>
+      <button mat-menu-item>Danese</button>
+      <button mat-menu-item>Norvegese</button>
+      <button mat-menu-item>Finlandese</button>
+    </mat-menu>
+
+    <mat-menu #asian="matMenu">
+      <button mat-menu-item>Russo</button>
+      <button mat-menu-item>Turco</button>
+      <button mat-menu-item>Hindi</button>
+      <button mat-menu-item>Telugu</button>
+      <button mat-menu-item>Malayalam</button>
+      <button mat-menu-item>Giapponese</button>
+      <button mat-menu-item>Coreano</button>
+      <button mat-menu-item>Cinese</button>
+      <button mat-menu-item>Tailandese</button>
+      <button mat-menu-item>Indonesiano</button>
+    </mat-menu>
 
 
 
-        <button mat-button [matMenuTriggerFor]="Generi" routerLink="archive/0"><mat-icon>folder</mat-icon></button>
-        <mat-menu #Generi="matMenu">
+<!--en uk - Inglese
+es - Spagnolo
+fr - Francese
+de - Tedesco
+ja - Giapponese
+ko - Coreano
+sv - Svedese
+nl - Olandese
+hi - Hindi
+ru - Russo
+pt - Portogese
+cn - Cinese
+it - Italiano
+zh - Cinese
+th - Tailandese
+pl - Polacco
+da - Danese
+tr - Turco
+no - Norvegese
+ml - Malayalam
+fi - Finlandese
+id - Indonesiano
+te - Telugu
 
+-->
+  </div>
 
-          <a *ngFor="let genre of arrayGenre" mat-menu-item (click)="render(genre.id)">{{genre.name}}</a>
-
-        </mat-menu>
-
-
-
-
-    </div>
-
-    <!-- <div ngClass="sideBarButton">
-      Genere
-      <ul ngClass="infoUser">
-          <li *ngFor="let genre of arrayGenre">
-               <a href="archive/{{genre.id}}">{{genre.name}}</a>
-          </li>
-
-      </ul> -->
-  <!-- </div> -->
-
-  </aside>
+</aside>

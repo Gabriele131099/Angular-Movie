@@ -27,13 +27,13 @@ export class CardComponent implements OnInit {
       recensione:'sono di un altro film'
     }
   ]
-  flag:boolean = true
+  flag:boolean = false
   arrayFilms: any;
   filmsResult: any;
   getFilmsFromService(): any {
     this.FilmsService.getFilms(1).subscribe((films) => {
       this.arrayFilms = films;
-      this.filmsResult = this.arrayFilms.results;
+      this.filmsResult = this.arrayFilms;
       console.log(this.route.snapshot.paramMap.get('id'));
       this.film = this.filmsResult.filter((obj: any) => {
         return obj.id == this.route.snapshot.paramMap.get('id');
@@ -54,7 +54,6 @@ open(){
   getGenre(): any {
     this.FilmsService.getGenre().subscribe((genre) => {
       this.arrayGenre = genre;
-      this.arrayGenre = this.arrayGenre.genres;
       console.log(this.arrayGenre);
     });
   }
@@ -81,7 +80,7 @@ open(){
     // this.getFilm();
     this.getFilmsFromService();
     this.getGenre();
-    setTimeout(() => { this.getGenreNames() }, 1000);
+    setTimeout(() => { this.getGenreNames() }, 3000);
     console.log(this.film);
   }
 }

@@ -7,9 +7,10 @@ $sfondo: #5D2A42    ;
     box-sizing: border-box;
 }
 main{
-    width: 89vw;
+    width: 90vw;
     height: 90vh;
-    background-color: $sfondo;
+    background-color: #5D2A42;
+    text-align: center;
 }
 main::-webkit-scrollbar{
     width: 5px;

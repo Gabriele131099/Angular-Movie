@@ -11,11 +11,7 @@ h1,h2,h3,h4,h5{
 p{
     font-family: 'Comfortaa', cursive;
 }
-.row{
-    display: flex;
-    text-align: center;
-    width: 99vw;
-    background-image: url('https://freefrontend.com/assets/img/css-background-patterns/simple-pattern-with-css3.png') ;
-    background-position: center;
-    background-size: cover;
-}
+
+::-webkit-scrollbar {
+    width: 10px;
+  }

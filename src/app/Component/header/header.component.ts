@@ -16,7 +16,12 @@ export class HeaderComponent implements OnInit {
     localStorage.setItem('userLogFlag', 'false');///storage log
     localStorage.setItem('userId', '0');///storage id utente in sessione
     localStorage.setItem('review', JSON.stringify([]));///storage id utente in sessione
-
+    let arrayList : any =  [
+        {
+        list:[],
+        id_user:0
+      }
+    ]
     const lista:any = {
       list:[],
       id_user:0

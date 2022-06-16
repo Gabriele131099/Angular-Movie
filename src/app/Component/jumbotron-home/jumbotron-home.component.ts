@@ -19,64 +19,33 @@ export class JumbotronHomeComponent implements OnInit {
   ) {}
 
   getFilmsFromService(): any {
-
-    //number++; - martina 06-06 gettrendingfilms metodo
-
     this.filmsService.getTrendingFilms().subscribe((films) => {
-
       this.arrayFilms = films;
-
-      this.filmsResult = this.arrayFilms.results
-
+      this.filmsResult = this.arrayFilms
       this.film = this.filmsResult[this.posizione]
-
     });
-
-    console.log(this.filmsResult)
-
   }
 
   slideShowRight(){
-
     if (this.posizione >= this.filmsResult.length-1) {
-
       this.posizione= 0
-
       this.film  = this.filmsResult[this.posizione]
-
     }else{
-
       this.posizione++;
-
       this.film  = this.filmsResult[this.posizione]
-
     }
-
-    console.log(this.posizione)
-
   }
   slideShowLeft(){
-
     if (this.posizione<=0) {
-
       this.posizione= this.filmsResult.length-1
-
       this.film  = this.filmsResult[this.posizione]
-
     }else{
-
       this.posizione--;
-
       this.film  = this.filmsResult[this.posizione]
-
     }
-
-    console.log(this.posizione)
-
   }
 
   ngOnInit(): void {
-
     this.getFilmsFromService();
     setInterval(() => {
       this.slideShowRight()

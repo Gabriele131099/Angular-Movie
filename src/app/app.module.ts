@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { SideBarComponent } from './Component/side-bar/side-bar.component';
-import { FooterComponent } from './Component/footer/footer.component';
 import { MainComponent } from './Component/main/main.component';
 import { CardComponent } from './Component/card/card.component';
 import { CardContainerComponent } from './Component/card-container/card-container.component';
@@ -35,7 +34,6 @@ import { DialogExample } from './Component/dialog/dialog.component';
   declarations: [
     AppComponent,
     SideBarComponent,
-    FooterComponent,
     MainComponent,
     CardComponent,
     CardContainerComponent,

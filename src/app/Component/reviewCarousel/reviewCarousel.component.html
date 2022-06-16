@@ -45,7 +45,7 @@
         <img width="15px" src="../../../assets/angle-left-solid.svg" alt="">
       </button>
       <div>
-        {{posizioneRecensione}}/{{arrayRecensioni.length-1}}
+        {{posizioneRecensione}}/{{arrayRecensioni.length==1?arrayRecensioni.length:arrayRecensioni.length-1}}
       </div>
       <button style="background-color: white;" (click)="slideShowRight()">
         <img width="15px" src="../../../assets/angle-right-solid.svg" alt="">
