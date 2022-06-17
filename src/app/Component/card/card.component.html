@@ -1,17 +1,17 @@
 <div class="body">
-  <div ngClass="backdrop-container"
-    style="background-image:url('https://image.tmdb.org/t/p/original/{{film.backdrop_path}}');" class="container">
-
+  <div ngClass="backdrop-container container">
+    <img id="imgDesktop" [src]="pathBackdrop" [alt]="film.title">
+    <img id="imgMobile" [src]="pathPoster" [alt]="film.title">
   </div>
   <div class="fullPage-container">
     <div ngClass="filmInfo-container">
       <div>
         <a href="#">
-          <img width="250px" src="https://image.tmdb.org/t/p/original/{{film.poster_path}}" alt="cover" class="cover" />
+          <img width="250px" [src]="pathPoster" [alt]="film.title" class="cover" />
         </a>
         <div>
           <a href="https://www.youtube.com/results?search_query=l/{{film.original_title}}">
-            <img width="60px" src="../../../assets/circle-play-solid.svg" alt="">
+            <img width="60px" src="../../../assets/circle-play-solid.svg" alt="trailer player ">
           </a>
         </div>
 

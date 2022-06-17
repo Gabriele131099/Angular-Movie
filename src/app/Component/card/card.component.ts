@@ -12,9 +12,9 @@ export class CardComponent implements OnInit {
   film: any;
   arrayGenre: any;
   userLogFlag:any = localStorage.getItem('userLogFlag')
-
+  pathBackdrop:string= 'https://image.tmdb.org/t/p/original/'
   // id:any = infoFilm;
-
+  pathPoster:string = 'https://image.tmdb.org/t/p/original/'
   constructor(
     private route: ActivatedRoute,
     private location: Location,
@@ -40,6 +40,8 @@ export class CardComponent implements OnInit {
       });
       this.film = this.film[0];
       console.log(this.film);
+      this.pathBackdrop+= this.film.backdrop_path
+      this.pathPoster += this.film.poster_path
       console.log(this.filmsResult);
     });
   }
