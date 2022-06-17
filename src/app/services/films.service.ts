@@ -18,7 +18,7 @@ export class FilmsService {
     return this.http.get<[]>(urlTrendingProva);
   }
 
-  getFilms(numberPageParam:any): Observable<[]> {
+  getFilms(): Observable<[]> {
     const urlProva = `http://localhost:8081/movieAPI/movie/allMovies`
     return this.http.get<[]>(urlProva);
   }

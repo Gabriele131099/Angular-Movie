@@ -16,54 +16,52 @@
     </mat-menu>
   </div>
 
-  <div ngClass="sideBarButton">
-    <button mat-button [matMenuTriggerFor]="categories"routerLink="archive/0"><mat-icon>folder</mat-icon></button>
-    <mat-menu #categories="matMenu">
-      <button mat-menu-item [matMenuTriggerFor]="genre">Genere</button>
-      <button mat-menu-item [matMenuTriggerFor]="language">Lingua</button>
-    </mat-menu>
+<!-- martina 1506 -->
+<div ngClass="sideBarButton">
+  <button mat-button [matMenuTriggerFor]="categories" routerLink="archive/0/all"><mat-icon>folder</mat-icon></button>
+  <mat-menu #categories="matMenu">
+    <button mat-menu-item [matMenuTriggerFor]="genre">Genere</button>
+    <button mat-menu-item [matMenuTriggerFor]="language">Lingua</button>
+  </mat-menu>
 
-    <mat-menu #genre="matMenu">
-        <a *ngFor="let genre of arrayGenre" mat-menu-item (click)="renderByGenre(genre.id)">{{genre.name}}</a>
-    </mat-menu>
+  <mat-menu #genre="matMenu">
+      <a *ngFor="let genre of arrayGenre" mat-menu-item (click)="renderByGenre(genre.id)">{{genre.name}}</a>
+  </mat-menu>
 
-    <!-- -------------------------------------------------------------------------------------------------------------------------- -->
+  <!-- -------------------------------------------------------------------------------------------------------------------------- -->
 
-    <mat-menu #language="matMenu">
-      <button mat-menu-item>Inglese</button>
-      <button mat-menu-item>Spagnolo</button>
-      <button mat-menu-item>Francese</button>
-      <button mat-menu-item [matMenuTriggerFor]="european">Lingue europee</button>
-      <button mat-menu-item [matMenuTriggerFor]="asian">Lingue asiatiche</button>
-    </mat-menu>
+  <mat-menu #language="matMenu">
+    <button mat-menu-item (click)="renderByLanguage('en')">Inglese</button>
+    <button mat-menu-item (click)="renderByLanguage('sp')">Spagnolo</button>
+    <button mat-menu-item (click)="renderByLanguage('fr')">Francese</button>
 
-    <mat-menu #european="matMenu">
-      <button mat-menu-item>Svedese</button>
-      <button mat-menu-item>Olandese</button>
-      <button mat-menu-item>Portogese</button>
-      <button mat-menu-item>Italiano</button>
-      <button mat-menu-item>Polacco</button>
-      <button mat-menu-item>Danese</button>
-      <button mat-menu-item>Norvegese</button>
-      <button mat-menu-item>Finlandese</button>
-    </mat-menu>
+    <button mat-menu-item [matMenuTriggerFor]="asian">Lingue asiatiche</button>
+    <button mat-menu-item [matMenuTriggerFor]="european">Lingue europee</button>
+  </mat-menu>
 
-    <mat-menu #asian="matMenu">
-      <button mat-menu-item>Russo</button>
-      <button mat-menu-item>Turco</button>
-      <button mat-menu-item>Hindi</button>
-      <button mat-menu-item>Telugu</button>
-      <button mat-menu-item>Malayalam</button>
-      <button mat-menu-item>Giapponese</button>
-      <button mat-menu-item>Coreano</button>
-      <button mat-menu-item>Cinese</button>
-      <button mat-menu-item>Tailandese</button>
-      <button mat-menu-item>Indonesiano</button>
-    </mat-menu>
+  <mat-menu #asian="matMenu">
+    <a *ngFor="let language of codeNameLanguages">
+      <a *ngIf="language.root=='Asian'" (click)="renderByLanguage(language.code)" mat-menu-item>{{language.name}}</a>
+    </a>
+  </mat-menu>
+
+  <mat-menu #european="matMenu">
+    <a *ngFor="let language of codeNameLanguages">
+      <a *ngIf="language.root=='European'"
+        (click)="renderByLanguage(language.code)" mat-menu-item>{{language.name}}
+      </a>
+    </a>
+
+  </mat-menu>
+
+</div>
+
+</aside>
 
 
 
-<!--en uk - Inglese
+<!--
+en uk - Inglese
 es - Spagnolo
 fr - Francese
 de - Tedesco
@@ -88,6 +86,3 @@ id - Indonesiano
 te - Telugu
 
 -->
-  </div>
-
-</aside>

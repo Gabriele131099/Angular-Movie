@@ -11,13 +11,13 @@
     <li>
       <mat-form-field class="example-full-width" appearance="fill">
         <mat-label>Filtro per nome</mat-label>
-        <input matInput placeholder="filtro" (ngModelChange)="getFilmsFromService(1)" [(ngModel)]="filtroTitle">
+        <input matInput placeholder="filtro" (ngModelChange)="getFilmsFromService()" [(ngModel)]="filtroTitle">
       </mat-form-field>
     </li>
     <li>
       <mat-form-field appearance="fill">
         <mat-label>Filtro Genere</mat-label>
-        <mat-select name="genre" id="genre" (ngModelChange)="getFilmsFromService(1)" [(ngModel)]="filtroGenre">
+        <mat-select name="genre" id="genre" (ngModelChange)="getFilmsFromService()" [(ngModel)]="filtroGenre">
           <mat-option *ngFor="let genre of arrayGenre" value="{{genre.id}}">
             {{genre.name}}
           </mat-option>
@@ -25,32 +25,43 @@
       </mat-form-field>
 
     </li>
+    <li>
+      <mat-form-field appearance="fill">
+        <mat-label>Filtro Lingua</mat-label>
+        <mat-select  name="language" id="language" (ngModelChange)="getFilmsFromService()" [(ngModel)]="languageFilter">
+          <mat-option *ngFor="let language of codeNameLanguages" value="{{language.code}}" >
+            {{language.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </li>
   </ul>
   <app-dialog *ngIf="message !=''" [message]="message"></app-dialog>
   <div class="card-container">
-    <cdk-virtual-scroll-viewport appendOnly itemSize="50" class="example-viewport">
-      <div *cdkVirtualFor="let film of filmsResult " class="example-item">
-          <div class="card">
-            <img src="https://image.tmdb.org/t/p/original/{{film.poster_path}}" alt="">
-            <div ngClass="listIcon">
-              <button  mat-mini-fab (click)="addList(film,'wishList')">
-                <h5 id="bottoneWishList">WishList</h5>
-                <mat-icon  id="grade">grade</mat-icon>
-              </button>
-              <button id="more" mat-mini-fab>
-                <a href="film/{{film.id}}">More..</a>
-              </button>
-              <button  mat-mini-fab (click)="addList(film,'favourite')">
-                <h5 id="bottonePreferiti">Preferiti</h5>
-                <mat-icon id="favorite">favorite</mat-icon>
-              </button>
-             
-            </div>
-          </div>
-          <h3>{{film.original_title}}</h3>
+    <cdk-virtual-scroll-viewport appendOnly itemSize="50" class="example-viewport"> 
+      <div class="flexati">
+    <div *cdkVirtualFor="let film of filmsResult" class="example-item">
+
+      <div class="card">
+        <img src="https://image.tmdb.org/t/p/original/{{film.poster_path}}" alt="">
+        <div ngClass="listIcon">
+          <button  mat-mini-fab (click)="addList(film,'wishList')">
+            <h5 id="bottoneWishList">WishList</h5>
+            <mat-icon  id="grade">grade</mat-icon>
+          </button>
+          <button id="more" mat-mini-fab>
+            <a href="film/{{film.id}}">More..</a>
+          </button>
+          <button  mat-mini-fab (click)="addList(film,'favourite')">
+            <h5 id="bottonePreferiti">Preferiti</h5>
+            <mat-icon id="favorite">favorite</mat-icon>
+          </button>
+         
         </div>
-    </cdk-virtual-scroll-viewport>
-
-
+      </div>
+      <h3>{{film.original_title}}</h3>
+    </div>
+      </div>
+  </cdk-virtual-scroll-viewport>
   </div>
 </div>

@@ -19,7 +19,7 @@ export class CardContainerComponent implements OnInit {
   constructor(private filmsService: FilmsService) {}
 
   getFilmsFromService(): any {
-    this.filmsService.getFilms(1).subscribe((films) => {
+    this.filmsService.getFilms().subscribe((films) => {
       this.arrayFilms = films;
       this.filmsResult = this.arrayFilms.filter(
         (obj: any) =>

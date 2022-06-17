@@ -22,30 +22,119 @@ export class SideBarComponent implements OnInit {
   arrayFr: any;
   arraySp: any;
   arrayEnglish: any;
-  arrayNamesEuropeanLanguages: any[] = [
-    {"sv" : "Svedese"},
-    {"nl" : "Olandese"},
-    {"pt" : "Portogese"},
-    {"it" : "Italiano"},
-    {"pl" : "Polacco"},
-    {"da" : "Danese"},
-    {"no" : "Norvegese"},
-    {"fi" : "Finlandese"}
+  codeNameLanguages: any[] = [
+    {
+      code : "en",
+      name : "Inglese",
+      root : null
+    },
+    {
+      code : "sp",
+      name : "Spagnolo",
+      root : null
+    },
+    {
+      code : "fr",
+      name : "Francese",
+      root : null
+    },
+    {
+      code : "sv" ,
+      name : "Svedese",
+      root : "European"
+    },
+    {
+      code : "nl",
+      name : "Olandese",
+      root : "European"
+    },
+    {
+      code : "pt",
+      name : "Portogese",
+      root : "European"
+    },
+    {
+      code : "it",
+      name : "Italiano",
+      root : "European"
+    },
+    {
+      code : "pl",
+      name : "Polacco",
+      root : "European"
+    },
+    {
+      code : "da",
+      name : "Danese",
+      root : "European"
+    },
+    {
+      code : "no",
+      name : "Norvegese",
+      root : "European"
+    },
+    {
+      code : "fi",
+      name : "Finlandese",
+      root : "European"
+    },
+    {
+      code : "ru",
+      name : "Russo",
+      root : "European"
+    },
+    {
+      code : "tr",
+      name : "Turco",
+      root : "Asian"
+    },
+    {
+      code : "hi",
+      name : "Hindi",
+      root : "Asian"
+    },
+    {
+      code : "te",
+      name : "Telugu",
+      root : "Asian"
+    },
+    {
+      code : "ml",
+      name : "Malayalam",
+      root : "Asian"
+    },
+    {
+      code : "ja",
+      name : "Giapponese",
+      root : "Asian"
+    },
+    {
+      code : "ko",
+      name : "Coreano",
+      root : "Asian"
+    },
+    {
+      code : "zh",
+      name : "Cinese",
+      root : "Asian"
+    },
+    {
+      code : "cn",
+      name : "Cinese",
+      root : "Asian"
+    },
+    {
+      code : "th",
+      name : "Tailandese",
+      root : "Asian"
+    },
+    {
+      code : "id",
+      name : "Indonesiano",
+      root : "Asian"
+    }
   ];
 
-  arrayNamesAsianLanguages: any[] = [
-    {"ru" : "Russo"},
-    {"tr" : "Turco"},
-    {"hi" : "Hindi"},
-    {"te" : "Telugu"},
-    {"ml" : "Malayalam"},
-    {"ja" : "Giapponese"},
-    {"ko" : "Coreano"},
-    {"zh" : "Cinese"},
-    {"cn" : "Cinese"},
-    {"th" : "Tailandese"},
-    {"id" : "Indonesiano"}
-  ];
 
   constructor(private filmsService: FilmsService,
     private route: Router) {  }
@@ -60,20 +149,18 @@ export class SideBarComponent implements OnInit {
   }
 
   getFilms(): any {
-    this.filmsService.getFilms(2)
+    this.filmsService.getFilms()
         .subscribe(film => {
           this.arrayFilms = film;
         });
   }
 
-
-
   renderByGenre(id:any){
     window.location.replace(`/archive/${id}`);
   }
 
-  renderByLanguage(){
-
+  renderByLanguage(lang:any){
+    window.location.replace(`/archive/0/${lang}`);
   }
 
   logOut(){

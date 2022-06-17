@@ -32,7 +32,7 @@ export class HeaderComponent implements OnInit {
    
   }
   getFilmsFromService() {
-    this.filmsService.getFilms(0).subscribe((films) => {
+    this.filmsService.getFilms().subscribe((films) => {
       let arrayFilms:any = films;
       let filmsResult:any = arrayFilms.results
       console.log(filmsResult)

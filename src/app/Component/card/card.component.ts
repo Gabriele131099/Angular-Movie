@@ -31,7 +31,7 @@ export class CardComponent implements OnInit {
   arrayFilms: any;
   filmsResult: any;
   getFilmsFromService(): any {
-    this.FilmsService.getFilms(1).subscribe((films) => {
+    this.FilmsService.getFilms().subscribe((films) => {
       this.arrayFilms = films;
       this.filmsResult = this.arrayFilms;
       console.log(this.route.snapshot.paramMap.get('id'));

@@ -29,7 +29,6 @@ import { Favourite } from "./Component/favourite/favourite.component";
 import { ReviewCarousel } from './Component/reviewCarousel/reviewCarousel.component';
 import { CommonModule } from '@angular/common';
 import { DialogExample } from './Component/dialog/dialog.component';
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,17 +46,15 @@ import { DialogExample } from './Component/dialog/dialog.component';
     ReviewForm,
     Favourite,
     ReviewCarousel,
-    DialogExample
-   
+    DialogExample,
 
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot([
-
       { path: '', component: HomeComponent },
       { path: 'archive', component: ArchiveComponent },
-      { path: 'archive/:id', component: ArchiveComponent },
+      { path: 'archive/:id/:lang', component: ArchiveComponent },
       { path: 'film/:id', component: CardComponent },
       { path: 'login', component: LoginComponent },
       { path: 'signup', component: SignupComponent },

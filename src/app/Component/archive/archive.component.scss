@@ -182,3 +182,24 @@ h3 {
     transform: scale(1.1);
   }
 }
+
+
+////
+
+
+.example-viewport { 
+   width: 100%;  
+   border: 1px solid black;  
+   height: 800px; } 
+.example-item {  
+  max-width: 300px; 
+} 
+.flexati{  
+  display: flex;
+  flex-wrap:wrap;
+  justify-content: space-around;
+  align-items:stretch;
+  margin-bottom: 50px;
+ }
+
+
