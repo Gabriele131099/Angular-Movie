@@ -15,9 +15,9 @@ import {ChangeDetectionStrategy} from '@angular/core';
 })
 export class ArchiveComponent implements OnInit {
   arrayFilms: any;
-  filmsResult:any= Array.from({length: 1439}).map((obj:any) => {obj});  filtroTitle: string = '';
+  filmsResult:any= Array.from({length: 1439}).map((obj:any) => {obj});  
+  filtroTitle: string = '';
   filtroGenre:any = this.route.snapshot.paramMap.get('id');
-  
   userLogFlag:any = localStorage.getItem('userLogFlag');
   message:string = ''
   constructor(

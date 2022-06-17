@@ -14,6 +14,8 @@ export class JumbotronHomeComponent implements OnInit {
   filmsResult: any;
   posizione:number = 0
   film:any
+  pathBackDrop:string =''
+
   constructor(
     private filmsService: FilmsService,
   ) {}
@@ -23,26 +25,28 @@ export class JumbotronHomeComponent implements OnInit {
       this.arrayFilms = films;
       this.filmsResult = this.arrayFilms.results
       this.film = this.filmsResult[this.posizione]
+      this.pathBackDrop = 'https://image.tmdb.org/t/p/original/' + this.film.backdrop_path
     });
   }
 
   slideShowRight(){
     if (this.posizione >= this.filmsResult.length-1) {
       this.posizione= 0
-      this.film  = this.filmsResult[this.posizione]
     }else{
       this.posizione++;
-      this.film  = this.filmsResult[this.posizione]
     }
+    this.film  = this.filmsResult[this.posizione]
+    this.pathBackDrop = 'https://image.tmdb.org/t/p/original/' + this.film.backdrop_path
   }
   slideShowLeft(){
     if (this.posizione<=0) {
       this.posizione= this.filmsResult.length-1
-      this.film  = this.filmsResult[this.posizione]
     }else{
       this.posizione--;
-      this.film  = this.filmsResult[this.posizione]
     }
+    this.film  = this.filmsResult[this.posizione]
+    this.pathBackDrop = 'https://image.tmdb.org/t/p/original/' + this.film.backdrop_path
+ 
   }
 
   ngOnInit(): void {
