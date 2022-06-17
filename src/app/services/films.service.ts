@@ -14,7 +14,7 @@ export class FilmsService {
 
   getTrendingFilms(): Observable<[]>{
    // https://api.themoviedb.org/3/trending/movie/week?api_key=59609bb271fe57555250ffa18b2842c2
-    const urlTrendingProva = 'http://localhost:8081/movieAPI/movie/allMovies'
+    const urlTrendingProva = 'https://api.themoviedb.org/3/trending/movie/week?api_key=59609bb271fe57555250ffa18b2842c2'
     return this.http.get<[]>(urlTrendingProva);
   }
 

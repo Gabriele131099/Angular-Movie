@@ -1,12 +1,11 @@
 <div class="jumbotron">
-  <img class="imageJumbo" width="100%" src="https://image.tmdb.org/t/p/original/{{film.backdrop_path}}"
+  <img class="imageJumbo"  src="https://image.tmdb.org/t/p/original/{{film.backdrop_path}}"
     alt="{{film.title}} slideShow"><br>
-    <h3 class="txt">{{film.title}}</h3>
+    <h3 class="txt" ><a href="film/{{film.id}}"></a>{{film.title}}</h3>
   <div id="arrow">
     <button (click)="slideShowLeft()">
       <img width="30px" src="../../../assets/chevron-left-solid.svg" alt="">
     </button>
-   
     <button (click)="slideShowRight()">
       <img width="30px" src="../../../assets/chevron-right-solid.svg" alt="">
     </button>

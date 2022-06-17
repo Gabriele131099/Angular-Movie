@@ -21,7 +21,7 @@ export class JumbotronHomeComponent implements OnInit {
   getFilmsFromService(): any {
     this.filmsService.getTrendingFilms().subscribe((films) => {
       this.arrayFilms = films;
-      this.filmsResult = this.arrayFilms
+      this.filmsResult = this.arrayFilms.results
       this.film = this.filmsResult[this.posizione]
     });
   }
@@ -49,7 +49,7 @@ export class JumbotronHomeComponent implements OnInit {
     this.getFilmsFromService();
     setInterval(() => {
       this.slideShowRight()
-    },5000);
+    },7000);
 
   }
 }

@@ -2,10 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { ActivatedRoute } from '@angular/router';
 import { FilmsService } from '../../services/films.service';
+import {ChangeDetectionStrategy} from '@angular/core';
+
+/** @title Virtual scroll with view recycling disabled. */
+  
+
 @Component({
   selector: 'app-archive',
   templateUrl: './archive.component.html',
   styleUrls: ['./archive.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ArchiveComponent implements OnInit {
   arrayFilms: any;
@@ -54,6 +60,7 @@ export class ArchiveComponent implements OnInit {
       });
       number++;
     console.log(this.filtroTitle);
+    this.filmsResult = Array.from({length: 10}).map((_, i) => `Item #${i}`);
   }
   arrayGenre:any
   getGenre(): any {
