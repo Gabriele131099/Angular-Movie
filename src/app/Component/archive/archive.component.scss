@@ -62,7 +62,16 @@ h3 {
     }
   }
 }
-
+.chip{
+  background-color: #ddcdc9;
+  color: black;
+  margin: 20px 5px;
+  padding: 5px 10px;
+  border-radius: 20px;
+  button{
+    
+  }
+}
 mat-paginator {
   position: fixed;
   bottom: 0px;
@@ -189,7 +198,6 @@ h3 {
 
 .example-viewport { 
    width: 100%;  
-   border: 1px solid black;  
    height: 800px; } 
 .example-item {  
   max-width: 300px; 

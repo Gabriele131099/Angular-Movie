@@ -17,7 +17,7 @@
     <li>
       <mat-form-field appearance="fill">
         <mat-label>Filtro Genere</mat-label>
-        <mat-select name="genre" id="genre" (ngModelChange)="getFilmsFromService()" [(ngModel)]="filtroGenre">
+        <mat-select name="genre" id="genre" [(ngModel)]="filtroGenre" (ngModelChange)="addFilteredGenre(filtroGenre)">
           <mat-option *ngFor="let genre of arrayGenre" value="{{genre.id}}">
             {{genre.name}}
           </mat-option>
@@ -36,6 +36,9 @@
       </mat-form-field>
     </li>
   </ul>
+  <div>
+    <span class="chip" *ngFor="let chip of arrayFiltroGenre" >{{chip.name}} <button mat-mini-fab (click)="deleteChips(chip.id)" >X</button></span>
+  </div>
   <app-dialog *ngIf="message !=''" [message]="message"></app-dialog>
   <div class="card-container">
     <cdk-virtual-scroll-viewport appendOnly itemSize="50" class="example-viewport"> 

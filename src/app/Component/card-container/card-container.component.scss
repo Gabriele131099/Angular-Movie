@@ -23,11 +23,17 @@ h4 , h3,a {
   color: white;
   text-decoration: none;
 }
-h3{
+
+.titleGenre{
   font-family: 'Roboto';
   font-weight: 700;
-  font-size: 24px;
-  text-align: left;
+  font-size: 20px;
+  float: left;
+  background-color: #1e1b26;
+  color: white;
+  border-radius: 10px;
+  padding: 5px 10px;
+  margin-left: 5px;
 }
 .card {
   &-container {
