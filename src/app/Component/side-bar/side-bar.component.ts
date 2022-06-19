@@ -156,7 +156,7 @@ export class SideBarComponent implements OnInit {
   }
 
   renderByGenre(id:any){
-    window.location.replace(`/archive/${id}`);
+    window.location.replace(`/archive/${id}/all`);
   }
 
   renderByLanguage(lang:any){

@@ -159,18 +159,31 @@ export class ArchiveComponent implements OnInit {
     }
   }
 
-
+pathPoster:string= 'https://image.tmdb.org/t/p/original/'
   arrayFiltroGenre: any = [];
   arrayGenre: any = [];
+  reset(){
+    this.filmsService.getFilms().subscribe((films) => {
+      this.filtroGenre=0
+      this.filtroTitle=''
+      this.languageFilter='all'
+      this.arrayFiltroGenre=[]
+      this.filmsResult = films;
+    });
+  }
   getFilmsFromService(): any {
     this.filmsService.getFilms().subscribe((films) => {
       this.arrayFilms = films;
-      this.filmsResult = this.arrayFilms
+      this.filmsResult = this.arrayFilms.filter((obj:any)=>(obj.genre_ids.filter((element: any) => element == this.filtroGenre).length >0 || this.filtroGenre==0) &&
+       (obj.original_language==this.languageFilter || this.languageFilter == 'all')
+       &&
+       (obj.title.includes(this.filtroTitle) || this.filtroTitle == ''))
       for (let index = 0; index < this.arrayFiltroGenre.length; index++) {
         const ele = this.arrayFiltroGenre[index];
         this.filteredForGenre(ele.id)
       }
     });
+   
   }
 
   getGenre(): any {
@@ -196,14 +209,19 @@ export class ArchiveComponent implements OnInit {
   filteredForGenre(newChips:any){
     this.filmsResult = this.filmsResult.filter((obj: any) =>
     obj.genre_ids.filter((element: any) => element == newChips).length >0 ||
-    this.filtroGenre == 0);
+    (this.filtroGenre == 0 ));
   }
   addChips(newChips:any) {
     this.arrayFiltroGenre.push(newChips); 
   }
   deleteChips(newChips:any){
     this.arrayFiltroGenre = this.arrayFiltroGenre.filter((obj:any)=>obj.id!=parseFloat(newChips))
-    this.getFilmsFromService()
+    if (this.arrayFiltroGenre.length>0) {  
+      this.getFilmsFromService()
+      console.log(this.arrayFiltroGenre.length)
+    }else{
+      this.reset()
+    }
   }
   
   ngOnInit(): void {

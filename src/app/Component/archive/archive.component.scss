@@ -2,7 +2,12 @@
 ::-webkit-scrollbar {
   width: 10px;
 }
+.remove{
 
+  background-color: #ddcdc9;
+  width: 200px;
+  border-radius: 20px;
+}
 $background: #5d2a42;
 h3 {
   max-width: 250px;
@@ -49,7 +54,7 @@ h3 {
 
 .listaInput {
   display: flex;
-  align-items: stretch;
+  align-items: center;
   justify-content: center;
   flex-wrap: wrap;
   padding: 5px;
