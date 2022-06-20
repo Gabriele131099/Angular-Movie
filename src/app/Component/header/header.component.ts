@@ -20,6 +20,10 @@ export class HeaderComponent implements OnInit {
         {
         list:[],
         id_user:0
+      },
+      {
+        list:[],
+        id_user:1
       }
     ]
     const lista:any = {

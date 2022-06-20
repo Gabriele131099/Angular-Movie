@@ -11,7 +11,8 @@
   <div *ngIf="userLogFlag=='true'" ngClass="sideBarButton">
     <button mat-button [matMenuTriggerFor]="menu"><i class="material-icons">admin_panel_settings</i></button>
     <mat-menu #menu="matMenu">
-      <button mat-menu-item routerLink="user/{{userId}}">User</button>
+      <button mat-menu-item routerLink="user/{{userId}}">Dashboard User</button>
+      <button mat-menu-item routerLink="user/{{userId}}/infoUser">Info User</button>
       <button mat-menu-item (click)="logOut()"><a href="/"></a>LogOut</button>
     </mat-menu>
   </div>
