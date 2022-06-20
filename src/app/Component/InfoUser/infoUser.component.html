@@ -22,7 +22,7 @@
           </mat-form-field>
           <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>Choose a date</mat-label>
-            <input matInput [matDatepicker]="picker" formControlName="date">
+            <input matInput [matDatepicker]="picker" placeholder="Data di nascita" formControlName="date">
             <mat-datepicker-toggle matSuffix [for]="picker">
               <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
             </mat-datepicker-toggle>
@@ -37,19 +37,11 @@
             </mat-select>
           </mat-form-field>
         </mat-card-content>
-        <button mat-stroked-button color="accent" class="btn-block" style="color: black;">Registrati</button>
+        <button mat-stroked-button color="accent" class="btn-block" style="color: black;">Salva le Modifiche</button>
         <br>
-        <a mat-button routerLink="/login">Accedi</a>
-
       </form>
 
 </div>
-<!-- date: "15-10-99"
-email: "admin@gmail.com"
-genre: "Other..."
-id: 0
-password: "root"
-username: "admin" -->
 <div *ngIf="userLogFlag=='false'">
     <h1>devi Loggarti <a href="login">Accedi</a></h1>
 </div>

@@ -13,7 +13,7 @@ export class UserPageComponent implements OnInit {
   userLogFlag:any = localStorage.getItem('userLogFlag')
   user:any
   userId:number = parseInt(localStorage.getItem('userId')||'');
-
+  born:any 
   wishList:any = JSON.parse(localStorage.getItem("wishList")||'')
   arrayWishlist:any = this.wishList?.list
 
@@ -55,11 +55,20 @@ constructor(
   ngOnInit(): void {
 
     const id= this.route.snapshot.paramMap.get('id')
-    this.user  = this.arrayUsers.filter((obj:any)=>
-      obj.id==id
-    )
+    if (id==this.userId.toString()) {
+      this.user  = this.arrayUsers.filter((obj:any)=>
+      obj.id==this.userId
+      )[0]
+    this.born = this.user.date.split(' ')
+    this.born = this.born[0] + ' ' + this.born[1] + ' ' + this.born[2] + ' ' + this.born[3]
+    console.log(this.born)
     console.log(this.user)
     console.log(this.wishList)
+    }else{
+      alert('sei un furbetto')
+      location.href = `./user/${this.userId}`
+    }
+    
   }
 
 }
