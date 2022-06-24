@@ -27,11 +27,5 @@ export class FilmsService {
     const urlProva = `http://localhost:8081/movieAPI/genre/allGenres`
     return this.http.get<[]>(urlProva);
   }
-  // getFilm(id: number): Observable<any[]> {
-  //   const arrayFilms = this.urlProva.result.find((h: { id: number; })=> h.id === id)!; //TODO FIX
 
-
-  //   //return of(arrayFilms);
-  //   return this.http.get<any[]>(this.urlProva);
-  // }
 }

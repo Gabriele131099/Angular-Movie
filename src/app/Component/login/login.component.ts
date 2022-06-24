@@ -1,54 +1,85 @@
-import { Component, OnInit ,Output, EventEmitter} from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { IUser } from '../../interfaces/IUser';
-import {USERS} from '../../../assets/user';
+//import { IUser } from '../../Interfaces/IUser';
+import { USERS } from '../../../assets/user';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { GoogleAuthProvider } from 'firebase/auth';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
 })
-
 export class LoginComponent implements OnInit {
-  arrayUsers:IUser[] = JSON.parse(localStorage.getItem('arrayUsers')||'')
+  arrayUsers: any[] = JSON.parse(localStorage.getItem('arrayUsers') || '');
 
   constructor(
+    public auth: AngularFireAuth,
     private route: ActivatedRoute,
     private router: Router
-    ) {
-      this.router = router;
-    }
+  ) {
+    this.router = router;
+  }
 
   form: FormGroup = new FormGroup({
-    username: new FormControl(''),
+    email: new FormControl(''),
     password: new FormControl(''),
   });
 
-  logInMessage:string='';
+  logInMessage: string = '';
+
+  get email() {
+    return this.form.controls['email'].value;
+  }
+
+  get password() {
+    return this.form.controls['password'].value;
+  }
+
+  logInWithPassword() {
+    this.auth
+      .signInWithEmailAndPassword(this.email, this.password)
+      .then((data: any) => {
+        console.log(data.user._delegate.uid);
+        localStorage.setItem('uidUser', `${data.user._delegate.uid}`);
+        console.log(localStorage.getItem('uidUser'));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+  async loginWithGoogle() {
+    //>> la trasformo in una promise
+    const provider = new GoogleAuthProvider();
+    await this.auth
+      .signInWithPopup(provider) // tutte le funzioni successive non saranno eseguite finchè la funz non restituisce
+      .then((data) => {}); // ritorna una promise!! >> ci accedo con then
+    //>> tutto ciò che è qui non attende l'esecuzione dentro il then -> ricorriamo ad async await
+  }
 
   submit() {
     if (this.form.valid) {
       this.submitEM.emit(this.form.value);
-      console.log(this.form.value.username)
+      console.log(this.form.value.username);
 
-      this.arrayUsers.forEach((obj:any)=>{
-        if (obj.username==this.form.value.username && obj.password==this.form.value.password) {
+      this.arrayUsers.forEach((obj: any) => {
+        if (
+          obj.username == this.form.value.username &&
+          obj.password == this.form.value.password
+        ) {
           localStorage.setItem('userLogFlag', 'true');
           localStorage.setItem('userId', obj.id);
           location.href = `./user/${obj.id}`;
-          this.logInMessage=''
-        }else{
-          this.logInMessage='credenziali non esistenti'
+          this.logInMessage = '';
+        } else {
+          this.logInMessage = 'credenziali non esistenti';
         }
-      })
-      console.log(this.arrayUsers)
+      });
+      console.log(this.arrayUsers);
     }
   }
 
   @Output() submitEM = new EventEmitter();
-  ngOnInit(): void {
-    
-  }
-
+  ngOnInit(): void {}
 }

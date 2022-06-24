@@ -15,21 +15,39 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { SignupComponent } from './Component/signup/signup.component';
 import { HomeComponent } from './Component/home/home.component';
 import { ArchiveComponent } from './Component/archive/archive.component';
-import {MatNativeDateModule} from '@angular/material/core';
-import {matDatepickerAnimations, MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import {
+  matDatepickerAnimations,
+  MatDatepickerModule,
+} from '@angular/material/datepicker';
 
 import { MatSliderModule } from '@angular/material/slider';
-import {MatIconModule} from '@angular/material/icon'
+import { MatIconModule } from '@angular/material/icon';
 import { HttpClientModule } from '@angular/common/http';
 import { UserPageComponent } from './Component/user-page/user-page.component';
 import { JumbotronHomeComponent } from './Component/jumbotron-home/jumbotron-home.component';
 import { HeaderComponent } from './Component/header/header.component';
 import { ReviewForm } from './Component/review-form/review-form.component';
-import { Favourite } from "./Component/favourite/favourite.component";
+import { Favourite } from './Component/favourite/favourite.component';
 import { ReviewCarousel } from './Component/reviewCarousel/reviewCarousel.component';
 import { CommonModule } from '@angular/common';
 import { DialogExample } from './Component/dialog/dialog.component';
 import { InfoUser } from './Component/InfoUser/infoUser.component';
+
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { AngularFireStorageModule } from '@angular/fire/compat/storage';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
+
+import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { environment } from '../environments/environment';
+import { provideAuth,getAuth } from '@angular/fire/auth';
+import { provideFirestore,getFirestore } from '@angular/fire/firestore';
+import { provideFunctions,getFunctions } from '@angular/fire/functions';
+import { provideStorage,getStorage } from '@angular/fire/storage';
+import { InsertUserdataComponent } from './Component/insert-userdata/insert-userdata.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,20 +66,22 @@ import { InfoUser } from './Component/InfoUser/infoUser.component';
     Favourite,
     ReviewCarousel,
     DialogExample,
-    InfoUser
+    InfoUser,
+    InsertUserdataComponent
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot([
-      { path: '', component: HomeComponent },
-      { path: 'archive', component: ArchiveComponent },
-      { path: 'archive/:id/:lang', component: ArchiveComponent },
-      { path: 'film/:id', component: CardComponent },
-      { path: 'login', component: LoginComponent },
-      { path: 'signup', component: SignupComponent },
-      { path: 'user/:id', component: UserPageComponent},
-      { path: 'user/:id/infoUser', component: InfoUser}
-    ]),
+    // RouterModule.forRoot([
+    //   { path: '', component: HomeComponent },
+    //   { path: 'archive', component: ArchiveComponent },
+    //   { path: 'archive/:id/:lang', component: ArchiveComponent },
+    //   { path: 'film/:id', component: CardComponent },
+    //   { path: 'login', component: LoginComponent },
+    //   { path: 'signup', component: SignupComponent },
+    //   { path: 'user/:id', component: UserPageComponent },
+    //   { path: 'user/:id/infoUser', component: InfoUser },
+    // ]),
+    AppRoutingModule,
     FormsModule,
     BrowserAnimationsModule,
     AngularMaterialModule,
@@ -72,10 +92,17 @@ import { InfoUser } from './Component/InfoUser/infoUser.component';
     MatDatepickerModule,
     MatNativeDateModule,
     HttpClientModule,
-    CommonModule
-    ],
+    CommonModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule, // firestore
+    AngularFireAuthModule, // auth
+    AngularFireStorageModule, // storage
+    ReactiveFormsModule, provideFirebaseApp(() => initializeApp(environment.firebase)), provideAuth(() => getAuth()), provideFirestore(() => getFirestore()), provideFunctions(() => getFunctions()), provideStorage(() => getStorage()),
+
+
+  ],
   providers: [],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
