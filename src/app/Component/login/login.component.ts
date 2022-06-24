@@ -13,21 +13,17 @@ import { GoogleAuthProvider } from 'firebase/auth';
 })
 export class LoginComponent implements OnInit {
   arrayUsers: any[] = JSON.parse(localStorage.getItem('arrayUsers') || '');
+  currentUser: any;
+  logInMessage: string = '';
 
-  constructor(
-    public auth: AngularFireAuth,
-    private route: ActivatedRoute,
-    private router: Router
-  ) {
-    this.router = router;
+  constructor(public auth: AngularFireAuth) {
+    this.auth.authState.subscribe((user) => (this.currentUser = user));
   }
 
   form: FormGroup = new FormGroup({
     email: new FormControl(''),
     password: new FormControl(''),
   });
-
-  logInMessage: string = '';
 
   get email() {
     return this.form.controls['email'].value;
@@ -38,24 +34,35 @@ export class LoginComponent implements OnInit {
   }
 
   logInWithPassword() {
-    this.auth
-      .signInWithEmailAndPassword(this.email, this.password)
-      .then((data: any) => {
-        console.log(data.user._delegate.uid);
-        localStorage.setItem('uidUser', `${data.user._delegate.uid}`);
-        console.log(localStorage.getItem('uidUser'));
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    this.auth.setPersistence('local').then(() => {
+      this.auth
+        .signInWithEmailAndPassword(this.email, this.password)
+        .then((userCredential) => {
+          this.currentUser = userCredential.user;
+          // console.log(userCredential.user._delegate.uid);
+          // localStorage.setItem('uidUser', `${userCredential.user._delegate.uid}`);
+          // console.log(localStorage.getItem('uidUser'));
+        })
+        .catch((err) => {
+          this.logInMessage = err;
+        });
+    });
   }
+
   async loginWithGoogle() {
-    //>> la trasformo in una promise
-    const provider = new GoogleAuthProvider();
-    await this.auth
-      .signInWithPopup(provider) // tutte le funzioni successive non saranno eseguite finchè la funz non restituisce
-      .then((data) => {}); // ritorna una promise!! >> ci accedo con then
-    //>> tutto ciò che è qui non attende l'esecuzione dentro il then -> ricorriamo ad async await
+    const provider = new GoogleAuthProvider(); //>> la trasformo in una promise
+
+    await this.auth.setPersistence('local').then(() => {
+      this.auth
+        .signInWithPopup(provider) // tutte le funzioni successive non saranno eseguite finchè la funz non restituisce
+        .then((userCredential) => {
+          this.currentUser = userCredential.user; // ritorna una promise!! >> ci accedo con then
+          //>> tutto ciò che è qui non attende l'esecuzione dentro il then -> ricorriamo ad async await
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    });
   }
 
   submit() {

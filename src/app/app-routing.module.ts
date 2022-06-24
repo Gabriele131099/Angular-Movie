@@ -16,29 +16,27 @@ import {
 } from '@angular/fire/compat/auth-guard';
 
 const redirectUnauthorizedToLogin: any = () =>
-
-redirectUnauthorizedTo(['login']);
+  redirectUnauthorizedTo(['login']);
 const loggedGuard: any = () => redirectLoggedInTo(['']); //guard > restituisce true (se loggato, e riporta in home) o false
 
 const routes: Routes = [
-
-
-        { path: '', component: HomeComponent },
-        { path: 'archive', component: ArchiveComponent },
-        { path: 'archive/:id/:lang', component: ArchiveComponent },
-        { path: 'film/:id', component: CardComponent },
-        { path: 'login', component: LoginComponent,  ...canActivate(loggedGuard) },
-        { path: 'signup', component: SignupComponent,  ...canActivate(loggedGuard) },
-        { path: 'user/:id', component: UserPageComponent },
-        { path: 'user/:id/infoUser', component: InfoUser },
-        {path: 'insert', component: InsertUserdataComponent,
-
-        ...canActivate(redirectUnauthorizedToLogin)}
-
+  { path: '', component: HomeComponent },
+  { path: 'archive', component: ArchiveComponent },
+  { path: 'archive/:id/:lang', component: ArchiveComponent },
+  { path: 'film/:id', component: CardComponent },
+  { path: 'login', component: LoginComponent, ...canActivate(loggedGuard) },
+  { path: 'signup', component: SignupComponent, ...canActivate(loggedGuard) },
+  { path: 'user', component: UserPageComponent },
+  { path: 'user/:id/infoUser', component: InfoUser },
+  {
+    path: 'insert',
+    component: InsertUserdataComponent,
+    // ...canActivate(redirectUnauthorizedToLogin),
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

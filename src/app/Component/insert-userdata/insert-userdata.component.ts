@@ -13,6 +13,7 @@ export class InsertUserdataComponent implements OnInit {
     private angularFirestore: AngularFirestore,
     private angularStorage: AngularFireStorage
   ) {}
+
   form: FormGroup = new FormGroup({
     username: new FormControl(''),
     date: new FormControl(''),
@@ -28,6 +29,7 @@ export class InsertUserdataComponent implements OnInit {
   file: any;
   n: any = Date.now();
   filePath = `userCover/${this.n}`;
+
   inserisci(): void {
     const task = this.angularStorage.upload(this.filePath, this.file);
     task.then((data: any) => {

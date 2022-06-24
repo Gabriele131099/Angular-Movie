@@ -1,9 +1,30 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import {
+  AbstractControl,
+  FormControl,
+  FormGroup,
+  ValidationErrors,
+  ValidatorFn,
+  Validators,
+} from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 //import { IUser } from '../../Interfaces/IUser';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { GoogleAuthProvider } from 'firebase/auth';
+
+export function passwordMatchValidator(): ValidatorFn {
+  return (control: AbstractControl): ValidationErrors | null => {
+    const password = control.get('password')?.value;
+    const confirmPassword = control.get('confirmPassword')?.value;
+
+    if (password && confirmPassword && password !== confirmPassword) {
+      return {
+        passwordsDontMatch: true,
+      };
+    }
+    return null;
+  };
+}
 
 @Component({
   selector: 'app-signup',
@@ -12,6 +33,7 @@ import { GoogleAuthProvider } from 'firebase/auth';
 })
 export class SignupComponent implements OnInit {
   arrayUsers: any[] = JSON.parse(localStorage.getItem('arrayUsers') || '');
+  currentUser: any;
 
   constructor(
     public auth: AngularFireAuth,
@@ -21,18 +43,24 @@ export class SignupComponent implements OnInit {
     this.router = router;
   }
 
-  form: FormGroup = new FormGroup({
-    username: new FormControl(''),
-    email: new FormControl(''),
-    password: new FormControl(''),
-    confirmPassword: new FormControl(''),
-    date: new FormControl(''),
-    genre: new FormControl(''),
-  });
+  form: FormGroup = new FormGroup(
+    {
+      username: new FormControl('', Validators.required),
+      email: new FormControl('', [Validators.email, Validators.required]),
+      password: new FormControl('', Validators.required),
+      confirmPassword: new FormControl('', Validators.required),
+    },
+    {
+      validators: passwordMatchValidator(), // cross field validatr
+    }
+  );
 
   matcher: any;
   signUpMessage: string = '';
 
+  get username() {
+    return this.form.controls['username'].value;
+  }
   get email() {
     return this.form.controls['email'].value;
   }
@@ -41,28 +69,49 @@ export class SignupComponent implements OnInit {
     return this.form.controls['password'].value;
   }
 
+  get confirmPassword() {
+    return this.form.controls['confirmPassword'].value;
+  }
+
   async signUpWithPassword() {
     //>> la trasformo in una promise
-    if (this.form.value.confirmPassword != this.form.value.password) {
-      this.signUpMessage += `Le password non corrispondono, idiota devi controllare /n`;
-    } else {
-      await this.auth
-        .createUserWithEmailAndPassword(this.email, this.password) // tutte le funzioni successive non saranno eseguite finchè la funz non restituisce
-        .then((data) => {
-          console.log(data);
+    await this.auth
+      .createUserWithEmailAndPassword(this.email, this.password) // tutte le funzioni successive non saranno eseguite finchè la funz non restituisce
+      .then((data) => {
+        // console.log(data);
+        ////
+        //logInWithPassword() {
+        this.auth.setPersistence('local').then(() => {
+          this.auth
+            .signInWithEmailAndPassword(this.email, this.password)
+            .then((userCredential) => {
+              this.currentUser = userCredential.user;
+            })
+            .catch((err) => {});
+        });
+
+        ////
+      })
+      .catch((err) => {
+        this.signUpMessage = err;
+        // alert(err);
+      }); // ritorna una promise!! >> ci accedo con then
+    // }
+  }
+
+  async signUpWithGoogle() {
+    const provider = new GoogleAuthProvider();
+
+    await this.auth.setPersistence('local').then(() => {
+      this.auth
+        .signInWithPopup(provider)
+        .then((userCredential) => {
+          this.currentUser = userCredential.user;
         })
         .catch((err) => {
-          console.log(err);
-        }); // ritorna una promise!! >> ci accedo con then
-    }
-  }
-  async signUpWithGoogle() {
-    //>> la trasformo in una promise
-    const provider = new GoogleAuthProvider();
-    await this.auth
-      .signInWithPopup(provider) // tutte le funzioni successive non saranno eseguite finchè la funz non restituisce
-      .then((data) => {}); // ritorna una promise!! >> ci accedo con then
-    //>> tutto ciò che è qui non attende l'esecuzione dentro il then -> ricorriamo ad async await
+          this.signUpMessage = err;
+        });
+    });
   }
 
   submit() {
@@ -71,21 +120,6 @@ export class SignupComponent implements OnInit {
       console.log(this.form.value);
       console.log(this.arrayUsers);
       console.log(JSON.parse(localStorage.getItem('arrayUsers') || ''));
-
-      //console.log(userExist)
-
-      // const newUser = {
-      //   id: this.arrayUsers.length,
-      //   username: this.form.value.username,
-      //   email: this.form.value.email,
-      //   password: this.form.value.password,
-      //   date: this.form.value.date,
-      //   genre: this.form.value.genre,
-      // };
-      //this.signUpMessage = 'registrazione effettuata'; //da togliere, per lettura
-
-      // this.arrayUsers.push(newUser);
-      // localStorage.setItem('arrayUsers', JSON.stringify(this.arrayUsers));
     }
     console.log(this.arrayUsers);
     // window.location.replace("login");

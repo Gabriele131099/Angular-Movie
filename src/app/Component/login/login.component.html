@@ -15,8 +15,15 @@
           </mat-form-field>
         </p>
 
-        <button type="submit" (click)="logInWithPassword()" mat-stroked-button color="accent"
+
+        <button [routerLink]="['/insert']" type="submit" (click)="logInWithPassword()" mat-stroked-button color="accent"
           class="btn-block">Accedi</button>
+
+        <mat-error *ngIf="logInMessage!=null">
+          {{logInMessage}}
+        </mat-error>
+
+
         <div *ngIf="logInMessage == 'credenziali non esistenti'" class="error">
           {{logInMessage}} <br>
           <a mat-button routerLink="../signup">registrati</a>
