@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { ActivatedRoute } from '@angular/router';
 import { IUser } from '../../Interfaces/IUser';
 
@@ -18,6 +19,14 @@ export class UserPageComponent implements OnInit {
 
   favourite: any = JSON.parse(localStorage.getItem('favourite') || '');
   arrayFavourites: any = this.favourite?.list;
+
+  userCollection: any = this.angularFirestore.collection('users');
+  user$: any;
+
+  constructor(
+    private route: ActivatedRoute,
+    private angularFirestore: AngularFirestore
+  ) {}
 
   deleteWhishList(film: any) {
     this.arrayWishlist = this.arrayWishlist.filter(
@@ -55,9 +64,8 @@ export class UserPageComponent implements OnInit {
     }
   }
 
-  constructor(private route: ActivatedRoute) {}
-
   ngOnInit(): void {
+    this.user$ = this.userCollection.valueChanges();
     // const id= this.route.snapshot.paramMap.get('id')
     // if (id==this.userId.toString()) {
     //   this.user  = this.arrayUsers.filter((obj:any)=>

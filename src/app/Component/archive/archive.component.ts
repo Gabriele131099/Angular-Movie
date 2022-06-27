@@ -3,6 +3,7 @@ import { PageEvent } from '@angular/material/paginator';
 import { ActivatedRoute } from '@angular/router';
 import { FilmsService } from '../../services/films.service';
 import { ChangeDetectionStrategy } from '@angular/core';
+import { LANGUAGES } from 'src/assets/json/languages';
 
 /** @title Virtual scroll with view recycling disabled. */
 
@@ -21,126 +22,18 @@ export class ArchiveComponent implements OnInit {
   filtroGenre: any = this.route.snapshot.paramMap.get('id');
   userLogFlag: any = localStorage.getItem('userLogFlag');
   message: string = '';
+
+  languageFilter: any = this.route.snapshot.paramMap.get('lang');
+  codeNameLanguages: any[] = LANGUAGES;
+
+  pathPoster: string = 'https://image.tmdb.org/t/p/original/';
+  arrayFiltroGenre: any = [];
+  arrayGenre: any = [];
+
   constructor(
     private filmsService: FilmsService,
     private route: ActivatedRoute
   ) {}
-
-  languageFilter: any = this.route.snapshot.paramMap.get('lang');
-  codeNameLanguages: any[] = [
-    {
-      code: 'en',
-      name: 'Inglese',
-      root: 'European',
-    },
-    {
-      code: 'sp',
-      name: 'Spagnolo',
-      root: 'European',
-    },
-    {
-      code: 'fr',
-      name: 'Francese',
-      root: 'European',
-    },
-    {
-      code: 'sv',
-      name: 'Svedese',
-      root: 'European',
-    },
-    {
-      code: 'nl',
-      name: 'Olandese',
-      root: 'European',
-    },
-    {
-      code: 'pt',
-      name: 'Portogese',
-      root: 'European',
-    },
-    {
-      code: 'it',
-      name: 'Italiano',
-      root: 'European',
-    },
-    {
-      code: 'pl',
-      name: 'Polacco',
-      root: 'European',
-    },
-    {
-      code: 'da',
-      name: 'Danese',
-      root: 'European',
-    },
-    {
-      code: 'no',
-      name: 'Norvegese',
-      root: 'European',
-    },
-    {
-      code: 'fi',
-      name: 'Finlandese',
-      root: 'European',
-    },
-    {
-      code: 'ru',
-      name: 'Russo',
-      root: 'European',
-    },
-    {
-      code: 'tr',
-      name: 'Turco',
-      root: 'Asian',
-    },
-    {
-      code: 'hi',
-      name: 'Hindi',
-      root: 'Asian',
-    },
-    {
-      code: 'te',
-      name: 'Telugu',
-      root: 'Asian',
-    },
-    {
-      code: 'ml',
-      name: 'Malayalam',
-      root: 'Asian',
-    },
-    {
-      code: 'ja',
-      name: 'Giapponese',
-      root: 'Asian',
-    },
-    {
-      code: 'ko',
-      name: 'Coreano',
-      root: 'Asian',
-    },
-    {
-      code: 'zh',
-      name: 'Cinese',
-      root: 'Asian',
-    },
-    {
-      code: 'cn',
-      name: 'Cinese',
-      root: 'Asian',
-    },
-    {
-      code: 'th',
-      name: 'Tailandese',
-      root: 'Asian',
-    },
-    {
-      code: 'id',
-      name: 'Indonesiano',
-      root: 'Asian',
-    },
-  ];
-
-  ///////
 
   addList(film: any, listName: string) {
     this.message = '';
@@ -159,31 +52,32 @@ export class ArchiveComponent implements OnInit {
     }
   }
 
-pathPoster:string= 'https://image.tmdb.org/t/p/original/'
-  arrayFiltroGenre: any = [];
-  arrayGenre: any = [];
-  reset(){
+  reset() {
     this.filmsService.getFilms().subscribe((films) => {
-      this.filtroGenre=0
-      this.filtroTitle=''
-      this.languageFilter='all'
-      this.arrayFiltroGenre=[]
+      this.filtroGenre = 0;
+      this.filtroTitle = '';
+      this.languageFilter = 'all';
+      this.arrayFiltroGenre = [];
       this.filmsResult = films;
     });
   }
   getFilmsFromService(): any {
     this.filmsService.getFilms().subscribe((films) => {
       this.arrayFilms = films;
-      this.filmsResult = this.arrayFilms.filter((obj:any)=>(obj.genre_ids.filter((element: any) => element == this.filtroGenre).length >0 || this.filtroGenre==0) &&
-       (obj.original_language==this.languageFilter || this.languageFilter == 'all')
-       &&
-       (obj.title.includes(this.filtroTitle) || this.filtroTitle == ''))
+      this.filmsResult = this.arrayFilms.filter(
+        (obj: any) =>
+          (obj.genre_ids.filter((element: any) => element == this.filtroGenre)
+            .length > 0 ||
+            this.filtroGenre == 0) &&
+          (obj.original_language == this.languageFilter ||
+            this.languageFilter == 'all') &&
+          (obj.title.includes(this.filtroTitle) || this.filtroTitle == '')
+      );
       for (let index = 0; index < this.arrayFiltroGenre.length; index++) {
         const ele = this.arrayFiltroGenre[index];
-        this.filteredForGenre(ele.id)
+        this.filteredForGenre(ele.id);
       }
     });
-   
   }
 
   getGenre(): any {
@@ -201,31 +95,37 @@ pathPoster:string= 'https://image.tmdb.org/t/p/original/'
     }
   }
 
-  addFilteredGenre(newChips:any){
-   newChips = this.arrayGenre.filter((obj:any)=>obj.id==newChips)[0]
-    this.addChips(newChips)
-    this.filteredForGenre(newChips.id)
+  addFilteredGenre(newChips: any) {
+    newChips = this.arrayGenre.filter((obj: any) => obj.id == newChips)[0];
+    this.addChips(newChips);
+    this.filteredForGenre(newChips.id);
   }
-  filteredForGenre(newChips:any){
-    this.filmsResult = this.filmsResult.filter((obj: any) =>
-    obj.genre_ids.filter((element: any) => element == newChips).length >0 ||
-    (this.filtroGenre == 0 ));
+  filteredForGenre(newChips: any) {
+    this.filmsResult = this.filmsResult.filter(
+      (obj: any) =>
+        obj.genre_ids.filter((element: any) => element == newChips).length >
+          0 || this.filtroGenre == 0
+    );
   }
-  addChips(newChips:any) {
-    this.arrayFiltroGenre.push(newChips); 
+  addChips(newChips: any) {
+    this.arrayFiltroGenre.push(newChips);
   }
-  deleteChips(newChips:any){
-    this.arrayFiltroGenre = this.arrayFiltroGenre.filter((obj:any)=>obj.id!=parseFloat(newChips))
-    if (this.arrayFiltroGenre.length>0) {  
-      this.getFilmsFromService()
-      console.log(this.arrayFiltroGenre.length)
-    }else{
-      this.reset()
+  deleteChips(newChips: any) {
+    this.arrayFiltroGenre = this.arrayFiltroGenre.filter(
+      (obj: any) => obj.id != parseFloat(newChips)
+    );
+    if (this.arrayFiltroGenre.length > 0) {
+      this.getFilmsFromService();
+      console.log(this.arrayFiltroGenre.length);
+    } else {
+      this.reset();
     }
   }
-  
+
   ngOnInit(): void {
     this.getFilmsFromService();
     this.getGenre();
+
+    this.getFilmsFromService();
   }
 }

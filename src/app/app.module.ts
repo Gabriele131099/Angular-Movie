@@ -40,13 +40,17 @@ import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 
-import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
-import { provideAuth,getAuth } from '@angular/fire/auth';
-import { provideFirestore,getFirestore } from '@angular/fire/firestore';
-import { provideFunctions,getFunctions } from '@angular/fire/functions';
-import { provideStorage,getStorage } from '@angular/fire/storage';
+import { provideAuth, getAuth } from '@angular/fire/auth';
+import { provideFirestore, getFirestore } from '@angular/fire/firestore';
+import { provideFunctions, getFunctions } from '@angular/fire/functions';
+import { provideStorage, getStorage } from '@angular/fire/storage';
 import { InsertUserdataComponent } from './Component/insert-userdata/insert-userdata.component';
+import { SingleFilmComponent } from './single-film/single-film.component';
+
+import { MOVIES } from 'src/assets/json/movies';
+import { LANGUAGES } from 'src/assets/json/languages';
 
 @NgModule({
   declarations: [
@@ -67,7 +71,8 @@ import { InsertUserdataComponent } from './Component/insert-userdata/insert-user
     ReviewCarousel,
     DialogExample,
     InfoUser,
-    InsertUserdataComponent
+    InsertUserdataComponent,
+    SingleFilmComponent,
   ],
   imports: [
     BrowserModule,
@@ -97,9 +102,12 @@ import { InsertUserdataComponent } from './Component/insert-userdata/insert-user
     AngularFirestoreModule, // firestore
     AngularFireAuthModule, // auth
     AngularFireStorageModule, // storage
-    ReactiveFormsModule, provideFirebaseApp(() => initializeApp(environment.firebase)), provideAuth(() => getAuth()), provideFirestore(() => getFirestore()), provideFunctions(() => getFunctions()), provideStorage(() => getStorage()),
-
-
+    ReactiveFormsModule,
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideAuth(() => getAuth()),
+    provideFirestore(() => getFirestore()),
+    provideFunctions(() => getFunctions()),
+    provideStorage(() => getStorage()),
   ],
   providers: [],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
