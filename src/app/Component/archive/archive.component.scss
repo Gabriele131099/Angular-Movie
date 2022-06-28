@@ -2,7 +2,8 @@
 ::-webkit-scrollbar {
   width: 10px;
 }
-.remove {
+.remove{
+
   background-color: #ddcdc9;
   width: 200px;
   border-radius: 20px;
@@ -24,6 +25,7 @@ h3 {
   background-size: cover;
   z-index: 1;
 }
+
 .listButton {
   position: fixed;
   bottom: 60px;
@@ -65,29 +67,152 @@ h3 {
     }
   }
 }
-.chip {
+.chip{
   background-color: #ddcdc9;
   color: black;
   margin: 20px 5px;
   padding: 5px 10px;
   border-radius: 20px;
-  button {
+  button{
+    
   }
 }
-
-////
-
-.example-viewport {
-  width: 100%;
-  height: 800px;
+mat-paginator {
+  position: fixed;
+  bottom: 0px;
+  width: 89vw;
 }
-.example-item {
-  max-width: 300px;
+
+.cardContainer {
+  display: flex;
+  overflow-x: scroll;
+  height: 500px;
 }
-.flexati {
+
+.cardContainer::-webkit-scrollbar {
+  height: 5px;
+}
+
+.cardContainer > div {
+  margin: 20px;
+}
+
+.card-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
   align-items: stretch;
   margin-bottom: 50px;
 }
+
+.card {
+  position: relative;
+  .listIcon {
+    display: none;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.568);
+    color: white;
+    text-align: center;
+    line-height: 250px;
+    #more {
+      background-color: #ddcdc9;
+      a {
+        color: black;
+        text-decoration: none;
+        font-size: 10px;
+      }
+    }
+  }
+}
+.card:hover .listIcon {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  position: absolute;
+  > button {
+    background-color: transparent;
+    color: white;
+    margin: 5px;
+    border: none;
+    position: relative;
+    h5 {
+      display: none;
+      padding: 5px;
+      padding-right: 10px;
+      border-radius: 50px 50px 0px 50px;
+      background-color: #1e1b26;
+    }
+    
+  }
+  button:hover h5#bottoneWishList {
+    display: block;
+    position: absolute;
+    left: -40px;
+  }
+  button:hover h5#bottonePreferiti {
+    display: block;
+    position: absolute;
+    right: -50px;
+    border-radius: 50px 50px 50px 0px;
+  }
+
+  #grade,
+  #favorite {
+    color: #ddcdc9;
+    font-size: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  #grade {
+    font-size: 45px;
+  }
+  button:active {
+    background-color: rgba(181, 172, 172, 0.628);
+  }
+}
+
+h3 {
+  margin: auto;
+}
+
+.card {
+  & {
+    img {
+      width: 100%;
+      height: 100%;
+    }
+    min-width: 200px;
+    max-width: 250px;
+    min-height: 280px;
+    margin: 20px;
+    transition: all 0.3s;
+    cursor: pointer;
+  }
+  &:hover {
+    transform: scale(1.1);
+  }
+}
+
+
+////
+
+
+.example-viewport { 
+   width: 100%;  
+   height: 800px; } 
+.example-item {  
+  max-width: 300px; 
+} 
+.flexati{  
+  display: flex;
+  flex-wrap:wrap;
+  justify-content: space-around;
+  align-items:stretch;
+  margin-bottom: 50px;
+ }
+
+

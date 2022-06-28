@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
 import { IUser } from '../../Interfaces/IUser';
 
 @Component({
@@ -21,13 +23,24 @@ export class UserPageComponent implements OnInit {
   arrayFavourites: any = this.favourite?.list;
 
   userCollection: any = this.angularFirestore.collection('users');
-  user$: any;
+  email: any;
+
+  user$: Observable<any | null> = this.auth.user;
 
   constructor(
     private route: ActivatedRoute,
-    private angularFirestore: AngularFirestore
-  ) {}
+    private angularFirestore: AngularFirestore,
+    public auth: AngularFireAuth
+  ) {
+    this.auth.onAuthStateChanged((user) => {
+      if (user) {
+        this.email = user.email;
+        //this.selectItems(user.uid);
+      }
+    });
+  }
 
+  // gestione Liste dell'utente:
   deleteWhishList(film: any) {
     this.arrayWishlist = this.arrayWishlist.filter(
       (obj: any) => obj.id != film?.id
@@ -66,6 +79,7 @@ export class UserPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.user$ = this.userCollection.valueChanges();
+
     // const id= this.route.snapshot.paramMap.get('id')
     // if (id==this.userId.toString()) {
     //   this.user  = this.arrayUsers.filter((obj:any)=>

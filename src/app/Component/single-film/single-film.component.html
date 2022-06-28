@@ -1,12 +1,12 @@
 <div class="card">
-  <img [src]="pathPoster + film.poster_path" alt="">
+  <img [src]="pathPoster + film?.poster_path" alt="">
   <div ngClass="listIcon">
     <button mat-mini-fab (click)="addList(film,'wishList')">
       <h5 id="bottoneWishList">WishList</h5>
       <mat-icon id="grade">grade</mat-icon>
     </button>
     <button id="more" mat-mini-fab>
-      <a href="film/{{film.id}}">More..</a>
+      <a href="film/{{film?.id}}">More..</a>
     </button>
     <button mat-mini-fab (click)="addList(film,'favourite')">
       <h5 id="bottonePreferiti">Preferiti</h5>
@@ -15,4 +15,4 @@
 
   </div>
 </div>
-<h3>{{film.original_title}}</h3>
+<h3>{{film?.original_title}}</h3>

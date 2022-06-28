@@ -11,7 +11,8 @@
     <li>
       <mat-form-field class="example-full-width" appearance="fill">
         <mat-label>Filtro per nome</mat-label>
-        <input matInput placeholder="filtro" (ngModelChange)="getFilmsFromService()" [(ngModel)]="filtroTitle">
+        <input matInput placeholder="filtro" [(ngModel)]="filtroTitle">
+        <button (click)="queryMoviesByInput()">Cerca</button>
       </mat-form-field>
     </li>
     <li>
@@ -23,7 +24,6 @@
           </mat-option>
         </mat-select>
       </mat-form-field>
-
     </li>
     <li>
       <mat-form-field appearance="fill">
@@ -47,35 +47,11 @@
   </div>
   <app-dialog *ngIf="message !=''" [message]="message"></app-dialog>
   <div class="card-container">
-    <cdk-virtual-scroll-viewport *ngIf="filmsResult.length>0" appendOnly itemSize="50" class="example-viewport">
+    <cdk-virtual-scroll-viewport *ngIf="filteredFilms$.length>0" appendOnly itemSize="50" class="example-viewport">
       <div class="flexati">
-
-        <div *cdkVirtualFor="let film of filmsResult" class="example-item">
+        <div *cdkVirtualFor="let film of filteredFilms$">
           <app-single-film [film]="film"></app-single-film>
-
         </div>
-
-        <!-- <div *cdkVirtualFor="let film of filmsResult" class="example-item">
-
-          <div class="card">
-            <img [src]="pathPoster + film.poster_path" alt="">
-            <div ngClass="listIcon">
-              <button mat-mini-fab (click)="addList(film,'wishList')">
-                <h5 id="bottoneWishList">WishList</h5>
-                <mat-icon id="grade">grade</mat-icon>
-              </button>
-              <button id="more" mat-mini-fab>
-                <a href="film/{{film.id}}">More..</a>
-              </button>
-              <button mat-mini-fab (click)="addList(film,'favourite')">
-                <h5 id="bottonePreferiti">Preferiti</h5>
-                <mat-icon id="favorite">favorite</mat-icon>
-              </button>
-
-            </div>
-          </div>
-          <h3>{{film.original_title}}</h3>
-        </div> -->
       </div>
     </cdk-virtual-scroll-viewport>
     <div *ngIf="filmsResult.length==0">

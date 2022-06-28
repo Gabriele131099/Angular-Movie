@@ -7,7 +7,8 @@
     <mat-menu #menu="matMenu">
       <button mat-menu-item routerLink="/login">Login</button>
       <button mat-menu-item routerLink="/signup">Sign Up</button>
-      <button mat-menu-item (click)="logOut()"><a href="/"></a>LogOut</button>
+      <button *ngIf="user$ | async" mat-menu-item (click)="logOut()"><a href="/"></a>LogOut</button>
+      <pre>{{user$| async | json}}</pre>
     </mat-menu>
   </div>
 

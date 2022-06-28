@@ -30,10 +30,21 @@ export class ArchiveComponent implements OnInit {
   arrayFiltroGenre: any = [];
   arrayGenre: any = [];
 
+  films$: any = this.filmsService.movieCollection.valueChanges();
+
+  filteredFilms$: any;
+
   constructor(
     private filmsService: FilmsService,
     private route: ActivatedRoute
   ) {}
+
+  queryMoviesByInput(): any {
+    this.filteredFilms$ = this.filmsService.queryMoviesByInput(
+      this.filtroTitle
+    );
+    console.log(this.filteredFilms$);
+  }
 
   addList(film: any, listName: string) {
     this.message = '';
@@ -61,6 +72,7 @@ export class ArchiveComponent implements OnInit {
       this.filmsResult = films;
     });
   }
+
   getFilmsFromService(): any {
     this.filmsService.getFilms().subscribe((films) => {
       this.arrayFilms = films;
@@ -123,9 +135,8 @@ export class ArchiveComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getFilmsFromService();
+    this.queryMoviesByInput();
+    // this.getFilmsFromService();
     this.getGenre();
-
-    this.getFilmsFromService();
   }
 }

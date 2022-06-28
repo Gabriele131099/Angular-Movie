@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FilmsService } from '../../services/films.service';
-import { library, icon } from '@fortawesome/fontawesome-svg-core'
+import { library, icon } from '@fortawesome/fontawesome-svg-core';
+import { IMovie } from 'src/app/Interfaces/IMovies';
 
-const camera = icon({ prefix: 'fas', iconName: 'camera' })
+const camera = icon({ prefix: 'fas', iconName: 'camera' });
 
 @Component({
   selector: 'app-jumbotron',
@@ -12,48 +13,51 @@ const camera = icon({ prefix: 'fas', iconName: 'camera' })
 export class JumbotronHomeComponent implements OnInit {
   arrayFilms: any;
   filmsResult: any;
-  posizione:number = 0
-  film:any
-  pathBackDrop:string =''
+  posizione: number = 0;
+  film: any;
+  pathBackDrop: string = '';
 
-  constructor(
-    private filmsService: FilmsService,
-  ) {}
+  // films$: any = this.filmsService.movieCollection.valueChanges();
+  //('items', ref => ref.where('size', '==', 'large'))
+  films$: any = this.filmsService.movieCollection.valueChanges();
+
+  constructor(private filmsService: FilmsService) {}
 
   getFilmsFromService(): any {
-    this.filmsService.getTrendingFilms().subscribe((films) => {
+    this.filmsService.getTrendingFilms().subscribe((films: any) => {
       this.arrayFilms = films;
-      this.filmsResult = this.arrayFilms.results
-      this.film = this.filmsResult[this.posizione]
-      this.pathBackDrop = 'https://image.tmdb.org/t/p/original/' + this.film.backdrop_path
+      this.filmsResult = this.arrayFilms.results;
+      this.film = this.filmsResult[this.posizione];
+      this.pathBackDrop =
+        'https://image.tmdb.org/t/p/original/' + this.film.backdrop_path;
     });
   }
 
-  slideShowRight(){
-    if (this.posizione >= this.filmsResult.length-1) {
-      this.posizione= 0
-    }else{
+  slideShowRight() {
+    if (this.posizione >= this.filmsResult.length - 1) {
+      this.posizione = 0;
+    } else {
       this.posizione++;
     }
-    this.film  = this.filmsResult[this.posizione]
-    this.pathBackDrop = 'https://image.tmdb.org/t/p/original/' + this.film.backdrop_path
+    this.film = this.filmsResult[this.posizione];
+    this.pathBackDrop =
+      'https://image.tmdb.org/t/p/original/' + this.film.backdrop_path;
   }
-  slideShowLeft(){
-    if (this.posizione<=0) {
-      this.posizione= this.filmsResult.length-1
-    }else{
+  slideShowLeft() {
+    if (this.posizione <= 0) {
+      this.posizione = this.filmsResult.length - 1;
+    } else {
       this.posizione--;
     }
-    this.film  = this.filmsResult[this.posizione]
-    this.pathBackDrop = 'https://image.tmdb.org/t/p/original/' + this.film.backdrop_path
- 
+    this.film = this.filmsResult[this.posizione];
+    this.pathBackDrop =
+      'https://image.tmdb.org/t/p/original/' + this.film.backdrop_path;
   }
 
   ngOnInit(): void {
     this.getFilmsFromService();
     setInterval(() => {
-      this.slideShowRight()
-    },7000);
-
+      this.slideShowRight();
+    }, 7000);
   }
 }

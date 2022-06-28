@@ -47,7 +47,7 @@ import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { provideFunctions, getFunctions } from '@angular/fire/functions';
 import { provideStorage, getStorage } from '@angular/fire/storage';
 import { InsertUserdataComponent } from './Component/insert-userdata/insert-userdata.component';
-import { SingleFilmComponent } from './single-film/single-film.component';
+import { SingleFilmComponent } from './Component/single-film/single-film.component';
 
 import { MOVIES } from 'src/assets/json/movies';
 import { LANGUAGES } from 'src/assets/json/languages';

@@ -4,7 +4,10 @@ import { Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
 import { MOVIES } from 'src/assets/json/movies';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
+import {
+  AngularFirestore,
+  AngularFirestoreCollection,
+} from '@angular/fire/compat/firestore';
 import { IMovie } from '../Interfaces/IMovies';
 
 @Injectable({ providedIn: 'root' })
@@ -12,7 +15,10 @@ export class FilmsService {
   numberPage: number = 1;
   arrayFilmsAll: any;
 
-  movieCollection: any = this.angularFirestore.collection('movies');
+  movieCollectionFilterByInput: any;
+
+  movieCollection: any = this.angularFirestore.collection<IMovie[]>('movies');
+
   fileRef: any;
 
   //prova1 con json in .ts
@@ -24,26 +30,30 @@ export class FilmsService {
   constructor(
     private http: HttpClient,
     private angularFirestore: AngularFirestore
-  ) {
-    //prova2
-    this.http.get('assets/json/data.json').subscribe((res) => {
-      this.moviesJ = res;
-      console.log('--- result :: ', this.moviesJ);
-    });
+  ) {}
+
+  queryMoviesByInput(input: string): AngularFirestoreCollection<IMovie[]> {
+    let filteredFilms: AngularFirestoreCollection<IMovie[]> =
+      (this.movieCollectionFilterByInput = this.angularFirestore.collection<
+        IMovie[]
+      >('movies', (ref) => ref.where('title', '!=', `${input}`)));
+    return filteredFilms;
   }
 
-  // getMoviesFomFile(): Observable<[]> {
-  //   return this.http.get('src/assets/json/movies.json')
-  //     .map((response: Response) => <[]>response.json())
-  //     .do((data) => console.log('All: ' + JSON.stringify(data)))
-  //     .catch(this.handleError);
-  // }
-
-  // getMoviesFomFile(): void {
-  //   this.movieCollection.add({ movie: this.moviesJ }).then((data: any) => {
-  //     console.log(data);
-  //   }); // metodo add delle collection gestisce anche loffline
-  // }
+  async postMoviesFromFile(): Promise<void> {
+    let film = await this.http.get<any>('assets/json/movies.json').toPromise();
+    console.log(film);
+    film.movies.forEach(async (filmSingolo: IMovie) => {
+      await this.movieCollection
+        .add(filmSingolo)
+        .then((data: any) => {
+          console.log(data);
+        })
+        .catch((error: any) => {
+          console.log('errore in Post', error);
+        }); // metodo add delle collection gestisce anche loffline
+    });
+  }
 
   getTrendingFilms(): Observable<[]> {
     // https://api.themoviedb.org/3/trending/movie/week?api_key=59609bb271fe57555250ffa18b2842c2

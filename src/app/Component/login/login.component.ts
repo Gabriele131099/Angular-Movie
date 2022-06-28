@@ -39,6 +39,7 @@ export class LoginComponent implements OnInit {
         .signInWithEmailAndPassword(this.email, this.password)
         .then((userCredential) => {
           this.currentUser = userCredential.user;
+
           // console.log(userCredential.user._delegate.uid);
           // localStorage.setItem('uidUser', `${userCredential.user._delegate.uid}`);
           // console.log(localStorage.getItem('uidUser'));
@@ -51,7 +52,6 @@ export class LoginComponent implements OnInit {
 
   async loginWithGoogle() {
     const provider = new GoogleAuthProvider(); //>> la trasformo in una promise
-
     await this.auth.setPersistence('local').then(() => {
       this.auth
         .signInWithPopup(provider) // tutte le funzioni successive non saranno eseguite finchè la funz non restituisce

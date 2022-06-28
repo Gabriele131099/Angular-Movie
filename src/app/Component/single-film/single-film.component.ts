@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { IMovie } from '../Interfaces/IMovies';
+import { IMovie } from '../../Interfaces/IMovies';
 
 @Component({
   selector: 'app-single-film',
@@ -11,7 +11,7 @@ export class SingleFilmComponent implements OnInit {
   message: string = '';
   userLogFlag: any;
   constructor() {}
-  @Input() film: any;
+  @Input() film: IMovie | undefined;
   addList(film: any, listName: string) {
     this.message = '';
     console.log(listName);

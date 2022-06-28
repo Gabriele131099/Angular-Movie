@@ -1,7 +1,6 @@
 <div class="jumbotron">
-  <img class="imageJumbo"  [src]="pathBackDrop"
-    [alt]="film.title"><br>
-    <h3 class="txt" ><a href="film/{{film.id}}">{{film.title}}</a></h3>
+  <img class="imageJumbo" [src]="pathBackDrop" [alt]="film?.title"><br>
+  <h3 class="txt"><a href="film/{{film?.id}}">{{film?.title}}</a></h3>
   <div id="arrow">
     <button (click)="slideShowLeft()">
       <img width="30px" src="../../../assets/chevron-left-solid.svg" alt="">
@@ -10,7 +9,11 @@
       <img width="30px" src="../../../assets/chevron-right-solid.svg" alt="">
     </button>
   </div>
-  
+
+  <div *ngFor="let film of films$ |async">
+    <pre>{{film | json}}</pre>
+  </div>
+
   <a id="go" href="#go">
     <img width="30px" src="../../../assets/chevron-down-solid.svg" alt="">
   </a>
