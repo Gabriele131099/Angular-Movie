@@ -5,10 +5,11 @@
       <mat-icon>person_outline</mat-icon>
     </button>
     <mat-menu #menu="matMenu">
-      <button mat-menu-item routerLink="/login">Login</button>
-      <button mat-menu-item routerLink="/signup">Sign Up</button>
+      <button *ngIf="!(user$ | async)" mat-menu-item routerLink="/login">Login</button>
+      <button *ngIf="!(user$ | async)" mat-menu-item routerLink="/signup">Sign Up</button>
+      <button *ngIf="(user$ | async)" mat-menu-item routerLink="/user">Your Page</button>
       <button *ngIf="user$ | async" mat-menu-item (click)="logOut()"><a href="/"></a>LogOut</button>
-      <pre>{{user$| async | json}}</pre>
+      <!-- <pre>{{user$| async | json}}</pre> -->
     </mat-menu>
   </div>
 

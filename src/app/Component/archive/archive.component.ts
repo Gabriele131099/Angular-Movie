@@ -45,7 +45,13 @@ export class ArchiveComponent implements OnInit {
   //   this.filmsService.postMoviesFomFile();
   // }
   queryMoviesByInput(): any {
-    this.films$ = this.filmsService.queryMoviesByInput(this.filtroTitle);
+    this.films$ = this.filmsService
+      .queryMoviesByInput(this.filtroTitle)
+      .valueChanges();
+    console.log(this.films$);
+    this.films$.forEach((obj: any) => {
+      console.log(obj);
+    });
   }
 
   addList(film: any, listName: string) {
@@ -136,7 +142,8 @@ export class ArchiveComponent implements OnInit {
 
   ngOnInit(): void {
     this.genre$ = this.filmsService.genreCollection.valueChanges();
-
-    console.log(this.genre$);
+    this.genre$.forEach((obj: any) => {
+      this.arrayGenre = obj;
+    });
   }
 }

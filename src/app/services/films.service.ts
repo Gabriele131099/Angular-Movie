@@ -36,7 +36,7 @@ export class FilmsService {
   queryMoviesByInput(input: string): any {
     let filteredFilms: any = (this.movieCollectionFilterByInput =
       this.angularFirestore.collection<IMovie[]>('movies', (ref) =>
-        ref.where('title', '==', 'Journey 2: The Mysterious Island')
+        ref.where('title', '==', `${input}`)
       ));
     console.log(input);
     return filteredFilms;

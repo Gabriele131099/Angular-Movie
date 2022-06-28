@@ -22,22 +22,23 @@ export class UserPageComponent implements OnInit {
   favourite: any = JSON.parse(localStorage.getItem('favourite') || '');
   arrayFavourites: any = this.favourite?.list;
 
-  userCollection: any = this.angularFirestore.collection('users');
+  // userCollection: any = this.angularFirestore.collection('users');
   email: any;
 
-  user$: Observable<any | null> = this.auth.user;
+  // user$: Observable<IUser | null> = this.auth.user;
+  user$: any = this.auth.user;
 
   constructor(
     private route: ActivatedRoute,
     private angularFirestore: AngularFirestore,
-    public auth: AngularFireAuth
+    private auth: AngularFireAuth
   ) {
-    this.auth.onAuthStateChanged((user) => {
-      if (user) {
-        this.email = user.email;
-        //this.selectItems(user.uid);
-      }
-    });
+    // this.auth.onAuthStateChanged((user) => {
+    //   if (user) {
+    //     this.email = user.email;
+    //     //this.selectItems(user.uid);
+    //   }
+    // });
   }
 
   // gestione Liste dell'utente:
@@ -78,8 +79,7 @@ export class UserPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.user$ = this.userCollection.valueChanges();
-
+    // this.user$ = this.userCollection.valueChanges();
     // const id= this.route.snapshot.paramMap.get('id')
     // if (id==this.userId.toString()) {
     //   this.user  = this.arrayUsers.filter((obj:any)=>
