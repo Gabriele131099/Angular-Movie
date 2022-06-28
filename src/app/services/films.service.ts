@@ -19,11 +19,12 @@ export class FilmsService {
 
   movieCollection: any = this.angularFirestore.collection<IMovie[]>('movies');
 
+  genreCollection: any = this.angularFirestore.collection<IMovie[]>('genres');
+
   fileRef: any;
 
   //prova1 con json in .ts
   movies: any[] = MOVIES;
-
   //prova2 con json in .json
   moviesJ: any;
 
@@ -32,15 +33,16 @@ export class FilmsService {
     private angularFirestore: AngularFirestore
   ) {}
 
-  queryMoviesByInput(input: string): AngularFirestoreCollection<IMovie[]> {
-    let filteredFilms: AngularFirestoreCollection<IMovie[]> =
-      (this.movieCollectionFilterByInput = this.angularFirestore.collection<
-        IMovie[]
-      >('movies', (ref) => ref.where('title', '!=', `${input}`)));
+  queryMoviesByInput(input: string): any {
+    let filteredFilms: any = (this.movieCollectionFilterByInput =
+      this.angularFirestore.collection<IMovie[]>('movies', (ref) =>
+        ref.where('title', '==', 'Journey 2: The Mysterious Island')
+      ));
+    console.log(input);
     return filteredFilms;
   }
 
-  async postMoviesFromFile(): Promise<void> {
+  async postMoviesFomFile(): Promise<void> {
     let film = await this.http.get<any>('assets/json/movies.json').toPromise();
     console.log(film);
     film.movies.forEach(async (filmSingolo: IMovie) => {
@@ -52,6 +54,21 @@ export class FilmsService {
         .catch((error: any) => {
           console.log('errore in Post', error);
         }); // metodo add delle collection gestisce anche loffline
+    });
+  }
+
+  async postGenresFomFile(): Promise<void> {
+    let genre = await this.http.get<any>('assets/json/genres.json').toPromise();
+    console.log(genre);
+    genre.genres.forEach(async (genreSingolo: any) => {
+      await this.genreCollection
+        .add(genreSingolo)
+        .then((data: any) => {
+          console.log(data);
+        })
+        .catch((error: any) => {
+          console.log('errore in Post', error);
+        });
     });
   }
 

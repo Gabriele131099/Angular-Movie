@@ -14,10 +14,10 @@ import { LANGUAGES } from 'src/assets/json/languages';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ArchiveComponent implements OnInit {
-  arrayFilms: any;
-  filmsResult: any = Array.from({ length: 1439 }).map((obj: any) => {
-    obj;
-  });
+  // arrayFilms: any;
+  // filmsResult: any = Array.from({ length: 1439 }).map((obj: any) => {
+  //   obj;
+  // });
   filtroTitle: string = '';
   filtroGenre: any = this.route.snapshot.paramMap.get('id');
   userLogFlag: any = localStorage.getItem('userLogFlag');
@@ -31,19 +31,21 @@ export class ArchiveComponent implements OnInit {
   arrayGenre: any = [];
 
   films$: any = this.filmsService.movieCollection.valueChanges();
-
+  genre$: any = this.filmsService.genreCollection.valueChanges();
   filteredFilms$: any;
 
   constructor(
     private filmsService: FilmsService,
     private route: ActivatedRoute
   ) {}
-
+  // postGenresFomFile(): any {
+  //   this.filmsService.postGenresFomFile();
+  // }
+  // postMoviesFomFile(): any {
+  //   this.filmsService.postMoviesFomFile();
+  // }
   queryMoviesByInput(): any {
-    this.filteredFilms$ = this.filmsService.queryMoviesByInput(
-      this.filtroTitle
-    );
-    console.log(this.filteredFilms$);
+    this.films$ = this.filmsService.queryMoviesByInput(this.filtroTitle);
   }
 
   addList(film: any, listName: string) {
@@ -64,39 +66,37 @@ export class ArchiveComponent implements OnInit {
   }
 
   reset() {
-    this.filmsService.getFilms().subscribe((films) => {
-      this.filtroGenre = 0;
-      this.filtroTitle = '';
-      this.languageFilter = 'all';
-      this.arrayFiltroGenre = [];
-      this.filmsResult = films;
-    });
+    this.filtroGenre = 0;
+    this.filtroTitle = '';
+    this.languageFilter = 'all';
+    this.arrayFiltroGenre = [];
+    this.films$ = this.filmsService.movieCollection.valueChanges();
   }
 
-  getFilmsFromService(): any {
-    this.filmsService.getFilms().subscribe((films) => {
-      this.arrayFilms = films;
-      this.filmsResult = this.arrayFilms.filter(
-        (obj: any) =>
-          (obj.genre_ids.filter((element: any) => element == this.filtroGenre)
-            .length > 0 ||
-            this.filtroGenre == 0) &&
-          (obj.original_language == this.languageFilter ||
-            this.languageFilter == 'all') &&
-          (obj.title.includes(this.filtroTitle) || this.filtroTitle == '')
-      );
-      for (let index = 0; index < this.arrayFiltroGenre.length; index++) {
-        const ele = this.arrayFiltroGenre[index];
-        this.filteredForGenre(ele.id);
-      }
-    });
-  }
+  // getFilmsFromService(): any {
+  //   this.filmsService.getFilms().subscribe((films) => {
+  //     this.arrayFilms = films;
+  //     this.filmsResult = this.arrayFilms.filter(
+  //       (obj: any) =>
+  //         (obj.genre_ids.filter((element: any) => element == this.filtroGenre)
+  //           .length > 0 ||
+  //           this.filtroGenre == 0) &&
+  //         (obj.original_language == this.languageFilter ||
+  //           this.languageFilter == 'all') &&
+  //         (obj.title.includes(this.filtroTitle) || this.filtroTitle == '')
+  //     );
+  //     for (let index = 0; index < this.arrayFiltroGenre.length; index++) {
+  //       const ele = this.arrayFiltroGenre[index];
+  //       this.filteredForGenre(ele.id);
+  //     }
+  //   });
+  // }
 
-  getGenre(): any {
-    this.filmsService.getGenre().subscribe((genre) => {
-      this.arrayGenre = genre;
-    });
-  }
+  // getGenre(): any {
+  //   this.filmsService.getGenre().subscribe((genre) => {
+  //     this.arrayGenre = genre;
+  //   });
+  // }
 
   flag: boolean = false;
   openList() {
@@ -110,15 +110,15 @@ export class ArchiveComponent implements OnInit {
   addFilteredGenre(newChips: any) {
     newChips = this.arrayGenre.filter((obj: any) => obj.id == newChips)[0];
     this.addChips(newChips);
-    this.filteredForGenre(newChips.id);
+    // this.filteredForGenre(newChips.id);
   }
-  filteredForGenre(newChips: any) {
-    this.filmsResult = this.filmsResult.filter(
-      (obj: any) =>
-        obj.genre_ids.filter((element: any) => element == newChips).length >
-          0 || this.filtroGenre == 0
-    );
-  }
+  // filteredForGenre(newChips: any) {
+  //   this.films$ = this.films$.filter(
+  //     (obj: any) =>
+  //       obj.genre_ids.filter((element: any) => element == newChips).length >
+  //         0 || this.filtroGenre == 0
+  //   );
+  // }
   addChips(newChips: any) {
     this.arrayFiltroGenre.push(newChips);
   }
@@ -127,7 +127,7 @@ export class ArchiveComponent implements OnInit {
       (obj: any) => obj.id != parseFloat(newChips)
     );
     if (this.arrayFiltroGenre.length > 0) {
-      this.getFilmsFromService();
+      this.films$ = this.filmsService.movieCollection.valueChanges();
       console.log(this.arrayFiltroGenre.length);
     } else {
       this.reset();
@@ -135,8 +135,8 @@ export class ArchiveComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.queryMoviesByInput();
-    // this.getFilmsFromService();
-    this.getGenre();
+    this.genre$ = this.filmsService.genreCollection.valueChanges();
+
+    console.log(this.genre$);
   }
 }

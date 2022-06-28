@@ -12,7 +12,7 @@ const camera = icon({ prefix: 'fas', iconName: 'camera' });
 })
 export class JumbotronHomeComponent implements OnInit {
   arrayFilms: any;
-  filmsResult: any;
+  filmsResult: any = [];
   posizione: number = 0;
   film: any;
   pathBackDrop: string = '';
@@ -22,16 +22,25 @@ export class JumbotronHomeComponent implements OnInit {
   films$: any = this.filmsService.movieCollection.valueChanges();
 
   constructor(private filmsService: FilmsService) {}
-
-  getFilmsFromService(): any {
-    this.filmsService.getTrendingFilms().subscribe((films: any) => {
-      this.arrayFilms = films;
-      this.filmsResult = this.arrayFilms.results;
-      this.film = this.filmsResult[this.posizione];
-      this.pathBackDrop =
-        'https://image.tmdb.org/t/p/original/' + this.film.backdrop_path;
+  getFilmsFromFireBase(): any {
+    this.films$.forEach((obj: any) => {
+      obj.forEach((ele: any) => {
+        this.filmsResult.push(ele);
+        this.film = this.filmsResult[this.posizione];
+        this.pathBackDrop =
+          'https://image.tmdb.org/t/p/original/' + this.film.backdrop_path;
+      });
     });
   }
+  // getFilmsFromService(): any {
+  //   this.filmsService.getTrendingFilms().subscribe((films: any) => {
+  //     this.arrayFilms = films;
+  //     this.filmsResult = this.arrayFilms.results;
+  //     this.film = this.filmsResult[this.posizione];
+  //     this.pathBackDrop =
+  //       'https://image.tmdb.org/t/p/original/' + this.film.backdrop_path;
+  //   });
+  // }
 
   slideShowRight() {
     if (this.posizione >= this.filmsResult.length - 1) {
@@ -55,9 +64,10 @@ export class JumbotronHomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getFilmsFromService();
+    this.getFilmsFromFireBase();
     setInterval(() => {
       this.slideShowRight();
     }, 7000);
+    console.log(this.films$);
   }
 }
