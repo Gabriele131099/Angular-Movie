@@ -14,10 +14,6 @@ import { LANGUAGES } from 'src/assets/json/languages';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ArchiveComponent implements OnInit {
-  // arrayFilms: any;
-  // filmsResult: any = Array.from({ length: 1439 }).map((obj: any) => {
-  //   obj;
-  // });
   filtroTitle: string = '';
   filtroGenre: any = this.route.snapshot.paramMap.get('id');
   userLogFlag: any = localStorage.getItem('userLogFlag');
@@ -31,8 +27,7 @@ export class ArchiveComponent implements OnInit {
   arrayGenre: any = [];
 
   films$: any = this.filmsService.movieCollection.valueChanges();
-  genre$: any = this.filmsService.genreCollection.valueChanges();
-  filteredFilms$: any;
+  genres$: any = this.filmsService.genreCollection.valueChanges();
 
   constructor(
     private filmsService: FilmsService,
@@ -79,31 +74,6 @@ export class ArchiveComponent implements OnInit {
     this.films$ = this.filmsService.movieCollection.valueChanges();
   }
 
-  // getFilmsFromService(): any {
-  //   this.filmsService.getFilms().subscribe((films) => {
-  //     this.arrayFilms = films;
-  //     this.filmsResult = this.arrayFilms.filter(
-  //       (obj: any) =>
-  //         (obj.genre_ids.filter((element: any) => element == this.filtroGenre)
-  //           .length > 0 ||
-  //           this.filtroGenre == 0) &&
-  //         (obj.original_language == this.languageFilter ||
-  //           this.languageFilter == 'all') &&
-  //         (obj.title.includes(this.filtroTitle) || this.filtroTitle == '')
-  //     );
-  //     for (let index = 0; index < this.arrayFiltroGenre.length; index++) {
-  //       const ele = this.arrayFiltroGenre[index];
-  //       this.filteredForGenre(ele.id);
-  //     }
-  //   });
-  // }
-
-  // getGenre(): any {
-  //   this.filmsService.getGenre().subscribe((genre) => {
-  //     this.arrayGenre = genre;
-  //   });
-  // }
-
   flag: boolean = false;
   openList() {
     if (this.flag) {
@@ -116,15 +86,8 @@ export class ArchiveComponent implements OnInit {
   addFilteredGenre(newChips: any) {
     newChips = this.arrayGenre.filter((obj: any) => obj.id == newChips)[0];
     this.addChips(newChips);
-    // this.filteredForGenre(newChips.id);
   }
-  // filteredForGenre(newChips: any) {
-  //   this.films$ = this.films$.filter(
-  //     (obj: any) =>
-  //       obj.genre_ids.filter((element: any) => element == newChips).length >
-  //         0 || this.filtroGenre == 0
-  //   );
-  // }
+
   addChips(newChips: any) {
     this.arrayFiltroGenre.push(newChips);
   }
@@ -141,8 +104,8 @@ export class ArchiveComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.genre$ = this.filmsService.genreCollection.valueChanges();
-    this.genre$.forEach((obj: any) => {
+    this.genres$ = this.filmsService.genreCollection.valueChanges();
+    this.genres$.forEach((obj: any) => {
       this.arrayGenre = obj;
     });
   }

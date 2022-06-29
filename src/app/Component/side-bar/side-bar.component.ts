@@ -26,6 +26,9 @@ export class SideBarComponent implements OnInit {
 
   codeNameLanguages: any[] = LANGUAGES;
 
+  films$: any = this.filmsService.movieCollection.valueChanges();
+  genres$: any = this.filmsService.genreCollection.valueChanges();
+
   constructor(
     private filmsService: FilmsService,
     private route: Router,

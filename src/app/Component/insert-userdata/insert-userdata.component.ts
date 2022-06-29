@@ -17,7 +17,7 @@ export class InsertUserdataComponent implements OnInit {
   form: FormGroup = new FormGroup({
     username: new FormControl(''),
     date: new FormControl(''),
-    genre: new FormControl(''),
+    gender: new FormControl(''),
     img: new FormControl(''),
   });
 

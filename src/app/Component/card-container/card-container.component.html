@@ -1,7 +1,7 @@
-<span class="titleGenre">{{nameGenre}}</span>
+<span class="titleGenre">{{genres$.name | async}}</span>
 <section ngClass="cardContainer">
   <a href="#"></a>
-  <div *ngFor="let film of filmsResult "  id="{{film.id}}" class="card-container">
+  <div *ngFor="let film of films$ " id="{{film.id}}" class="card-container">
     <a href="film/{{film.id}}">
       <img src="https://image.tmdb.org/t/p/original/{{film.poster_path}}" alt="">
       <h4>{{film.original_title}}</h4>
