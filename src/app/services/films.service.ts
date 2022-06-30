@@ -33,12 +33,34 @@ export class FilmsService {
     private angularFirestore: AngularFirestore
   ) {}
 
-  queryMoviesByInput(input: string): any {
+  queryMoviesByInput(
+    filterTitle: string,
+    filterLang: string,
+    filterGenre: []
+  ): any {
+    let allFilterGenre: string = '';
+    filterGenre.forEach((obj: any, index: number) => {
+      if (filterGenre.length > 1 && index != filterGenre.length - 1) {
+        allFilterGenre += `${obj.id},`;
+      } else {
+        allFilterGenre += `${obj.id}`;
+      }
+    });
+    if (filterLang == 'all') {
+      filterLang = 'en';
+    }
+    console.log(allFilterGenre);
     let filteredFilms: any = (this.movieCollectionFilterByInput =
-      this.angularFirestore.collection<IMovie[]>('movies', (ref) =>
-        ref.where('title', '==', `${input}`)
+      this.angularFirestore.collection<IMovie[]>(
+        'movies',
+        (ref) =>
+          ref //concatena le query
+            .where('title', '==', `${filterTitle}`) //filtro Titolo
+            .where('original_language', '==', `${filterLang}`) //filtro Lingua
+            .where('genre_ids', 'array-contains', `${allFilterGenre}`) //filtro Generi
       ));
-    console.log(input);
+    console.log(filterTitle);
+    console.log(filterLang);
     return filteredFilms;
   }
 

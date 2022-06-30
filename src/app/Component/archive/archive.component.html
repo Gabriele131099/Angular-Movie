@@ -16,7 +16,6 @@
         <mat-label>Filtro per nome</mat-label>
         <input matInput placeholder="filtro" [(ngModel)]="filtroTitle">
       </mat-form-field>
-      <button (click)="queryMoviesByInput()">Cerca</button>
     </li>
 
     <li>
@@ -42,9 +41,12 @@
     </li>
 
     <li>
+      <button mat-mini-fab class="remove" (click)="queryMoviesByInput()">
+        <mat-icon>search</mat-icon>cerca
+      </button>
       <button mat-mini-fab class="remove" (click)="reset()">
         <mat-icon>delete</mat-icon>Filter
-      </button>
+      </button><br>
     </li>
 
   </ul>
