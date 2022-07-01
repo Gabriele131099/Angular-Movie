@@ -45,15 +45,17 @@ export class CardComponent implements OnInit {
 
     this.film.forEach((objfilm: any) => {
       this.film = objfilm[0];
+      this.pathBackdrop += this.film?.backdrop_path;
+      this.pathPoster += this.film?.poster_path;
 
       this.genres$.forEach((objGenre: any) => {
         this.arrayGenre = objGenre;
 
-        this.film.genre_ids.forEach((eleGenre: any) => {
+        this.film?.genre_ids.forEach((eleGenre: any) => {
           console.log(this.arrayGenre);
 
           this.arrayGenre.forEach((eleGenreName: any) => {
-            if (eleGenre == eleGenreName.id) {
+            if (eleGenre == eleGenreName?.id) {
               this.arrayGenreNames.push(eleGenreName.name);
             }
           });
