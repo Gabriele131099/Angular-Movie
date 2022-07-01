@@ -12,7 +12,7 @@ const camera = icon({ prefix: 'fas', iconName: 'camera' });
 })
 export class CardContainerComponent implements OnInit {
   // arrayFilms: any;
-  // filmsResult: any;
+  filmsResult: any;
   arrayGenre: any;
   // filtroGenre: any;
   // nameGenre: any;
@@ -38,11 +38,14 @@ export class CardContainerComponent implements OnInit {
   ngOnInit(): void {
     // this.getGenre();
     // this.getFilmsFromService();
-    this.genres$ = this.filmsService.genreCollection.valueChanges();
     this.genres$.forEach((obj: any) => {
       this.arrayGenre = obj;
+      console.log(this.arrayGenre);
     });
-    console.log(this.genres$);
-    console.log(this.arrayGenre);
+
+    this.films$.forEach((obj: any) => {
+      this.filmsResult = obj;
+      console.log(this.filmsResult);
+    });
   }
 }

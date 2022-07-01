@@ -48,18 +48,17 @@ export class ArchiveComponent implements OnInit {
       )
       .valueChanges();
     console.log(this.films$);
+    this.films$.forEach((obj: any) => {
+      console.log(obj);
+    });
   }
 
   addList(film: any, listName: string) {
     this.message = '';
-
     console.log(listName);
-
     let array: any = JSON.parse(localStorage.getItem(`${listName}`) || '');
     console.log(array);
-
     let tmp = array.list.filter((obj: any) => obj.id == film.id);
-
     if (tmp.length > 0) {
       this.message = 'il film esiste già nella lista ' + listName;
     } else if (this.userLogFlag == 'true') {
@@ -110,10 +109,8 @@ export class ArchiveComponent implements OnInit {
 
   ngOnInit(): void {
     this.genres$ = this.filmsService.genreCollection.valueChanges();
-
     this.genres$.forEach((obj: any) => {
       this.arrayGenre = obj;
-      console.log(this.arrayGenre);
     });
   }
 }

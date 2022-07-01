@@ -32,7 +32,14 @@ export class FilmsService {
     private http: HttpClient,
     private angularFirestore: AngularFirestore
   ) {}
-
+  queryMovieById(id: number) {
+    let film: any = (this.movieCollectionFilterByInput =
+      this.angularFirestore.collection<IMovie[]>(
+        'movies',
+        (ref) => ref.where('id', '==', id) //filtro Titolo
+      ));
+    return film;
+  }
   queryMoviesByInput(
     filterTitle: string,
     filterLang: string,

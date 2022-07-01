@@ -1,0 +1,37 @@
+<form class="example-form" [formGroup]="form">
+  <mat-card-content style="display: flex;flex-direction:column;background-color:beige;max-width: 800px;margin: auto;">
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Username</mat-label>
+      <input type="text" matInput formControlName="username" required placeholder="Username">
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Choose a date</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="date">
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle matSuffix [for]="picker">
+        <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+      </mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Sesso</mat-label>
+      <mat-select formControlName="genre">
+        <mat-option value="Female">Donna</mat-option>
+        <mat-option value="Male">Uomo</mat-option>
+        <mat-option value="Other">Altro...</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <div>
+      <label for="">image:</label>
+      <input type="file" formControlName="img" (change)="inserisciImg($event)" accept=".jpg , .png , .jfif , .jpeg"
+        mat-stroked-button color="accent">
+    </div>
+
+    <button mat-stroked-button color="accent" class="btn-block" style="color: black;" (click)="inserisci()"
+      [routerLink]="['/user']" type="submit">Salva</button>
+  </mat-card-content>
+
+
+</form>

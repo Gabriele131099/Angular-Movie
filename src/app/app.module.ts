@@ -52,6 +52,8 @@ import { SingleFilmComponent } from './Component/single-film/single-film.compone
 import { MOVIES } from 'src/assets/json/movies';
 import { LANGUAGES } from 'src/assets/json/languages';
 
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+
 @NgModule({
   declarations: [
     AppComponent,

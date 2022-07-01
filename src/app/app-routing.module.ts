@@ -26,12 +26,16 @@ const routes: Routes = [
   { path: 'film/:id', component: CardComponent },
   { path: 'login', component: LoginComponent, ...canActivate(loggedGuard) },
   { path: 'signup', component: SignupComponent, ...canActivate(loggedGuard) },
-  { path: 'user', component: UserPageComponent },
+  {
+    path: 'user',
+    component: UserPageComponent,
+    ...canActivate(redirectUnauthorizedToLogin),
+  },
   { path: 'user/:id/infoUser', component: InfoUser },
   {
     path: 'insert',
     component: InsertUserdataComponent,
-    // ...canActivate(redirectUnauthorizedToLogin),
+    ...canActivate(redirectUnauthorizedToLogin),
   },
 ];
 

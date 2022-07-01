@@ -6,18 +6,18 @@
           <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp"
             alt="Generic placeholder image">
         </div>
-        <div *ngIf="user$ | async">
+        <div *ngIf="userAuth$ | async">
           <h3>
-            <span>Username:</span> {{user$.uid}}
+            <div>Username:</div> {{username}}
           </h3>
           <h3>
-            <span>E-mail:</span> {{user$.email | async}}
+            <span>E-mail:</span> {{email}}
           </h3>
           <h3>
-            <span>Nascita:</span> {{user$.date}}
+            <span>Nascita:</span> {{birthDay}}
           </h3>
           <h3>
-            <span>Sesso:</span> {{user$.gender}}
+            <span>Sesso:</span> {{gender}}
           </h3>
         </div>
       </div>

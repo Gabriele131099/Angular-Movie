@@ -38,8 +38,8 @@ export class SignupComponent implements OnInit {
   currentUser: any;
 
   matcher: any;
-  signUpMessage: string = '';
-
+  errMessage: string = '';
+  okMessage: string = '';
   ////////////////////////////
   userCollection: any = this.angularFirestore.collection('users');
 
@@ -117,62 +117,17 @@ export class SignupComponent implements OnInit {
                 gender: this.form.value.gender,
                 image: link,
               });
-              this.router.navigate(['./login']);
+              this.okMessage = 'Sign-up effettuata';
+              this.router.navigate(['./home']);
             })
             ///?///
             .catch((err) => {
-              this.signUpMessage = err;
+              this.errMessage = err;
             });
           ///?///
         });
     });
   }
-
-  /////////////////////////////////////////////
-  // inserisci(): void {
-  //   const task = this.angularStorage.upload(this.filePath, this.file);
-  //   task.then((data: any) => {
-  //     //caricato il file, richiedo il downloadurl(observable) >topromise, finita la chiamata efffettua l'inserim
-  //     this.fileRef
-  //       .getDownloadURL()
-  //       .toPromise()
-  //       .then((link: any) => {
-  //         this.userCollection
-  //           .add({
-  //             username: this.form.value.username,
-  //             date: this.form.value.date,
-  //             gender: this.form.value.gender,
-  //             image: link,
-  //           })
-  //           .then((data: any) => {
-  //             console.log(data);
-  //           });
-  //       });
-  //   });
-  //   console.log(this.form.value);
-  // }
-
-  // async signUpWithPassword() {
-  //   //>> la trasformo in una promise
-
-  //   await this.auth
-  //     .createUserWithEmailAndPassword(this.email, this.password) // tutte le funzioni successive non saranno eseguite finchè la funz non restituisce
-  //     .then((data) => {
-  //       this.auth.setPersistence('local').then(() => {
-  //         this.auth
-  //           .signInWithEmailAndPassword(this.email, this.password)
-  //           .then((userCredential) => {
-  //             this.currentUser = userCredential.user;
-  //           })
-  //           .catch((err) => {});
-  //       });
-  //     })
-  //     .catch((err) => {
-  //       this.signUpMessage = err;
-  //     }); // ritorna una promise!! >> ci accedo con then
-  //   this.inserisci();
-  //   // }
-  // }
 
   async signUpWithGoogle() {
     const provider = new GoogleAuthProvider();
@@ -182,10 +137,11 @@ export class SignupComponent implements OnInit {
         .signInWithPopup(provider)
         .then((userCredential) => {
           this.currentUser = userCredential.user;
-          this.signUpMessage = '';
+          this.errMessage = '';
+          this.router.navigate(['/insert']);
         })
         .catch((err) => {
-          this.signUpMessage = err;
+          this.errMessage = err;
         });
     });
   }

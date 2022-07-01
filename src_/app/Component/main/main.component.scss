@@ -1,0 +1,17 @@
+$sfondo: #5D2A42    ;
+// linear-gradient(to bottom, #6e529d 0%,#d97b93 100%);
+
+*{
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+main{
+    width: 90vw;
+    height: 90vh;
+    background-color: #5D2A42;
+    text-align: center;
+}
+main::-webkit-scrollbar{
+    width: 5px;
+}

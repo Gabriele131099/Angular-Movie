@@ -1,0 +1,36 @@
+<div class="card">
+  <div class="">
+    <div>
+      <div class="userInfo-block">
+        <div class="userImage">
+          <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp"
+            alt="Generic placeholder image">
+        </div>
+        <div *ngIf="user$ | async">
+          <h3>
+            <span>Username:</span> {{user$.uid}}
+          </h3>
+          <h3>
+            <span>E-mail:</span> {{user$.email | async}}
+          </h3>
+          <h3>
+            <span>Nascita:</span> {{user$.date}}
+          </h3>
+          <h3>
+            <span>Sesso:</span> {{user$.gender}}
+          </h3>
+        </div>
+      </div>
+
+      <!-- <pre>{{user$| async | json}}</pre> -->
+
+      <div>
+        <app-favourite></app-favourite>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <div *ngIf="userLogFlag=='false'">
+  <h1>devi Loggarti <a href="login">Accedi</a></h1>
+</div> -->

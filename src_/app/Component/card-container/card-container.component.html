@@ -1,0 +1,9 @@
+<span class="titleGenre">{{arrayGenre.name}}</span>
+<section ngClass="cardContainer">
+  <div *ngFor="let film of filmsResult " id="{{film.id}}" class="card-container">
+    <a href="film/{{film.id}}">
+      <img src="https://image.tmdb.org/t/p/original/{{film.poster_path}}" alt="">
+      <h4>{{film.original_title}}</h4>
+    </a>
+  </div>
+</section>

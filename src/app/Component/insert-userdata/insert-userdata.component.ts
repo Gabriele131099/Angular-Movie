@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-insert-userdata',
@@ -11,8 +12,11 @@ import { FormControl, FormGroup } from '@angular/forms';
 export class InsertUserdataComponent implements OnInit {
   constructor(
     private angularFirestore: AngularFirestore,
-    private angularStorage: AngularFireStorage
-  ) {}
+    private angularStorage: AngularFireStorage,
+    private router: Router
+  ) {
+    this.router = router;
+  }
 
   form: FormGroup = new FormGroup({
     username: new FormControl(''),
@@ -21,6 +25,12 @@ export class InsertUserdataComponent implements OnInit {
     img: new FormControl(''),
   });
 
+  // username: any = this.form.value.username;
+  // birthDay: any = this.form.value.date;
+  // gender: any = this.form.value.gender;
+
+  errMessage: string = '';
+  okMessage: string = '';
   film$: any; //dollaro: observer > dati presenti solo se chiamati
 
   userCollection: any = this.angularFirestore.collection('users');
@@ -28,6 +38,7 @@ export class InsertUserdataComponent implements OnInit {
   fileRef: any;
   file: any;
   n: any = Date.now();
+
   filePath = `userCover/${this.n}`;
 
   inserisci(): void {
@@ -40,17 +51,31 @@ export class InsertUserdataComponent implements OnInit {
         .then((link: any) => {
           this.userCollection
             .add({
+              // metodo add delle collection gestisce anche l'upload offline
               username: this.form.value.username,
               date: this.form.value.date,
-              genre: this.form.value.genre,
+              genre: this.form.value.gender,
               image: link,
             })
             .then((data: any) => {
-              console.log(data);
-            }); // metodo add delle collection gestisce anche loffline
+              if (
+                this.fileRef &&
+                this.form.value.username &&
+                this.form.value.date &&
+                this.form.value.gender
+              ) {
+                //ci mette 3 secondi??
+                this.okMessage = 'Inserimento dati avvenuto correttamente';
+                this.router.navigate(['./user']);
+              } else {
+                console.log(this.form.value.username, 'data');
+                this.errMessage =
+                  'Dati mancanti! Tutti i campi sono obbligatori';
+              }
+            });
         });
     });
-    console.log(this.form.value);
+    // console.log(this.form.value, 'form.value');
   }
 
   async inserisciImg(event: any) {
