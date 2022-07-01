@@ -11,7 +11,7 @@ import { Location } from '@angular/common';
 export class CardComponent implements OnInit {
   film: any;
   idFilm: any = parseInt(this.route.snapshot.paramMap.get('id') || '');
-  arrayGenre: any;
+  genres$: any = this.FilmsService.genreCollection.valueChanges();
   userLogFlag: any = localStorage.getItem('userLogFlag');
   pathBackdrop: string = 'https://image.tmdb.org/t/p/original/';
   pathPoster: string = 'https://image.tmdb.org/t/p/original/';
@@ -28,8 +28,6 @@ export class CardComponent implements OnInit {
     },
   ];
   flag: boolean = false;
-  arrayFilms: any;
-  filmsResult: any;
 
   open() {
     if (this.flag == true) {
@@ -41,12 +39,26 @@ export class CardComponent implements OnInit {
   }
 
   arrayGenreNames: any = [];
-
+  arrayGenre: any;
   queryMovieById(): any {
     this.film = this.FilmsService.queryMovieById(this.idFilm).valueChanges();
-    this.film = this.film.forEach((obj: any) => {
-      this.film = obj[0];
-      console.log(obj[0]);
+
+    this.film.forEach((objfilm: any) => {
+      this.film = objfilm[0];
+
+      this.genres$.forEach((objGenre: any) => {
+        this.arrayGenre = objGenre;
+
+        this.film.genre_ids.forEach((eleGenre: any) => {
+          console.log(this.arrayGenre);
+
+          this.arrayGenre.forEach((eleGenreName: any) => {
+            if (eleGenre == eleGenreName.id) {
+              this.arrayGenreNames.push(eleGenreName.name);
+            }
+          });
+        });
+      });
     });
   }
   ngOnInit(): void {
