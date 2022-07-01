@@ -111,14 +111,16 @@ export class SignupComponent implements OnInit {
           this.auth
             .createUserWithEmailAndPassword(this.email, this.password)
             .then((userCredential) => {
-              this.userCollection.doc(userCredential.user?.uid).set({
+              // this.userCollection.doc(userCredential.user?.uid).set({
+              this.userCollection.add({
+                uid: userCredential.user?.uid,
                 username: this.form.value.username,
                 date: this.form.value.date,
                 gender: this.form.value.gender,
                 image: link,
               });
               this.okMessage = 'Sign-up effettuata';
-              this.router.navigate(['./home']);
+              this.router.navigate(['./user']);
             })
             ///?///
             .catch((err) => {

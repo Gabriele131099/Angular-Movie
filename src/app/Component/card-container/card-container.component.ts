@@ -11,41 +11,40 @@ const camera = icon({ prefix: 'fas', iconName: 'camera' });
   styleUrls: ['./card-container.component.scss'],
 })
 export class CardContainerComponent implements OnInit {
-  // arrayFilms: any;
   filmsResult: any;
   arrayGenre: any;
-  // filtroGenre: any;
-  // nameGenre: any;
-
-  films$: any = this.filmsService.movieCollection.valueChanges();
+  films$: any;
+  // @Input()
+  filterGenre: any;
   genres$: any = this.filmsService.genreCollection.valueChanges();
+  nameGenre: any;
 
   constructor(private filmsService: FilmsService) {}
-
-  // getGenre(): any {
-
-  //     const lunghezzaArrayGenre = this.genres$.length;
-  //     const numeroGenere = Math.floor(
-  //       Math.random() * (lunghezzaArrayGenre - 0) + 0
-  //     );
-  //     this.filtroGenre = this.arrayGenre[numeroGenere].id;
-  //     this.nameGenre = this.arrayGenre[numeroGenere].name;
-  //     console.log(numeroGenere);
-  //     console.log(this.arrayGenre);
-  //   });
-  // }
-
-  ngOnInit(): void {
-    // this.getGenre();
-    // this.getFilmsFromService();
+  getCasualGenre(): any {
+    const lunghezzaArrayGenre = this.arrayGenre.length;
+    const numeroGenere = Math.floor(
+      Math.random() * (lunghezzaArrayGenre - 0) + 0
+    );
+    this.filterGenre = this.arrayGenre[numeroGenere].id;
+    this.nameGenre = this.arrayGenre[numeroGenere].name;
+  }
+  displayAllCalls() {
     this.genres$.forEach((obj: any) => {
       this.arrayGenre = obj;
-      console.log(this.arrayGenre);
-    });
 
-    this.films$.forEach((obj: any) => {
-      this.filmsResult = obj;
-      console.log(this.filmsResult);
+      this.getCasualGenre();
+
+      this.films$ = this.filmsService
+        .queryMovieByGenre(this.filterGenre)
+        .valueChanges();
+
+      this.films$.forEach((obj: any) => {
+        this.filmsResult = obj;
+        console.log(this.filmsResult);
+      });
     });
+  }
+  ngOnInit(): void {
+    this.displayAllCalls();
   }
 }

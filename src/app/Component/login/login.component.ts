@@ -16,8 +16,9 @@ export class LoginComponent implements OnInit {
   currentUser: any;
   logInMessage: string = '';
 
-  constructor(public auth: AngularFireAuth) {
+  constructor(public auth: AngularFireAuth, public router: Router) {
     this.auth.authState.subscribe((user) => (this.currentUser = user));
+    this.router = router;
   }
 
   form: FormGroup = new FormGroup({
@@ -39,10 +40,10 @@ export class LoginComponent implements OnInit {
         .signInWithEmailAndPassword(this.email, this.password)
         .then((userCredential) => {
           this.currentUser = userCredential.user;
-
           // console.log(userCredential.user._delegate.uid);
           // localStorage.setItem('uidUser', `${userCredential.user._delegate.uid}`);
           // console.log(localStorage.getItem('uidUser'));
+          this.router.navigate(['./home']);
         })
         .catch((err) => {
           this.logInMessage = err;
@@ -58,6 +59,7 @@ export class LoginComponent implements OnInit {
         .then((userCredential) => {
           this.currentUser = userCredential.user; // ritorna una promise!! >> ci accedo con then
           //>> tutto ciò che è qui non attende l'esecuzione dentro il then -> ricorriamo ad async await
+          this.router.navigate(['./home']);
         })
         .catch((err) => {
           console.log(err);

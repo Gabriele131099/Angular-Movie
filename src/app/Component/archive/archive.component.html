@@ -9,14 +9,10 @@
   </div>
   <ul ngClass="listaInput">
     <li>
-      <!-- <button (click)="postGenresFomFile()">BOTTONE generi</button>
-      <button (click)="postMoviesFomFile()">BOTTONE film</button> -->
-
       <mat-form-field class="example-full-width" appearance="fill">
         <mat-label>Filtro per nome</mat-label>
         <input matInput placeholder="filtro" [(ngModel)]="filtroTitle">
       </mat-form-field>
-      <button (click)="queryMoviesByInput()">Cerca</button>
     </li>
 
     <li>
@@ -42,6 +38,9 @@
     </li>
 
     <li>
+      <button mat-mini-fab class="remove" (click)="queryMoviesByInput()">
+        <mat-icon>search</mat-icon>
+      </button> <br>
       <button mat-mini-fab class="remove" (click)="reset()">
         <mat-icon>delete</mat-icon>Filter
       </button>

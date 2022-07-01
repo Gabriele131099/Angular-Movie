@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { FormControl, FormGroup } from '@angular/forms';
@@ -13,7 +14,8 @@ export class InsertUserdataComponent implements OnInit {
   constructor(
     private angularFirestore: AngularFirestore,
     private angularStorage: AngularFireStorage,
-    private router: Router
+    private router: Router,
+    private auth: AngularFireAuth
   ) {
     this.router = router;
   }
@@ -41,6 +43,10 @@ export class InsertUserdataComponent implements OnInit {
 
   filePath = `userCover/${this.n}`;
 
+  userUid: any;
+
+  user$: any = this.auth.user;
+
   inserisci(): void {
     const task = this.angularStorage.upload(this.filePath, this.file);
     task.then((data: any) => {
@@ -52,6 +58,7 @@ export class InsertUserdataComponent implements OnInit {
           this.userCollection
             .add({
               // metodo add delle collection gestisce anche l'upload offline
+              uid: this.user$.uid,
               username: this.form.value.username,
               date: this.form.value.date,
               genre: this.form.value.gender,

@@ -8,16 +8,16 @@
         </div>
         <div *ngIf="userAuth$ | async">
           <h3>
-            <div>Username:</div> {{username}}
+            <span>Username:</span> {{user.username}}
           </h3>
           <h3>
             <span>E-mail:</span> {{email}}
           </h3>
           <h3>
-            <span>Nascita:</span> {{birthDay}}
+            <span>Nascita:</span> {{user.date}}
           </h3>
           <h3>
-            <span>Sesso:</span> {{gender}}
+            <span>Sesso:</span> {{user.gender}}
           </h3>
         </div>
       </div>

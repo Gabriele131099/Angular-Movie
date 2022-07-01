@@ -17,30 +17,24 @@ export class JumbotronHomeComponent implements OnInit {
   film: any;
   pathBackDrop: string = '';
 
-  // films$: any = this.filmsService.movieCollection.valueChanges();
-  //('items', ref => ref.where('size', '==', 'large'))
   films$: any = this.filmsService.movieCollection.valueChanges();
-
+  backDropPath() {
+    this.pathBackDrop =
+      this.film?.backdrop_path != null
+        ? 'https://image.tmdb.org/t/p/original/' + this.film?.backdrop_path
+        : (this.pathBackDrop =
+            'https://ak.picdn.net/shutterstock/videos/1010240090/thumb/1.jpg');
+  }
   constructor(private filmsService: FilmsService) {}
   getFilmsFromFireBase(): any {
     this.films$.forEach((obj: any) => {
       obj.forEach((ele: any) => {
         this.filmsResult.push(ele);
         this.film = this.filmsResult[this.posizione];
-        this.pathBackDrop =
-          'https://image.tmdb.org/t/p/original/' + this.film.backdrop_path;
+        this.backDropPath();
       });
     });
   }
-  // getFilmsFromService(): any {
-  //   this.filmsService.getTrendingFilms().subscribe((films: any) => {
-  //     this.arrayFilms = films;
-  //     this.filmsResult = this.arrayFilms.results;
-  //     this.film = this.filmsResult[this.posizione];
-  //     this.pathBackDrop =
-  //       'https://image.tmdb.org/t/p/original/' + this.film.backdrop_path;
-  //   });
-  // }
 
   slideShowRight() {
     if (this.posizione >= this.filmsResult.length - 1) {
@@ -49,8 +43,7 @@ export class JumbotronHomeComponent implements OnInit {
       this.posizione++;
     }
     this.film = this.filmsResult[this.posizione];
-    this.pathBackDrop =
-      'https://image.tmdb.org/t/p/original/' + this.film.backdrop_path;
+    this.backDropPath();
   }
   slideShowLeft() {
     if (this.posizione <= 0) {
@@ -59,8 +52,7 @@ export class JumbotronHomeComponent implements OnInit {
       this.posizione--;
     }
     this.film = this.filmsResult[this.posizione];
-    this.pathBackDrop =
-      'https://image.tmdb.org/t/p/original/' + this.film.backdrop_path;
+    this.backDropPath();
   }
 
   ngOnInit(): void {

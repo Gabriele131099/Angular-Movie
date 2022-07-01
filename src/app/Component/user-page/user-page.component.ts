@@ -52,40 +52,56 @@ export class UserPageComponent implements OnInit {
 
   tmpUid: any;
 
+  queryUserById(id: any) {
+    let user: any = (this.userCollection = this.angularFirestore.collection<
+      any[]
+    >('users', (ref) => ref.where('uid', '==', `${id}`)));
+    return user;
+  }
+
   displayUserData() {
     this.auth.onAuthStateChanged((user) => {
       if (user) {
         this.email = user.email;
         this.tmpUid = user.uid;
 
-        // this.userCollection = this.angularFirestore.collection<any[]>(
-        //   'users',
-        //   (ref) => ref.where('uid', '==', `${this.tmpUid}`)
-        // );
+        this.user = this.queryUserById(user.uid).valueChanges();
 
-        //doc(uid).get() prende dalla collection il documento la cui pk è l'uid dell'utente auth
-        this.userCollection
-          .doc(this.userAuth$.uid)
-          .get()
-          .then((doc: any) => {
-            console.log(doc.data().username, 'AO');
+        //perchè accediamo così all'observable?
+        this.user.forEach((obj: any) => {
+          console.log(obj[0]);
+          this.user = obj[0];
+        });
 
-            this.email = this.userAuth$.email;
-            this.username = doc.data().username;
-            this.gender = doc.data().gender;
+        console.log(this.user);
 
-            let splitDate = doc.data().date.split('');
-            this.birthDay =
-              splitDate[0] +
-              ' ' +
-              splitDate[1] +
-              ' ' +
-              splitDate[2] +
-              ' ' +
-              splitDate[3];
-            console.log(this.email);
-            console.log(this.username);
-          });
+        // let docRef: any = this.angularFirestore
+        //   .collection('users')
+        //   .doc('PBVVmdngGhXeZiWrn71DDwtmDc02') //julia.julia@julia.it
+        //   .get()
+        //   .subscribe();
+        // console.log(docRef);
+
+        // //doc(uid).get() prende dalla collection il documento la cui pk è l'uid dell'utente auth
+        // this.userCollection.doc(this.userAuth$.uid).then((doc: any) => {
+        //   console.log(doc.data().username, 'AO');
+
+        //   this.email = this.userAuth$.email;
+        //   this.username = doc.data().username;
+        //   this.gender = doc.data().gender;
+
+        //   let splitDate = doc.data().date.split('');
+        //   this.birthDay =
+        //     splitDate[0] +
+        //     ' ' +
+        //     splitDate[1] +
+        //     ' ' +
+        //     splitDate[2] +
+        //     ' ' +
+        //     splitDate[3];
+        //   console.log(this.email);
+        //   console.log(this.username);
+        // });
         // this.selectItems(user.uid);
       }
     });

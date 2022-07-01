@@ -16,7 +16,7 @@
         </p>
 
 
-        <button [routerLink]="['/insert']" type="submit" (click)="logInWithPassword()" mat-stroked-button color="accent"
+        <button type="submit" (click)="logInWithPassword()" mat-stroked-button color="accent"
           class="btn-block">Accedi</button>
 
         <mat-error *ngIf="logInMessage!=null">

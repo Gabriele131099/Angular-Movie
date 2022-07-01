@@ -1,0 +1,22 @@
+.infoUser-container {
+  overflow-y: scroll;
+  height: 90vh;
+  width: 100%;
+  padding: 0px;
+  background-color: #ddcdc9;
+  h1 {
+    padding: 10px;
+  }
+}
+.example-form {
+  > mat-card-content {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    padding: 30px;
+    mat-label {
+      text-align: center;
+      color: #5d2a42;
+    }
+  }
+}

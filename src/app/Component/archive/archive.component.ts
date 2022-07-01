@@ -90,10 +90,12 @@ export class ArchiveComponent implements OnInit {
   addFilteredGenre(newChips: any) {
     newChips = this.arrayGenre.filter((obj: any) => obj.id == newChips)[0];
     this.addChips(newChips);
+    console.log(newChips);
   }
 
   addChips(newChips: any) {
     this.arrayFiltroGenre.push(newChips);
+    console.log(newChips);
   }
   deleteChips(newChips: any) {
     this.arrayFiltroGenre = this.arrayFiltroGenre.filter(

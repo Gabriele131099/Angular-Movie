@@ -31,9 +31,11 @@ export class SideBarComponent implements OnInit {
 
   constructor(
     private filmsService: FilmsService,
-    private route: Router,
+    private router: Router,
     private auth: AngularFireAuth
-  ) {}
+  ) {
+    this.router = router;
+  }
 
   getGenre(): any {
     this.filmsService.getGenre().subscribe((genre) => {
@@ -59,6 +61,7 @@ export class SideBarComponent implements OnInit {
   logOut() {
     localStorage.setItem('uidUser', '');
     this.auth.signOut();
+    this.router.navigate(['./home']);
   }
 
   ngOnInit(): void {

@@ -1,5 +1,5 @@
 <div class="jumbotron">
-  <img class="imageJumbo" src="https://image.tmdb.org/t/p/original/{{this.film.backdrop_path}}" [alt]="film?.title"><br>
+  <img class="imageJumbo" [src]="pathBackDrop" [alt]="film?.title"><br>
   <h3 class="txt"><a href="film/{{film?.id}}">{{film?.title}}</a></h3>
   <div id="arrow">
     <button (click)="slideShowLeft()">
