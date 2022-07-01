@@ -1,16 +1,16 @@
 <div class="body">
   <div ngClass="backdrop-container container">
-    <img id="imgDesktop" [src]="pathBackdrop" [alt]="film.title">
-    <img id="imgMobile" [src]="pathPoster" [alt]="film.title">
+    <img id="imgDesktop" [src]="pathBackdrop" [alt]="film?.title">
+    <img id="imgMobile" [src]="pathPoster" [alt]="film?.title">
   </div>
   <div class="fullPage-container">
     <div ngClass="filmInfo-container">
       <div>
         <a href="#">
-          <img width="250px" [src]="pathPoster" [alt]="film.title" class="cover" />
+          <img width="250px" [src]="pathPoster" [alt]="film?.title" class="cover" />
         </a>
         <div>
-          <a href="https://www.youtube.com/results?search_query=l/{{film.original_title}}">
+          <a href="https://www.youtube.com/results?search_query=l/{{film?.original_title}}">
             <img width="60px" src="../../../assets/circle-play-solid.svg" alt="trailer player ">
           </a>
         </div>
@@ -22,11 +22,11 @@
       </div>
       <div>
         <div id="Pg">PG-13</div>
-        <p>{{film.overview}}</p>
+        <p>{{film?.overview}}</p>
         <div>
-          <span>voto: {{film.vote_average}}</span>
+          <span>voto: {{film?.vote_average}}</span>
         </div>
-        <app-reviewForm [arrayRecensioni]="arrayRecensioni" [id_film]="film.id"></app-reviewForm>
+        <app-reviewForm [arrayRecensioni]="arrayRecensioni" [id_film]="film?.id"></app-reviewForm>
         <button mat-button (click)="open()">Recensioni...</button>
         <div *ngIf="flag==true">
           <div ngClass="popUpRecensioni">
@@ -36,7 +36,7 @@
                 <mat-icon>cancel</mat-icon>
               </button>
             </div>
-            <app-reviewCarousel [idFilm]="film.id"></app-reviewCarousel>
+            <app-reviewCarousel [idFilm]="film?.id"></app-reviewCarousel>
           </div>
         </div>
         <div class="avatar-author">
