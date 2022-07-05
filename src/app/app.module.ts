@@ -20,7 +20,6 @@ import {
   matDatepickerAnimations,
   MatDatepickerModule,
 } from '@angular/material/datepicker';
-
 import { MatSliderModule } from '@angular/material/slider';
 import { MatIconModule } from '@angular/material/icon';
 import { HttpClientModule } from '@angular/common/http';
@@ -48,7 +47,7 @@ import { provideFunctions, getFunctions } from '@angular/fire/functions';
 import { provideStorage, getStorage } from '@angular/fire/storage';
 import { InsertUserdataComponent } from './Component/insert-userdata/insert-userdata.component';
 import { SingleFilmComponent } from './Component/single-film/single-film.component';
-
+import { AngularFireFunctionsModule } from '@angular/fire/compat/functions';
 import { MOVIES } from 'src/assets/json/movies';
 import { LANGUAGES } from 'src/assets/json/languages';
 
@@ -78,21 +77,12 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
   ],
   imports: [
     BrowserModule,
-    // RouterModule.forRoot([
-    //   { path: '', component: HomeComponent },
-    //   { path: 'archive', component: ArchiveComponent },
-    //   { path: 'archive/:id/:lang', component: ArchiveComponent },
-    //   { path: 'film/:id', component: CardComponent },
-    //   { path: 'login', component: LoginComponent },
-    //   { path: 'signup', component: SignupComponent },
-    //   { path: 'user/:id', component: UserPageComponent },
-    //   { path: 'user/:id/infoUser', component: InfoUser },
-    // ]),
     AppRoutingModule,
     FormsModule,
     BrowserAnimationsModule,
     AngularMaterialModule,
     BrowserAnimationsModule,
+    AngularFireFunctionsModule,
     ReactiveFormsModule,
     MatSliderModule,
     MatIconModule,

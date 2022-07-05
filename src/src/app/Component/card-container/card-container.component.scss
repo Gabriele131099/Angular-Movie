@@ -1,0 +1,74 @@
+@import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
+@import url('https://fonts.googleapis.com/css?family=Roboto:700,900');
+
+$sfondo: linear-gradient(to bottom, #6e529d 0%, #d97b93 100%);
+
+.cardContainer {
+  display: flex;
+  align-items: center;
+  overflow-x: scroll;
+  background-color: $sfondo;
+  padding: 10px;
+  max-height: 450px;
+  height: 100%;
+}
+.cardContainer::-webkit-scrollbar {
+  height: 5px;
+}
+.cardContainer > div {
+  margin: 0px 20px;
+}
+
+h4 , h3,a {
+  color: white;
+  text-decoration: none;
+}
+
+.titleGenre{
+  font-family: 'Roboto';
+  font-weight: 700;
+  font-size: 20px;
+  float: left;
+  background-color: #1e1b26;
+  color: white;
+  border-radius: 10px;
+  padding: 5px 10px;
+  margin-left: 5px;
+}
+.card {
+  &-container {
+    img {
+      width: 100%;
+      height: 100%;
+    }
+    box-shadow: 5px 5px 5px 0px #1e1b26;
+    height: 350px;
+    min-width: 250px;
+    max-width: 250px;
+    margin: 0px 20px;
+    transition: all 0.3s;
+    cursor: pointer;
+  }
+  &-container:hover {
+    transform: scale(1.1);
+  }
+  &-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    height: 100px;
+    width: calc(100% - 2rem);
+    border-radius: 20px;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    background-color: $sfondo;
+    transform: translate(-50%, 50%);
+    box-shadow: 0px 2px 20px 0px #67676738;
+  }
+}
+
+app-card {
+  display: none;
+}

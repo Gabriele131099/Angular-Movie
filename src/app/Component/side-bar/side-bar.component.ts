@@ -61,7 +61,7 @@ export class SideBarComponent implements OnInit {
   logOut() {
     localStorage.setItem('uidUser', '');
     this.auth.signOut();
-    this.router.navigate(['./home']);
+    this.router.navigate(['']);
   }
 
   ngOnInit(): void {

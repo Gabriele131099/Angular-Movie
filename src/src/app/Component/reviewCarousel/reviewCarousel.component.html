@@ -1,0 +1,56 @@
+<section *ngIf="flag">
+  <div class="Cart-Container">
+    <!-- <div class="Header">
+      <h3 class="Heading">Recensioni</h3>
+      <button (click)="close()"><img width="20px" src="../../../assets/square-xmark-solid.svg" alt=""></button>
+    </div>-->
+    <div>
+      <label for="">Filtra per valutazione</label>
+      <select name="" id="" (change)="filterForVote()" [(ngModel)]="filtroRecensioni">
+        <option value="0">Tutte</option>
+        <option value="5">Fantastico</option>
+        <option value="4">Ottimo</option>
+        <option value="3">Buono</option>
+        <option value="2">Discreto</option>
+        <option value="1">Pessimo</option>
+      </select>
+    </div>
+    <div class="Empty-Box" *ngIf="arrayRecensioni.length<1">
+      <h1>Non ci sono recensioni</h1>
+      <h3>Vai all <a routerLink="/archive/0">archivio</a></h3>
+    </div>
+    <div id="su" *ngIf="arrayRecensioni.length>0" class="Container-Items">
+      <div style="text-align: left;padding: 10px;">
+
+        <h4 class="title">{{recensione.id_user}} :</h4>
+        <div>
+          <span *ngIf="recensione.vote>=1"><img width="15px" src="../../../assets/icons/—Pngtree—gold stars_370246.png"
+              alt=""></span>
+          <span *ngIf="recensione.vote>=2"><img width="15px" src="../../../assets/icons/—Pngtree—gold stars_370246.png"
+              alt=""></span>
+          <span *ngIf="recensione.vote>=3"><img width="15px" src="../../../assets/icons/—Pngtree—gold stars_370246.png"
+              alt=""></span>
+          <span *ngIf="recensione.vote>=4"><img width="15px" src="../../../assets/icons/—Pngtree—gold stars_370246.png"
+              alt=""></span>
+          <span *ngIf="recensione.vote>=5"><img width="15px" src="../../../assets/icons/—Pngtree—gold stars_370246.png"
+              alt=""></span>
+
+        </div>
+        <p class="recensione">{{recensione.recensione}}</p>
+
+      </div>
+    </div>
+    <div *ngIf="arrayRecensioni.length>0" class="checkout">
+      <button style="background-color: white;" (click)="slideShowLeft()">
+        <img width="15px" src="../../../assets/angle-left-solid.svg" alt="">
+      </button>
+      <div>
+        {{posizioneRecensione}}/{{arrayRecensioni.length==1?arrayRecensioni.length:arrayRecensioni.length-1}}
+      </div>
+      <button style="background-color: white;" (click)="slideShowRight()">
+        <img width="15px" src="../../../assets/angle-right-solid.svg" alt="">
+      </button>
+    </div>
+
+  </div>
+</section>

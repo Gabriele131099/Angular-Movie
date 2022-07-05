@@ -46,8 +46,16 @@ export class CardComponent implements OnInit {
 
     this.film.forEach((objfilm: any) => {
       this.film = objfilm[0];
-      this.pathBackdrop += this.film?.backdrop_path;
-      this.pathPoster += this.film?.poster_path;
+
+      this.film?.backdrop_path == null
+        ? (this.pathBackdrop =
+            'https://images.ctfassets.net/x0ftt113i8ba/39GZ1TkqG293ufwBqHxeoH/eb536c271630673cc20006f6854e1b43/lego_it.png')
+        : (this.pathBackdrop += this.film?.backdrop_path);
+
+      this.film?.poster_path == null
+        ? (this.pathPoster =
+            'https://images.ctfassets.net/x0ftt113i8ba/39GZ1TkqG293ufwBqHxeoH/eb536c271630673cc20006f6854e1b43/lego_it.png')
+        : (this.pathPoster += this.film?.poster_path);
 
       this.genres$.forEach((objGenre: any) => {
         this.arrayGenre = objGenre;

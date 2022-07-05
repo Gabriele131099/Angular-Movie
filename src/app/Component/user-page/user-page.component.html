@@ -3,8 +3,7 @@
     <div>
       <div class="userInfo-block">
         <div class="userImage">
-          <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp"
-            alt="Generic placeholder image">
+          <img [src]="user?.image" alt="Generic placeholder image">
         </div>
         <div *ngIf="userAuth$ | async">
           <h3>

@@ -1,0 +1,71 @@
+<div ngClass="containerArchive">
+  <div class="listButton">
+    <button (click)="openList()" mat-fab aria-label="Example icon button with a bookmark icon">
+      <mat-icon>bookmark</mat-icon>
+    </button>
+  </div>
+  <div *ngIf="flag" class="listPopUp">
+    <app-favourite></app-favourite>
+  </div>
+  <ul ngClass="listaInput">
+    <li>
+      <!-- <button (click)="postGenresFomFile()">BOTTONE generi</button>
+      <button (click)="postMoviesFomFile()">BOTTONE film</button> -->
+
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Filtro per nome</mat-label>
+        <input matInput placeholder="filtro" [(ngModel)]="filtroTitle">
+      </mat-form-field>
+      <button (click)="queryMoviesByInput()">Cerca</button>
+    </li>
+
+    <li>
+      <mat-form-field appearance="fill">
+        <mat-label>Filtro Genere</mat-label>
+        <mat-select name="genre" id="genre" [(ngModel)]="filtroGenre" (ngModelChange)="addFilteredGenre(filtroGenre)">
+          <mat-option *ngFor="let genre of arrayGenre" value="{{genre.id}}">
+            {{genre.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </li>
+
+    <li>
+      <mat-form-field appearance="fill">
+        <mat-label>Filtro Lingua</mat-label>
+        <mat-select name="language" id="language" [(ngModel)]="languageFilter">
+          <mat-option *ngFor="let language of codeNameLanguages" value="{{language.code}}">
+            {{language.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </li>
+
+    <li>
+      <button mat-mini-fab class="remove" (click)="reset()">
+        <mat-icon>delete</mat-icon>Filter
+      </button>
+    </li>
+
+  </ul>
+
+  <div>
+    <span class="chip" *ngFor="let chip of arrayFiltroGenre">{{chip.name}} <button mat-mini-fab
+        (click)="deleteChips(chip.id)">X</button></span>
+  </div>
+  <app-dialog *ngIf="message !=''" [message]="message"></app-dialog>
+
+  <div class="card-container">
+    <cdk-virtual-scroll-viewport appendOnly itemSize="50" class="example-viewport">
+      <div class="flexati">
+        <div *cdkVirtualFor="let film of films$" class="example-item">
+          <app-single-film [film]="film"></app-single-film>
+        </div>
+      </div>
+    </cdk-virtual-scroll-viewport>
+    <div *ngIf="films$.length==0">
+      <h1>La ricerca non ha prodotto alcun risultato</h1>
+    </div>
+  </div>
+
+</div>

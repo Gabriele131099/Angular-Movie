@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
           // console.log(userCredential.user._delegate.uid);
           // localStorage.setItem('uidUser', `${userCredential.user._delegate.uid}`);
           // console.log(localStorage.getItem('uidUser'));
-          this.router.navigate(['./home']);
+          this.router.navigate(['']);
         })
         .catch((err) => {
           this.logInMessage = err;

@@ -8,7 +8,7 @@
       <button *ngIf="!(user$ | async)" mat-menu-item routerLink="/login">Login</button>
       <button *ngIf="!(user$ | async)" mat-menu-item routerLink="/signup">Sign Up</button>
       <button *ngIf="(user$ | async)" mat-menu-item routerLink="/user">Your Page</button>
-      <button *ngIf="user$ | async" mat-menu-item (click)="logOut()"><a href="/"></a>LogOut</button>
+      <button *ngIf="user$ | async" mat-menu-item (click)="logOut()">LogOut</button>
       <!-- <pre>{{user$| async | json}}</pre> -->
     </mat-menu>
   </div>

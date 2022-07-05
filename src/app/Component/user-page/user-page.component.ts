@@ -67,42 +67,12 @@ export class UserPageComponent implements OnInit {
 
         this.user = this.queryUserById(user.uid).valueChanges();
 
-        //perchè accediamo così all'observable?
         this.user.forEach((obj: any) => {
           console.log(obj[0]);
           this.user = obj[0];
         });
 
         console.log(this.user);
-
-        // let docRef: any = this.angularFirestore
-        //   .collection('users')
-        //   .doc('PBVVmdngGhXeZiWrn71DDwtmDc02') //julia.julia@julia.it
-        //   .get()
-        //   .subscribe();
-        // console.log(docRef);
-
-        // //doc(uid).get() prende dalla collection il documento la cui pk è l'uid dell'utente auth
-        // this.userCollection.doc(this.userAuth$.uid).then((doc: any) => {
-        //   console.log(doc.data().username, 'AO');
-
-        //   this.email = this.userAuth$.email;
-        //   this.username = doc.data().username;
-        //   this.gender = doc.data().gender;
-
-        //   let splitDate = doc.data().date.split('');
-        //   this.birthDay =
-        //     splitDate[0] +
-        //     ' ' +
-        //     splitDate[1] +
-        //     ' ' +
-        //     splitDate[2] +
-        //     ' ' +
-        //     splitDate[3];
-        //   console.log(this.email);
-        //   console.log(this.username);
-        // });
-        // this.selectItems(user.uid);
       }
     });
   }
@@ -146,20 +116,5 @@ export class UserPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.displayUserData();
-    // this.user$ = this.userCollection.valueChanges();
-    // const id= this.route.snapshot.paramMap.get('id')
-    // if (id==this.userId.toString()) {
-    //   this.user  = this.arrayUsers.filter((obj:any)=>
-    //   obj.id==this.userId
-    //   )[0]
-    // this.born = this.user.date.split(' ')
-    // this.born = this.born[0] + ' ' + this.born[1] + ' ' + this.born[2] + ' ' + this.born[3]
-    // console.log(this.born)
-    // console.log(this.user)
-    // console.log(this.wishList)
-    // }else{
-    //   alert('sei un furbetto')
-    //   location.href = `./user/${this.userId}`
-    // }
   }
 }
