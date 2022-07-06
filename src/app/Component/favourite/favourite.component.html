@@ -2,13 +2,19 @@
   <div class="Cart-Container">
     <div class="Header">
       <div>
-        <button (click)="changeList('favourite')" mat-raised-button>  <mat-icon id="favorite">favorite</mat-icon> </button>
+        <button (click)="changeList('favourite')" mat-raised-button>
+          <mat-icon id="favorite">favorite</mat-icon>
+        </button>
         <hr>
-        <button (click)="changeList('wishList')" mat-raised-button><mat-icon id="grade">grade</mat-icon></button>
+        <button (click)="changeList('wishList')" mat-raised-button>
+          <mat-icon id="grade">grade</mat-icon>
+        </button>
       </div>
-      <button (click)="empty()" mat-raised-button><mat-icon id="deleteAll">delete_outline</mat-icon> {{title}}</button>
+      <button (click)="empty()" mat-raised-button>
+        <mat-icon id="deleteAll">delete_outline</mat-icon> {{title}}
+      </button>
     </div>
-   
+
     <div>
       <form class="example-form" [formGroup]="form" (ngSubmit)="changeList(nameList)">
         <mat-form-field class="example-full-width" appearance="fill">
@@ -16,28 +22,28 @@
           <input matInput placeholder="filtro" formControlName="filtroTitle">
         </mat-form-field>
       </form>
-     </div>
-    <div class="Empty-Box" *ngIf="arrayFilm.list.length<1">
+    </div>
+    <!-- <div class="Empty-Box" *ngIf="arrayFilm.list.length<1">
       <h1>Non ci sono Film in {{nameList}}</h1>
       <h3>Vai all <a routerLink="/archive/0">archivio</a></h3>
-    </div>
-    <div id="go_favourite" *ngIf="arrayFilm.list.length>0" class="Container-Items">
-     
-      <div *ngFor="let film of arrayFilm.list" class="Cart-Items">
+    </div> -->
+    <div id="go_favourite" class="Container-Items">
+
+      <div *ngFor="let film of arrayFilm" class="Cart-Items">
         <div class="about">
-          <img src="https://image.tmdb.org/t/p/original/{{film.poster_path}}" alt="">
+          <img src="https://image.tmdb.org/t/p/original/{{film.film.poster_path}}" alt="">
         </div>
         <div class="counter">
           <div class="box">
-            <h1>{{film.original_title}}</h1>
+            <h1>{{film.film.original_title}}</h1>
           </div>
-          <div>{{film.overview}}</div>
-          <h3> <a routerLink="/film/{{film.id}}">Dettagli</a></h3>
+          <div>{{film.film.overview}}</div>
+          <h3> <a routerLink="/film/{{film.film.id}}">Dettagli</a></h3>
         </div>
         <div class="item_bottom">
           <div>
             <div>Voto</div>
-            <h3 class="subtitle">{{film.vote_average}}</h3>
+            <h3 class="subtitle">{{film.film.vote_average}}</h3>
           </div>
           <button mat-mini-fab class="remove" (click)="deleteFilm(film)">
             <mat-icon>delete</mat-icon>
@@ -49,7 +55,7 @@
     </div>
     <hr style="background-color: black;">
     <div class="checkout">
-      <h4>nella lista ci sono {{arrayFilm.list.length}} elementi</h4>
+      <!-- <h4>nella lista ci sono {{arrayFilm.list.length}} elementi</h4> -->
     </div>
 
   </div>

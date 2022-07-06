@@ -53,23 +53,6 @@ export class ArchiveComponent implements OnInit {
     });
   }
 
-  addList(film: any, listName: string) {
-    this.message = '';
-    console.log(listName);
-    let array: any = JSON.parse(localStorage.getItem(`${listName}`) || '');
-    console.log(array);
-    let tmp = array.list.filter((obj: any) => obj.id == film.id);
-    if (tmp.length > 0) {
-      this.message = 'il film esiste già nella lista ' + listName;
-    } else if (this.userLogFlag == 'true') {
-      array.list.push(film);
-      localStorage.setItem(`${listName}`, JSON.stringify(array));
-      this.message = 'aggiunto con successo nella lista' + listName;
-    } else {
-      this.message = 'devi prima loggarti ';
-    }
-  }
-
   reset() {
     this.filtroGenre = 0;
     this.filtroTitle = '';

@@ -42,7 +42,7 @@ export class SignupComponent implements OnInit {
   okMessage: string = '';
   ////////////////////////////
   userCollection: any = this.angularFirestore.collection('users');
-
+  userListsCollection: any = this.angularFirestore.collection('userList');
   fileRef: any;
   file: any;
   n: any = Date.now();
@@ -119,6 +119,7 @@ export class SignupComponent implements OnInit {
                 gender: this.form.value.gender,
                 image: link,
               });
+
               this.okMessage = 'Sign-up effettuata';
               this.router.navigate(['./user']);
             })
@@ -126,6 +127,11 @@ export class SignupComponent implements OnInit {
             .catch((err) => {
               this.errMessage = err;
             });
+          this.userListsCollection.add({
+            wishList: [],
+            favourite: [],
+            id_user: this.form.value.username,
+          });
           ///?///
         });
     });

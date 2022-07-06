@@ -58,7 +58,6 @@ export class UserPageComponent implements OnInit {
     >('users', (ref) => ref.where('uid', '==', `${id}`)));
     return user;
   }
-
   displayUserData() {
     this.auth.onAuthStateChanged((user) => {
       if (user) {

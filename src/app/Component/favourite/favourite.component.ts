@@ -1,43 +1,64 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { FormControl, FormGroup } from '@angular/forms';
+import { FilmsService } from 'src/app/services/films.service';
 
 @Component({
   selector: 'app-favourite',
   templateUrl: './favourite.component.html',
-  styleUrls: ['./favourite.component.scss']
+  styleUrls: ['./favourite.component.scss'],
 })
 export class Favourite implements OnInit {
-  nameList:string=`favourite`
-  title:string = this.nameList.toLocaleUpperCase()
-  arrayFilm :any= JSON.parse(localStorage.getItem(`${this.nameList}`)||'')
-  userId:number = parseInt(localStorage.getItem('userId')||'')
-  empty(){
-    this.arrayFilm.list=[]
-    localStorage.setItem(`${this.nameList}`,JSON.stringify(this.arrayFilm)||'')
+  nameList: string = `favourite`;
+  title: string = this.nameList.toLocaleUpperCase();
+  arrayFilm: any = this.queryUserListsById();
+  userListsCollection: any = this.angularFirestore.collection(
+    `${this.nameList}`
+  );
+
+  @Input() username: any;
+  lists: any = this.queryUserListsById();
+
+  queryUserListsById() {
+    let lists: any = (this.userListsCollection =
+      this.angularFirestore.collection<any[]>(`${this.nameList}`, (ref) =>
+        ref.where('user', '==', `filippo`)
+      ));
+    lists.valueChanges().forEach((obj: any) => {
+      console.log(obj);
+    });
+    return lists.valueChanges();
   }
-  deleteFilm(film:any){
-    this.arrayFilm.list = this.arrayFilm.list.filter((obj:any)=>obj.id!=film?.id)
-    localStorage.setItem(`${this.nameList}`,JSON.stringify(this.arrayFilm)||'')
-  }
-  constructor() { }
+
+  empty() {}
+  deleteFilm(film: any) {}
+  constructor(
+    private angularFirestore: AngularFirestore,
+    private filmsService: FilmsService,
+    private auth: AngularFireAuth
+  ) {}
   ngOnInit(): void {
-    console.log(this.arrayFilm)
-    console.log(JSON.parse(localStorage.getItem(`${this.nameList}`)||''))
+    this.arrayFilm = this.queryUserListsById();
+    this.arrayFilm.forEach((obj: any) => {
+      this.arrayFilm = obj;
+    });
   }
   form: FormGroup = new FormGroup({
-   filtroTitle: new FormControl(''),
+    filtroTitle: new FormControl(''),
   });
-  changeList(list:string){
+  changeList(list: string) {
+    console.log(this.username);
     if (this.form.valid) {
-    this.submitEM.emit(this.form.value);
-    this.nameList = list
-    this.title = this.nameList.toLocaleUpperCase()
-    this.arrayFilm = JSON.parse(localStorage.getItem(`${this.nameList}`)||'')
-    this.arrayFilm.list = this.arrayFilm.list.filter((obj:any)=>obj.title.includes(this.form.value.filtroTitle))
+      this.submitEM.emit(this.form.value);
+      this.nameList = list;
+      this.arrayFilm = this.queryUserListsById();
+      this.arrayFilm.forEach((obj: any) => {
+        this.arrayFilm = obj;
+      });
+      this.title = this.nameList.toLocaleUpperCase();
     }
-   
-}
+  }
 
-
-@Output() submitEM = new EventEmitter();
+  @Output() submitEM = new EventEmitter();
 }

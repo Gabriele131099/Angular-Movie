@@ -17,12 +17,9 @@ export class HeaderComponent implements OnInit {
     localStorage.setItem('review', JSON.stringify([])); ///storage id utente in sessione
     let arrayList: any = [
       {
-        list: [],
+        wishList: [],
+        favourite: [],
         id_user: 0,
-      },
-      {
-        list: [],
-        id_user: 1,
       },
     ];
     const lista: any = {

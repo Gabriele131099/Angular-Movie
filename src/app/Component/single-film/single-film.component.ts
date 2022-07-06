@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import * as firebase from 'firebase/compat';
 import { IMovie } from '../../Interfaces/IMovies';
 
 @Component({
@@ -10,23 +12,33 @@ export class SingleFilmComponent implements OnInit {
   pathPoster: string = 'https://image.tmdb.org/t/p/original/';
   message: string = '';
   userLogFlag: any;
-  constructor() {}
+  constructor(private angularFirestore: AngularFirestore) {}
   @Input() film: IMovie | undefined;
-  addList(film: any, listName: string) {
-    this.message = '';
-    console.log(listName);
-    let array: any = JSON.parse(localStorage.getItem(`${listName}`) || '');
-    console.log(array);
-    let tmp = array.list.filter((obj: any) => obj.id == film.id);
-    if (tmp.length > 0) {
-      this.message = 'il film esiste già nella lista ' + listName;
-    } else if (this.userLogFlag == 'true') {
-      array.list.push(film);
-      localStorage.setItem(`${listName}`, JSON.stringify(array));
-      this.message = 'aggiunto con successo nella lista' + listName;
-    } else {
-      this.message = 'devi prima loggarti ';
-    }
+  userListsCollection: any = this.angularFirestore.collection('userList');
+  queryUserListsById(film: IMovie, listName: string) {
+    let lists: any = (this.userListsCollection =
+      this.angularFirestore.collection<any[]>(`${listName}`, (ref) =>
+        ref.where('user', '==', `filippo`).where('film', '==', film)
+      ));
+
+    return lists.valueChanges();
+  }
+
+  async addList(film: any, listName: string) {
+    let list = this.queryUserListsById(film, listName);
+    list.forEach((obj: any) => {
+      console.log(obj);
+      console.log(obj.length);
+      if (obj.length > 0) {
+        return alert('il film esiste in ' + listName);
+      } else {
+        list = this.angularFirestore.collection(`${listName}`).add({
+          user: 'filippo',
+          film: film,
+        });
+        return alert('film caricato nella lista ,' + listName);
+      }
+    });
   }
 
   arrayFiltroGenre: any = [];
