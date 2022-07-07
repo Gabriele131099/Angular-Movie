@@ -10,7 +10,7 @@
           <mat-icon id="grade">grade</mat-icon>
         </button>
       </div>
-      <button (click)="empty()" mat-raised-button>
+      <button mat-raised-button>
         <mat-icon id="deleteAll">delete_outline</mat-icon> {{title}}
       </button>
     </div>
@@ -23,11 +23,11 @@
         </mat-form-field>
       </form>
     </div>
-    <!-- <div class="Empty-Box" *ngIf="arrayFilm.list.length<1">
+    <div class="Empty-Box" *ngIf="arrayFilm.length<1">
       <h1>Non ci sono Film in {{nameList}}</h1>
       <h3>Vai all <a routerLink="/archive/0">archivio</a></h3>
-    </div> -->
-    <div id="go_favourite" class="Container-Items">
+    </div>
+    <div id="go_favourite" *ngIf="arrayFilm.length>0" class="Container-Items">
 
       <div *ngFor="let film of arrayFilm" class="Cart-Items">
         <div class="about">
@@ -45,7 +45,7 @@
             <div>Voto</div>
             <h3 class="subtitle">{{film.film.vote_average}}</h3>
           </div>
-          <button mat-mini-fab class="remove" (click)="deleteFilm(film)">
+          <button mat-mini-fab class="remove" (click)="empty(film.film)">
             <mat-icon>delete</mat-icon>
           </button>
 
@@ -55,7 +55,7 @@
     </div>
     <hr style="background-color: black;">
     <div class="checkout">
-      <!-- <h4>nella lista ci sono {{arrayFilm.list.length}} elementi</h4> -->
+      <h4>nella lista ci sono {{arrayFilm.length}} elementi</h4>
     </div>
 
   </div>

@@ -3,6 +3,8 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { FormControl, FormGroup } from '@angular/forms';
 import { FilmsService } from 'src/app/services/films.service';
+import { doc, deleteDoc, getFirestore } from 'firebase/firestore';
+import { IMovie } from 'src/app/Interfaces/IMovies';
 
 @Component({
   selector: 'app-favourite',
@@ -12,7 +14,7 @@ import { FilmsService } from 'src/app/services/films.service';
 export class Favourite implements OnInit {
   nameList: string = `favourite`;
   title: string = this.nameList.toLocaleUpperCase();
-  arrayFilm: any = this.queryUserListsById();
+  arrayFilm: any;
   userListsCollection: any = this.angularFirestore.collection(
     `${this.nameList}`
   );
@@ -31,7 +33,11 @@ export class Favourite implements OnInit {
     return lists.valueChanges();
   }
 
-  empty() {}
+  async empty(film: any) {
+    const db = getFirestore();
+    console.log(film);
+    await deleteDoc(doc(db, `favourite`, '828853'));
+  }
   deleteFilm(film: any) {}
   constructor(
     private angularFirestore: AngularFirestore,

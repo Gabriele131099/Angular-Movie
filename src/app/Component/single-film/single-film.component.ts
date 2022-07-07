@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import * as firebase from 'firebase/compat';
+import { Observable } from 'rxjs';
 import { IMovie } from '../../Interfaces/IMovies';
 
 @Component({
@@ -9,12 +11,32 @@ import { IMovie } from '../../Interfaces/IMovies';
   styleUrls: ['./single-film.component.scss'],
 })
 export class SingleFilmComponent implements OnInit {
+  user: any;
+  uid: string | undefined;
   pathPoster: string = 'https://image.tmdb.org/t/p/original/';
   message: string = '';
   userLogFlag: any;
-  constructor(private angularFirestore: AngularFirestore) {}
+  arrayFiltroGenre: any = [];
+  arrayGenre: any = [];
   @Input() film: IMovie | undefined;
   userListsCollection: any = this.angularFirestore.collection('userList');
+  constructor(
+    private angularFirestore: AngularFirestore,
+    private auth: AngularFireAuth
+  ) {}
+
+  ngOnInit(): void {
+    this.auth.user.forEach((user: any) => {
+      this.uid = user.uid;
+      console.log(this.uid);
+    });
+  }
+  /**
+   * funzione query per user
+   * @param film
+   * @param listName
+   * @returns
+   */
   queryUserListsById(film: IMovie, listName: string) {
     let lists: any = (this.userListsCollection =
       this.angularFirestore.collection<any[]>(`${listName}`, (ref) =>
@@ -24,25 +46,36 @@ export class SingleFilmComponent implements OnInit {
     return lists.valueChanges();
   }
 
+  /**
+   * funzione add film in una list
+   * @param film
+   * @param listName
+   */
   async addList(film: any, listName: string) {
-    let list = this.queryUserListsById(film, listName);
-    list.forEach((obj: any) => {
-      console.log(obj);
-      console.log(obj.length);
-      if (obj.length > 0) {
-        return alert('il film esiste in ' + listName);
-      } else {
-        list = this.angularFirestore.collection(`${listName}`).add({
-          user: 'filippo',
-          film: film,
-        });
-        return alert('film caricato nella lista ,' + listName);
-      }
-    });
+    if (this.uid) {
+      console.log(film);
+      this.angularFirestore
+        .collection(`${listName}/${this.uid}/idFilms`)
+        .doc(film.uid)
+        // .delete()
+        .set({ title: film.title })
+        .catch((error) => console.log(error));
+      console.log(`${listName}/${this.uid}/idFilms`);
+      return alert('film caricato nella lista ,' + listName);
+    }
   }
-
-  arrayFiltroGenre: any = [];
-  arrayGenre: any = [];
+  async delete(film: any, listName: string) {
+    if (this.uid) {
+      console.log(film);
+      this.angularFirestore
+        .collection(`${listName}/${this.uid}/idFilms`)
+        .doc(film.uid)
+        .delete()
+        .catch((error) => console.log(error));
+      console.log(`${listName}/${this.uid}/idFilms`);
+      return alert('film caricato nella lista ,' + listName);
+    }
+  }
   reset() {
     // this.filmsService.getFilms().subscribe((films) => {
     //   this.filtroGenre = 0;
@@ -52,5 +85,4 @@ export class SingleFilmComponent implements OnInit {
     //   this.filmsResult = films;
     // });
   }
-  ngOnInit(): void {}
 }

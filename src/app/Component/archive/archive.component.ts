@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { FilmsService } from '../../services/films.service';
 import { ChangeDetectionStrategy } from '@angular/core';
 import { LANGUAGES } from 'src/assets/json/languages';
+import { map } from 'rxjs';
 
 /** @title Virtual scroll with view recycling disabled. */
 
@@ -26,13 +27,29 @@ export class ArchiveComponent implements OnInit {
   arrayFiltroGenre: any = [];
   arrayGenre: any = [];
 
-  films$: any = this.filmsService.movieCollection.valueChanges();
+  films$: any = this.filmsService.movieCollection.snapshotChanges().pipe(
+    map((snapshots: any) => {
+      return snapshots.map((s: any) => {
+        // if you log s here, you can look through the object
+        // payload.doc.data() should be the same as what valueChanges returns
+        // payload.doc.id will be the id
+        // merge them into a new object
+        console.log(s.payload.doc.id);
+        return { ...s.payload.doc.data(), uid: s.payload.doc.id };
+      });
+    })
+  );
   genres$: any = this.filmsService.genreCollection.valueChanges();
 
   constructor(
     private filmsService: FilmsService,
     private route: ActivatedRoute
   ) {}
+  ngOnInit(): void {
+    this.genres$.forEach((obj: any) => {
+      this.arrayGenre = obj;
+    });
+  }
   // postGenresFomFile(): any {
   //   this.filmsService.postGenresFomFile();
   // }
@@ -90,12 +107,5 @@ export class ArchiveComponent implements OnInit {
     } else {
       this.reset();
     }
-  }
-
-  ngOnInit(): void {
-    this.genres$ = this.filmsService.genreCollection.valueChanges();
-    this.genres$.forEach((obj: any) => {
-      this.arrayGenre = obj;
-    });
   }
 }
