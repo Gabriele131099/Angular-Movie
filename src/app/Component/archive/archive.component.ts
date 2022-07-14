@@ -66,6 +66,9 @@ export class ArchiveComponent implements OnInit {
       .valueChanges();
     console.log(this.films$);
     this.films$.forEach((obj: any) => {
+      this.films$ = obj.filter((ele: any) =>
+        ele.title.includes(this.filtroTitle)
+      );
       console.log(obj);
     });
   }

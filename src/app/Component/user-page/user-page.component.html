@@ -7,16 +7,16 @@
         </div>
         <div *ngIf="userAuth$ | async">
           <h3>
-            <span>Username:</span> {{user.username}}
+            <span>Username:</span> {{user?.username}}
           </h3>
           <h3>
             <span>E-mail:</span> {{email}}
           </h3>
           <h3>
-            <span>Nascita:</span> {{user.date}}
+            <span>Nascita:</span> {{user?.date}}
           </h3>
           <h3>
-            <span>Sesso:</span> {{user.gender}}
+            <span>Sesso:</span> {{user?.gender}}
           </h3>
         </div>
       </div>
@@ -24,7 +24,7 @@
       <!-- <pre>{{user$| async | json}}</pre> -->
 
       <div>
-        <app-favourite [username]="user.username"></app-favourite>
+        <app-favourite [username]="user?.username"></app-favourite>
       </div>
     </div>
   </div>

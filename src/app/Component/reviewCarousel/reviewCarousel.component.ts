@@ -53,13 +53,20 @@ export class ReviewCarousel implements OnInit {
   }
   queryReviewsFilmAndVote() {
     let reviews: any;
-    reviews = this.reviewCollection = this.angularFirestore.collection<any>(
-      'reviews',
-      (ref) =>
-        ref
-          .where('id_film', '==', this.idFilm)
-          .where('vote', '==', this.filtroRecensioni)
-    );
+    if (this.filtroRecensioni != 0) {
+      reviews = this.reviewCollection = this.angularFirestore.collection<any>(
+        'reviews',
+        (ref) =>
+          ref
+            .where('id_film', '==', this.idFilm)
+            .where('vote', '==', this.filtroRecensioni)
+      );
+    } else {
+      reviews = this.reviewCollection = this.angularFirestore.collection<any>(
+        'reviews',
+        (ref) => ref.where('id_film', '==', this.idFilm)
+      );
+    }
 
     this.arrayRecensioni$ = reviews.valueChanges();
     this.arrayRecensioni$.forEach((obj: any) => {

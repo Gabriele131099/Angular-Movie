@@ -14,8 +14,18 @@ import { IMovie } from '../Interfaces/IMovies';
 export class FilmsService {
   numberPage: number = 1;
   arrayFilmsAll: any;
-
+  async filmUserList(listName: string, uid: string) {
+    console.log(listName);
+    console.log(uid);
+    let listCollection = this.angularFirestore
+      .collection(`${listName}`)
+      .doc(`Zbex4p1gefeyWWsRh21JaZrjqmB2`)
+      .collection('idFilms');
+    return listCollection.valueChanges();
+  }
   movieCollectionFilterByInput: any;
+  wishListCollection: any =
+    this.angularFirestore.collection<IMovie[]>('wishList');
 
   movieCollection: any = this.angularFirestore.collection<IMovie[]>('movies');
 
@@ -63,7 +73,6 @@ export class FilmsService {
         'movies',
         (ref) =>
           ref //concatena le query
-            .where('title', '==', `${filterTitle}`) //filtro Titolo
             .where('original_language', '==', `${filterLang}`) //filtro Lingua
             .where('genre_ids', 'array-contains-any', tmpGenre) //filtro Generi
       ));

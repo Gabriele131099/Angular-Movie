@@ -57,25 +57,20 @@ export class SingleFilmComponent implements OnInit {
       this.angularFirestore
         .collection(`${listName}/${this.uid}/idFilms`)
         .doc(film.uid)
-        // .delete()
-        .set({ title: film.title })
+        .set({
+          id: film.id,
+          title: film.title,
+          poster: film.poster_path,
+          overview: film.overview,
+          average: film.vote_average,
+          uid: film.uid,
+        })
         .catch((error) => console.log(error));
       console.log(`${listName}/${this.uid}/idFilms`);
       return alert('film caricato nella lista ,' + listName);
     }
   }
-  async delete(film: any, listName: string) {
-    if (this.uid) {
-      console.log(film);
-      this.angularFirestore
-        .collection(`${listName}/${this.uid}/idFilms`)
-        .doc(film.uid)
-        .delete()
-        .catch((error) => console.log(error));
-      console.log(`${listName}/${this.uid}/idFilms`);
-      return alert('film caricato nella lista ,' + listName);
-    }
-  }
+
   reset() {
     // this.filmsService.getFilms().subscribe((films) => {
     //   this.filtroGenre = 0;
