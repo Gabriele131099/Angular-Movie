@@ -4,6 +4,11 @@
       <div class="userInfo-block">
         <div class="userImage">
           <img [src]="user?.image" alt="Generic placeholder image">
+          <div class="linkImgUpdate">
+            <label for="">Select profile picture *</label><br>
+            <input type="file" formControlName="img" required (change)="inserisciImg($event)"
+              accept=".jpg , .png , .jfif , .jpeg" mat-stroked-button color="accent">
+          </div>
         </div>
         <div *ngIf="userAuth$ | async">
           <h3>

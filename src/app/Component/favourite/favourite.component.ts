@@ -44,11 +44,7 @@ export class Favourite implements OnInit {
   }
   async queryMoviesByInput(listName: string) {
     console.log(this.form.value.filterTitle);
-    // await this.angularFirestore.collection(
-    //   `${listName}/${this.uid}/idFilms`,
-    //   (ref) =>
-    //     ref.where('title', '==', 'Doctor Strange: The Score-Cerer Supreme')
-    // );
+
     this.arrayFilm = this.filmsService.filmUserList(this.nameList, this.uid);
     this.arrayFilm.__zone_symbol__value.forEach((obj: any) => {
       this.arrayFilm = obj.filter((ele: any) =>
@@ -57,10 +53,10 @@ export class Favourite implements OnInit {
       console.log(obj);
     });
   }
-  delete(film: any, listName: string) {
-    if (this.uid) {
+  async delete(film: any, listName: string) {
+    if (this.uid && film != undefined) {
       console.log(film);
-      this.angularFirestore
+      await this.angularFirestore
         .collection(`${listName}/${this.uid}/idFilms/`)
         .doc(film.uid)
         .delete()

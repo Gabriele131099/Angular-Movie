@@ -33,7 +33,7 @@
     </mat-menu>
 
     <mat-menu #genre="matMenu">
-      <a *ngFor="let genre of arrayGenre" mat-menu-item (click)="renderByGenre(genre.id)">{{genre.name}}</a>
+      <a *ngFor="let genre of  genres$" mat-menu-item (click)="renderByGenre(genre.id,genre.name)">{{genre.name}}</a>
     </mat-menu>
 
     <!-- -------------------------------------------------------------------------------------------------------------------------- -->

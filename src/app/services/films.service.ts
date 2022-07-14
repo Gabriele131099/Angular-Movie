@@ -15,11 +15,9 @@ export class FilmsService {
   numberPage: number = 1;
   arrayFilmsAll: any;
   async filmUserList(listName: string, uid: string) {
-    console.log(listName);
-    console.log(uid);
     let listCollection = this.angularFirestore
       .collection(`${listName}`)
-      .doc(`Zbex4p1gefeyWWsRh21JaZrjqmB2`)
+      .doc(`${uid}`)
       .collection('idFilms');
     return listCollection.valueChanges();
   }
@@ -46,7 +44,7 @@ export class FilmsService {
     let film: any = (this.movieCollectionFilterByInput =
       this.angularFirestore.collection<IMovie[]>(
         'movies',
-        (ref) => ref.where('genre_ids', 'array-contains', genre) //filtro Titolo
+        (ref) => ref.where('genre_ids', 'array-contains', genre) //filtro genre
       ));
     return film;
   }
@@ -65,17 +63,41 @@ export class FilmsService {
   ): any {
     let tmpGenre: any = [];
     filterGenre.forEach((obj: any) => tmpGenre.push(obj.id));
-    if (filterLang == 'all') {
-      filterLang = 'en';
+    let filteredFilms: any;
+    console.log(tmpGenre.length);
+    console.log(filterLang);
+    if (tmpGenre.length > 0 && filterLang == 'all') {
+      console.log('sono l if che filtra per genre');
+      filteredFilms = this.movieCollectionFilterByInput =
+        this.angularFirestore.collection<IMovie[]>(
+          'movies',
+          (ref) =>
+            ref //concatena le query
+              .where('genre_ids', 'array-contains-any', tmpGenre) //filtro Generi
+        );
     }
-    let filteredFilms: any = (this.movieCollectionFilterByInput =
-      this.angularFirestore.collection<IMovie[]>(
-        'movies',
-        (ref) =>
-          ref //concatena le query
-            .where('original_language', '==', `${filterLang}`) //filtro Lingua
-            .where('genre_ids', 'array-contains-any', tmpGenre) //filtro Generi
-      ));
+    if (tmpGenre.length == 0 && filterLang != 'all') {
+      console.log('sono l if che filtra per lingua');
+      filteredFilms = this.movieCollectionFilterByInput =
+        this.angularFirestore.collection<IMovie[]>(
+          'movies',
+          (ref) =>
+            ref //concatena le query
+              .where('original_language', '==', `${filterLang}`) //filtro Lingua
+        );
+    }
+
+    if (tmpGenre.length > 0 && filterLang != 'all') {
+      console.log('sono l if che filtra per tutto');
+      filteredFilms = this.movieCollectionFilterByInput =
+        this.angularFirestore.collection<IMovie[]>(
+          'movies',
+          (ref) =>
+            ref //concatena le query
+              .where('genre_ids', 'array-contains-any', tmpGenre) //filtro Generi
+              .where('original_language', '==', `${filterLang}`) //filtro Lingua
+        );
+    }
     console.log(tmpGenre);
     return filteredFilms;
   }

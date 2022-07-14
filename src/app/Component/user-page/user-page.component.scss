@@ -13,6 +13,20 @@
     text-align: left;
     flex-wrap: wrap;
     .userImage {
+      .linkImgUpdate {
+        width: 100%;
+        height: calc(100% - 20px);
+        background-color: rgba(0, 0, 0, 0.338);
+        padding-top: 20px;
+        position: absolute;
+        top: 0px;
+        color: white;
+        display: none;
+      }
+      &:hover .linkImgUpdate {
+        display: block;
+      }
+      position: relative;
       text-align: center;
       padding: 10px 10px 0px 10px;
       width: 280px;

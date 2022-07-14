@@ -17,7 +17,6 @@ import { map } from 'rxjs';
 export class ArchiveComponent implements OnInit {
   filtroTitle: string = '';
   filtroGenre: any = this.route.snapshot.paramMap.get('id');
-  userLogFlag: any = localStorage.getItem('userLogFlag');
   message: string = '';
 
   languageFilter: any = this.route.snapshot.paramMap.get('lang');
@@ -46,16 +45,21 @@ export class ArchiveComponent implements OnInit {
     private route: ActivatedRoute
   ) {}
   ngOnInit(): void {
+    this.filtroGenre = this.route.snapshot.paramMap.get('id');
     this.genres$.forEach((obj: any) => {
       this.arrayGenre = obj;
     });
+    console.log(this.filtroGenre);
+
+    let newFilterForGenre = {
+      id: parseInt(this.filtroGenre.split('-')[0]),
+      name: this.filtroGenre.split('-')[1],
+    };
+    console.log(newFilterForGenre);
+    this.addChips(newFilterForGenre);
+    this.queryMoviesByInput();
   }
-  // postGenresFomFile(): any {
-  //   this.filmsService.postGenresFomFile();
-  // }
-  // postMoviesFomFile(): any {
-  //   this.filmsService.postMoviesFomFile();
-  // }
+
   queryMoviesByInput(): any {
     this.films$ = this.filmsService
       .queryMoviesByInput(
@@ -91,6 +95,7 @@ export class ArchiveComponent implements OnInit {
   }
 
   addFilteredGenre(newChips: any) {
+    console.log(newChips);
     newChips = this.arrayGenre.filter((obj: any) => obj.id == newChips)[0];
     this.addChips(newChips);
     console.log(newChips);
@@ -98,7 +103,7 @@ export class ArchiveComponent implements OnInit {
 
   addChips(newChips: any) {
     this.arrayFiltroGenre.push(newChips);
-    console.log(newChips);
+    console.log(this.arrayFiltroGenre);
   }
   deleteChips(newChips: any) {
     this.arrayFiltroGenre = this.arrayFiltroGenre.filter(

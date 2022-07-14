@@ -37,21 +37,8 @@ export class SideBarComponent implements OnInit {
     this.router = router;
   }
 
-  getGenre(): any {
-    this.filmsService.getGenre().subscribe((genre) => {
-      this.arrayGenre = genre;
-      console.log(this.arrayGenre);
-    });
-  }
-
-  getFilms(): any {
-    this.filmsService.getFilms().subscribe((film) => {
-      this.arrayFilms = film;
-    });
-  }
-
-  renderByGenre(id: any) {
-    window.location.replace(`/archive/${id}/all`);
+  renderByGenre(id: any, name: any) {
+    window.location.replace(`/archive/${id}-${name}/all`);
   }
 
   renderByLanguage(lang: any) {
@@ -65,6 +52,8 @@ export class SideBarComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getGenre();
+    this.genres$.forEach((obj: any) => {
+      this.genres$ = obj;
+    });
   }
 }
